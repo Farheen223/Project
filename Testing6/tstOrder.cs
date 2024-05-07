@@ -46,39 +46,39 @@ namespace Testing6
     namespace Testing6
     {
         [TestClass]
-        public class tstAddress
+        public class tstOrder
         {
             [TestMethod]
             public void InstanceOK()
             {
                 //create an instance of the class we want to create
-                clsOrder AnAddress = new clsOrder();
+                clsOrder AnOrder = new clsOrder();
                 //test to see that it exists
-                Assert.IsNotNull(AnAddress);
+                Assert.IsNotNull(AnOrder);
             }
             [TestMethod]
             public void ActivePropertyOK()
             {
                 //create an instance of the class we want to create
-                clsOrder AnAddress = new clsOrder();
+                clsOrder AnOrder = new clsOrder();
                 //create some test data to assign to the property
                 Boolean TestData = true;
                 //assign the data to the property
-                AnAddress.Active = TestData;
+                AnOrder.Active = TestData;
                 //test to see that the two values are the same
-                Assert.AreEqual(AnAddress.Active, TestData);
+                Assert.AreEqual(AnOrder.Active, TestData);
             }
             [TestMethod]
             public void DateAddedPropertyOK()
             {
                 //create an instance of the class we want to create
-                clsOrder AnAddress = new clsOrder();
+                clsOrder AnOrder = new clsOrder();
                 //create some test data to assign to the property
                 DateTime TestData = DateTime.Now.Date;
                 //assign the data to the property
-                AnAddress.DateAdded = TestData;
+                AnOrder.DateAdded = TestData;
                 //test to see that the two values are the same
-                Assert.AreEqual(AnAddress.DateAdded, TestData);
+                Assert.AreEqual(AnOrder.DateAdded, TestData);
             }
             [TestMethod]
             public void AddressIdPropertyOK()
@@ -146,13 +146,13 @@ namespace Testing6
             public void TownPropertyOK()
             {
                 //create an instance of the class we want to create
-                clsOrder AnAddress = new clsOrder();
+                clsOrder AnOrder = new clsOrder();
                 //create some test data to assign to the property
                 string TestData = "Leicester";
                 //assign the data to the property
-                AnAddress.Town = TestData;
+                AnOrder.Town = TestData;
                 //test to see that the two values are the same
-                Assert.AreEqual(AnAddress.Town, TestData);
+                Assert.AreEqual(AnOrder.Town, TestData);
 
             }
         }
