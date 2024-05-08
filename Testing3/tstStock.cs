@@ -91,12 +91,12 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void SupplierIdOK()
+        public void SupplierIDOK()
         {
             clsStock aStock = new clsStock();
             Int32 TestData = 1;
-            aStock.SupplierId = TestData;
-            Assert.AreEqual(aStock.SupplierId, TestData);
+            aStock.SupplierID = TestData;
+            Assert.AreEqual(aStock.SupplierID, TestData);
         }
 
         [TestMethod]
