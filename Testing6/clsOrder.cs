@@ -1,6 +1,8 @@
-﻿namespace Testing6
+﻿namespace ClassLibrary
 {
-    internal class clsOrder
+    public class clsOrder
     {
+
+        public bool Active { get; set; }
     }
 }
