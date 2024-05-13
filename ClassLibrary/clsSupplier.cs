@@ -115,19 +115,51 @@ namespace ClassLibrary
             }
         }
 
+        //public bool Find(int supplierId)
+        //{
+        //    // Set the private data members to the test data value
+        //    mSupplierID = 4;
+        //    mName = "ClothesSupplier";
+        //    mCity = "Liverpool";
+        //    mEmail = "supplier@gmail.com";
+        //    mTelephoneNumber = "079252358158";
+        //    mAddDate = Convert.ToDateTime("01/01/2024");
+        //    mAvailability = true;
+
+
+        //    return true;
+        //}
+
         public bool Find(int supplierId)
         {
-            // Set the private data members to the test data value
-            mSupplierID = 4;
-            mName = "ClothesSupplier";
-            mCity = "Liverpool";
-            mEmail = "supplier@gmail.com";
-            mTelephoneNumber = "079252358158";
-            mAddDate = Convert.ToDateTime("01/01/2024");
-            mAvailability = true;
+            // Create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            // Add the parameter for the supplier id to search for
+            DB.AddParameter("@SupplierID", supplierId);
+            // Execute the stored procedure
+            DB.Execute("sproc_tblSupplier_FilterBySupplierId");
 
+            // If one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                // Copy the data from the database to the private data members
+                mSupplierID = Convert.ToInt32(DB.DataTable.Rows[0]["supplierId"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["supplierName"]);
+                mCity = Convert.ToString(DB.DataTable.Rows[0]["supplierCity"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["supplierEmail"]);
+                mTelephoneNumber = Convert.ToString(DB.DataTable.Rows[0]["supplierTelephoneNumber"]);
+                mAddDate = Convert.ToDateTime(DB.DataTable.Rows[0]["supplierAddDate"]);
+                mAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["supplierAvailability"]);
 
-            return true;
+                // Return that everything worked OK
+                return true;
+            }
+            // If not record found
+            else
+            {
+                // Return false indicating there is a problem
+                return false;
+            }
         }
     }
 }

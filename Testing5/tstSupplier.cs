@@ -117,7 +117,7 @@ namespace Testing5
             // Create a Boolean variable to store the results of the validation
             Boolean Found = false;
             // Create some test data to use with the method
-            Int32 SupplierID = 4;
+            Int32 SupplierID = 3;
             // Invoke the find method
             Found = supplier.Find(SupplierID);
             // Test to see if the result is true
@@ -134,11 +134,11 @@ namespace Testing5
             // Create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 SupplierID = 4;
+            Int32 SupplierID = 3;
             // Invoke the method
             Found = supplier.Find(SupplierID);
             // Check the supplier id property
-            if (supplier.SupplierID != 4)
+            if (supplier.SupplierID != 3)
             {
                 OK = false;
             }
@@ -156,11 +156,11 @@ namespace Testing5
             // Create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 SupplierID = 4;
+            Int32 SupplierID = 3;
             // Invoke the method
             Found = supplier.Find(SupplierID);
             // Check the name property
-            if (supplier.Name != "ClothesSupplier")
+            if (supplier.Name != "Supplier3")
             {
                 OK = false;
             }
@@ -178,11 +178,11 @@ namespace Testing5
             // Create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 SupplierID = 4;
+            Int32 SupplierID = 3;
             // Invoke the method
             Found = supplier.Find(SupplierID);
             // Check the city property
-            if (supplier.City != "Liverpool")
+            if (supplier.City != "Brighton")
             {
                 OK = false;
             }
@@ -200,11 +200,11 @@ namespace Testing5
             // Create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 SupplierID = 4;
+            Int32 SupplierID = 3;
             // Invoke the method
             Found = supplier.Find(SupplierID);
             // Check the email property
-            if (supplier.Email != "supplier@gmail.com")
+            if (supplier.Email != "supplier3@gmail.com")
             {
                 OK = false;
             }
@@ -222,11 +222,11 @@ namespace Testing5
             // Create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 SupplierID = 4;
+            Int32 SupplierID = 3;
             // Invoke the method
             Found = supplier.Find(SupplierID);
             // Check the telephone number property
-            if (supplier.TelephoneNumber != "079252358158")
+            if (supplier.TelephoneNumber != "07235872562")
             {
                 OK = false;
             }
@@ -244,11 +244,11 @@ namespace Testing5
             // Create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 SupplierID = 4;
+            Int32 SupplierID = 3;
             // Invoke the method
             Found = supplier.Find(SupplierID);
             // Check the supplier add date property
-            if (supplier.AddDate != Convert.ToDateTime("01/01/2024"))
+            if (supplier.AddDate != Convert.ToDateTime("03/05/2023"))
             {
                 OK = false;
             }
@@ -266,7 +266,7 @@ namespace Testing5
             // Create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 SupplierID = 4;
+            Int32 SupplierID = 3;
             // Invoke the method
             Found = supplier.Find(SupplierID);
             // Check the availability property

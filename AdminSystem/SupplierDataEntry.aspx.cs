@@ -34,4 +34,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
         // navigate to the supplier view page
         Response.Redirect("SupplierViewer.aspx");
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        // Create an instance of the supplier class
+        clsSupplier supplier = new clsSupplier();
+        // Create a variable to store the primary key
+        Int32 SupplierId;
+        // Create a variable to store the result of the find operation
+        Boolean Found = false;
+        // Get the primary key entered by the user
+        SupplierId = Convert.ToInt32(txtSupplierId.Text);
+
+        // Find the record
+        Found = supplier.Find(SupplierId);
+        if (Found == true)
+        {
+            // Display the values of the properties in the form if record
+            // is found
+            txtSupplierName.Text = supplier.Name;
+            txtSupplierCity.Text = supplier.City;
+            txtSupplierEmail.Text = supplier.Email;
+            txtSupplierTelephoneNumber.Text = supplier.TelephoneNumber;
+            chkSupplierAvailability.Checked = supplier.Availability;
+
+        }
+    }
 }
