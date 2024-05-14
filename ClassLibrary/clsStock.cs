@@ -11,5 +11,8 @@ namespace ClassLibrary
         public string ItemName { get; set; }
         public int SupplierID { get; set; }
         public int ItemID { get; set; }
+
+       
+
     }
 }

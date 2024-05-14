@@ -108,5 +108,21 @@ namespace Testing3
             Assert.AreEqual(aStock.ItemID, TestData);
         }
 
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create instance
+            clsSrock aStock = new clsStock();
+            //create bool variabkle to sotre validation results
+            Boolean Found = false;
+            //create test data
+            Int32 ItemID = 21;
+            //invoke method
+            Found = aStock.Find(ItemID);
+            //test to see if result is true
+            Assert.IsTrue(Found);
+
+        }
+
     }
 }
