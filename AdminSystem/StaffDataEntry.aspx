@@ -22,7 +22,7 @@
         </p>
         <asp:Label ID="lblStaffName" runat="server" style="z-index: 1; left: 12px; top: 69px; position: absolute; height: 19px" Text="Name" width="95px"></asp:Label>
         <asp:Label ID="lblNumber" runat="server" style="z-index: 1; left: 12px; top: 125px; position: absolute" Text="PhoneNumber" width="95px"></asp:Label>
-        <asp:CheckBox ID="chkFulltime" runat="server" style="z-index: 1; left: 93px; top: 220px; position: absolute" Text="FullTime" />
+        <asp:CheckBox ID="chkFulltime" runat="server" style="z-index: 1; left: 93px; top: 220px; position: absolute" Text="FullTime" OnCheckedChanged="chkFulltime_CheckedChanged" />
         <asp:TextBox ID="txtDateCreated" runat="server" OnTextChanged="txtDateCreated_TextChanged" style="z-index: 1; left: 114px; top: 186px; position: absolute"></asp:TextBox>
         <p>
             <asp:Label ID="lblAccount" runat="server" style="z-index: 1; left: 12px; top: 189px; position: absolute; right: 627px; width: 95px; margin-bottom: 0px" Text="Date Created"></asp:Label>
