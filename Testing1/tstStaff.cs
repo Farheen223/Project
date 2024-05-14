@@ -7,8 +7,7 @@ namespace Testing1
     [TestClass]
     public class tstStaff
     {
-        public clsStaff PhoneNumber { get; private set; }
-        public clsStaff TelephoneNumber { get; private set; }
+      
 
         [TestMethod]
         public void TestMethod1()
@@ -25,9 +24,9 @@ namespace Testing1
             //creating test data to assign
             Boolean TestData = true;
             //assigning data to property
-            Staff.Active = TestData;
+            Staff.FullTime = TestData;
             //testing to see if they are the same
-            Assert.AreEqual(Staff.Active, TestData);
+            Assert.AreEqual(Staff.FullTime, TestData);
         }
         [TestMethod]
         public void DateAddedPropertyOK()
@@ -42,7 +41,7 @@ namespace Testing1
         public void StaffIdproperty()
         {
             clsStaff Staff = new clsStaff();
-            int TestData = 1;
+            Int32 TestData = 1;
             Staff.StaffId = TestData;
             Assert.AreEqual(Staff.StaffId,TestData);
         }
@@ -69,8 +68,8 @@ namespace Testing1
         {
             clsStaff Staff = new clsStaff();
             String TestData = "07894447379";
-            Staff.TelephoneNumber = TestData;
-            Assert.AreEqual(Staff,TelephoneNumber, TestData);
+            Staff.PhoneNumber = TestData;
+            Assert.AreEqual(Staff.PhoneNumber, TestData);
             
         }
 
@@ -83,6 +82,135 @@ namespace Testing1
             Assert.AreEqual(Staff.Hours, TestData);
         }
 
-        
+        [TestMethod]
+        public void FindMethodOk()
+        {
+            clsStaff Staff = new clsStaff();
+            Boolean Found = false;
+            Int32 StaffId = 3;
+            Found = Staff.Find(StaffId);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestStaffIdFound()
+        {
+            clsStaff Staff = new clsStaff(); 
+            //create boolean variable to store result
+            Boolean found = false;
+            //create a boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create test data
+            Int32 StaffId = 3;
+            //Invoke the method
+            found = Staff.Find(StaffId);
+            if (Staff.StaffId != 3)
+            {
+                OK = false;
+            }
+            //test if the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestDateAddedFound()
+        {
+            clsStaff Staff = new clsStaff();
+            Boolean found = false;
+            Boolean OK = true;
+            Int32 StaffId = 3;
+            found = Staff.Find(StaffId);
+            if(Staff.DateAdded != Convert.ToDateTime("14/05/2024"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestNameFound()
+        {
+            clsStaff Staff = new clsStaff();
+            Boolean found = false;
+            Boolean OK = true;
+            Int32 StaffId = 3;
+            found = Staff.Find(StaffId);
+            if (Staff.Name != "DanGalby")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestPhoneNumberFound()
+        {
+            clsStaff Staff = new clsStaff();
+            Boolean found = false;
+            Boolean OK = true;
+            Int32 StaffId = 3;
+            found = Staff.Find(StaffId);
+            if (Staff.PhoneNumber != "07453729171")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestEmailFound()
+        {
+            clsStaff Staff = new clsStaff();
+            Boolean found = false;
+            Boolean OK = true;
+            Int32 StaffId = 3;
+            found = Staff.Find(StaffId);
+            if (Staff.Email != "D.Galb@hotmail.com")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+
+        [TestMethod]
+        public void TestHoursWorkedFound()
+        {
+            clsStaff Staff = new clsStaff();
+            Boolean found = false;
+            Boolean OK = true;
+            Int32 StaffId = 3;
+            found = Staff.Find(StaffId);
+            if (Staff.Hours != "32")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+
+        [TestMethod]
+        public void TestFulltimeFound()
+        {
+            clsStaff Staff = new clsStaff();
+            Boolean found = false;
+            Boolean OK = true;
+            Int32 StaffId = 3;
+            found = Staff.Find(StaffId);
+            if (Staff.FullTime != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+
     }
 }
