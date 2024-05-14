@@ -105,17 +105,38 @@ namespace ClassLibrary
             }
           }
 
-        public bool Find(int staffId)
+        public bool Find(int StaffId)
         {
-            mStaffId = 3;
-            mDateAdded = Convert.ToDateTime("14/05/2024");
-            mName = "DanGalby";
-            mHours = "32";
-            mPhoneNumber = "07453729171";
-            mEmail = "D.Galb@hotmail.com";
-            mFullTime = true;
+            //create instance of data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address id
+            DB.AddParameter("@StaffId", StaffId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByStaffId");
+            //if one record is found 
+            if (DB.Count == 1)
+            {
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["AccountCreated"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["StaffName"]);
+                mHours = Convert.ToString(DB.DataTable.Rows[0]["HoursWorked"]);
+                mPhoneNumber = Convert.ToString(DB.DataTable.Rows[0]["PhoneNumber"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mFullTime = Convert.ToBoolean(DB.DataTable.Rows[0]["FullTime"]);
+                return true;
+            }
 
-            return true;
+            else
+            {
+                return false;
+            }
+            
+        }
+
+
+        public string Valid(string name, string email, string phoneNumber, string dateAdded, string hours)
+        {
+            return "";
         }
     }
 }

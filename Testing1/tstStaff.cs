@@ -1,13 +1,23 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Dynamic;
 
 namespace Testing1
 {
     [TestClass]
     public class tstStaff
     {
-      
+
+
+        //good test data
+        // create test data to pass the method
+        string Email = "D.Galb@hotmail.com";
+        string Name = "DanGalby";
+        string PhoneNumber = "07453729171";
+        string Hours = "32";
+        string DateAdded = DateTime.Now.ToShortDateString();
+
 
         [TestMethod]
         public void TestMethod1()
@@ -43,7 +53,7 @@ namespace Testing1
             clsStaff Staff = new clsStaff();
             Int32 TestData = 1;
             Staff.StaffId = TestData;
-            Assert.AreEqual(Staff.StaffId,TestData);
+            Assert.AreEqual(Staff.StaffId, TestData);
         }
         [TestMethod]
         public void StaffNameproperty()
@@ -70,7 +80,7 @@ namespace Testing1
             String TestData = "07894447379";
             Staff.PhoneNumber = TestData;
             Assert.AreEqual(Staff.PhoneNumber, TestData);
-            
+
         }
 
         [TestMethod]
@@ -87,7 +97,7 @@ namespace Testing1
         {
             clsStaff Staff = new clsStaff();
             Boolean Found = false;
-            Int32 StaffId = 3;
+            Int32 StaffId = 9;
             Found = Staff.Find(StaffId);
             Assert.IsTrue(Found);
         }
@@ -95,16 +105,16 @@ namespace Testing1
         [TestMethod]
         public void TestStaffIdFound()
         {
-            clsStaff Staff = new clsStaff(); 
+            clsStaff Staff = new clsStaff();
             //create boolean variable to store result
             Boolean found = false;
             //create a boolean variable to record if the data is ok
             Boolean OK = true;
             //create test data
-            Int32 StaffId = 3;
+            Int32 StaffId = 9;
             //Invoke the method
             found = Staff.Find(StaffId);
-            if (Staff.StaffId != 3)
+            if (Staff.StaffId != 9)
             {
                 OK = false;
             }
@@ -119,9 +129,9 @@ namespace Testing1
             clsStaff Staff = new clsStaff();
             Boolean found = false;
             Boolean OK = true;
-            Int32 StaffId = 3;
+            Int32 StaffId = 9;
             found = Staff.Find(StaffId);
-            if(Staff.DateAdded != Convert.ToDateTime("14/05/2024"))
+            if (Staff.DateAdded != Convert.ToDateTime("14/05/2024"))
             {
                 OK = false;
             }
@@ -135,9 +145,9 @@ namespace Testing1
             clsStaff Staff = new clsStaff();
             Boolean found = false;
             Boolean OK = true;
-            Int32 StaffId = 3;
+            Int32 StaffId = 9;
             found = Staff.Find(StaffId);
-            if (Staff.Name != "DanGalby")
+            if (Staff.Name != "Sudhir")
             {
                 OK = false;
             }
@@ -151,9 +161,9 @@ namespace Testing1
             clsStaff Staff = new clsStaff();
             Boolean found = false;
             Boolean OK = true;
-            Int32 StaffId = 3;
+            Int32 StaffId = 9;
             found = Staff.Find(StaffId);
-            if (Staff.PhoneNumber != "07453729171")
+            if (Staff.PhoneNumber != "07835462189")
             {
                 OK = false;
             }
@@ -167,9 +177,9 @@ namespace Testing1
             clsStaff Staff = new clsStaff();
             Boolean found = false;
             Boolean OK = true;
-            Int32 StaffId = 3;
+            Int32 StaffId = 9;
             found = Staff.Find(StaffId);
-            if (Staff.Email != "D.Galb@hotmail.com")
+            if (Staff.Email != "Sudhir@outlook.com")
             {
                 OK = false;
             }
@@ -184,9 +194,9 @@ namespace Testing1
             clsStaff Staff = new clsStaff();
             Boolean found = false;
             Boolean OK = true;
-            Int32 StaffId = 3;
+            Int32 StaffId = 9;
             found = Staff.Find(StaffId);
-            if (Staff.Hours != "32")
+            if (Staff.Hours != "12")
             {
                 OK = false;
             }
@@ -201,14 +211,25 @@ namespace Testing1
             clsStaff Staff = new clsStaff();
             Boolean found = false;
             Boolean OK = true;
-            Int32 StaffId = 3;
+            Int32 StaffId = 9;
             found = Staff.Find(StaffId);
-            if (Staff.FullTime != true)
+            if (Staff.FullTime != false)
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
 
+        }
+
+
+       
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            Error = Staff.Valid(Name, Email, PhoneNumber, DateAdded, Hours);
         }
 
 
