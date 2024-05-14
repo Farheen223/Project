@@ -45,11 +45,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the CustomerName
         AnCustomer.CustomerName = txtCustomerName.Text;
         //caputure the Date of Birth
-        AnCustomer.DateOfBirth = txtDateOfBirth.Text;
+        AnCustomer.DateOfBirth = Convert.ToDateTime(DateTime.Now);
         //capture the email
-        AnCustomer.Email = txtEmail.Text;
+        AnCustomer.Email = Convert.ToString( TxtEmail.Text);
         //capture the Is Active
-        AnCustomer.Active = chkActive.Checked;
+        AnCustomer.Active = ChkActive.Checked;
         //store the address in the section object
         Session["AnCustomer"] = AnCustomer;
         //navigate to the view page
@@ -57,6 +57,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void TextBox1_TextChanged1(object sender, EventArgs e)
     {
 
     }
