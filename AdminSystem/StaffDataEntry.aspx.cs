@@ -47,4 +47,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsStaff Staff = new clsStaff();
+        Int32 StaffId;
+        Boolean Found = false;
+        StaffId = Convert.ToInt32(txtStaffId.Text);
+        Found = Staff.Find(StaffId);
+        if(Found == true)
+        {
+            txtName.Text = Staff.Name;
+            txtPhoneNumber.Text = Staff.PhoneNumber;
+            txtHoursWorked.Text = Staff.Hours;
+            txtEmail.Text = Staff.Email;
+            txtDateCreated.Text = Staff.DateAdded.ToString();
+            chkFulltime.Checked = Staff.FullTime;
+        }
+    }
 }
