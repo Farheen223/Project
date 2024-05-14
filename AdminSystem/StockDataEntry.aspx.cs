@@ -27,8 +27,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //crete a nrew instance of clsStock
         clsStock aStock = new clsStock();
-        //capture stock no ?
+        //capture item name ?
         aStock.ItemName = txtItemName.Text;
+        //capture item id
+        aStock.ItemID = Convert.ToInt32(txtItemID.Text);
+        //capture supplierid
+        aStock.SupplierID = Convert.ToInt32(txtSupplierID.Text);
+        //capture item price
+        aStock.ItemPrice = Convert.ToInt32(txtItemPrice.Text);
+        //capture item description
+        aStock.Description = txtItemDescription.Text;
+        //date of delivery
+        aStock.DateAdded = Convert.ToDateTime(DateTime.Now);
+        //instock
+        aStock.inStock = chkInStock.Checked;
+
+
         //store in session object
         Session["aStock"] = aStock;
         //navigate to the view page

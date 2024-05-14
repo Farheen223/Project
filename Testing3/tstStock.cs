@@ -43,9 +43,9 @@ namespace Testing3
             //create test data to assign to property
             Boolean testStock = true;
             //assin the data to the property
-            aStock.Active = testStock;
+            aStock.InStock = testStock;
             //test to see that the two values are the same
-            Assert.AreEqual(aStock.Active, testStock);
+            Assert.AreEqual(aStock.InSock, testStock);
         }
 
         [TestMethod]  //date stock added
@@ -100,12 +100,12 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void ItemIdOK()
+        public void ItemIDOK()
         {
             clsStock aStock = new clsStock();
             Int32 TestData = 1;
-            aStock.ItemId = TestData;
-            Assert.AreEqual(aStock.ItemId, TestData);
+            aStock.ItemID = TestData;
+            Assert.AreEqual(aStock.ItemID, TestData);
         }
 
     }
