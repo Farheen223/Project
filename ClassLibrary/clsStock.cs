@@ -102,17 +102,39 @@ namespace ClassLibrary
 
 
 
-        public bool Find(int itemID)
+        public bool Find(int ItemID)
         {
-            //set the private data members to the test data value
-            mItemID = 21;
-            mDescription = "this is a tshirt";
-            minStock = true;
-            mDateAdded = Convert.ToDateTime("23/12/2022");
-            mItemName = "tshirt";
-            mItemPrice = 10;
-            mSupplierID = 123;
-            return true;
+
+            //create instance of data  connection
+            clsDataConnection DB = new clsDataConnection();
+            //add parameter for the item id to search for
+            DB.AddParameter("@ItemID", ItemID);
+            //execute stored procedure
+            DB.Execute("sproc_tblStock_FilterByItemID");
+            //iuf one record is found 
+            if (DB.Count == 1)
+            {
+                
+                //set the private data members to the test data value
+                mItemID = Convert.ToInt32(DB.DataTable.Rows[0]["ItemID"]);
+                mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
+                minStock = Convert.ToBoolean(DB.DataTable.Rows[0]["inStock"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                mItemName = Convert.ToString(DB.DataTable.Rows[0]["ItemName"]);
+                mItemPrice = Convert.ToInt32(DB.DataTable.Rows[0]["ItemPrice"]);
+                mSupplierID = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
+                return true;
+
+
+
+
+            }
+
+            else
+            {
+                return false;
+            }
+            
         }
         
         

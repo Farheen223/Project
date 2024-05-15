@@ -116,7 +116,7 @@ namespace Testing3
             //create bool variabkle to sotre validation results
             Boolean Found = false;
             //create test data
-            Int32 ItemID = 21;
+            Int32 ItemID = 4;
             //invoke method
             Found = aStock.Find(ItemID);
             //test to see if result is true
@@ -130,9 +130,9 @@ namespace Testing3
             clsStock aStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemID = 21;
+            Int32 ItemID = 4;
             Found = aStock.Find(ItemID);
-            if (aStock.ItemID != 21) 
+            if (aStock.ItemID != 4) 
             {
                 OK = false;
             }
@@ -147,7 +147,7 @@ namespace Testing3
             clsStock aStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemID = 21;
+            Int32 ItemID = 4;
             Found = aStock.Find(ItemID);
 
 
@@ -163,11 +163,11 @@ namespace Testing3
             clsStock aStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemID = 21;
+            Int32 ItemID = 4;
             Found = aStock.Find(ItemID);
 
 
-            if (aStock.ItemName != "tshirt")
+            if (aStock.ItemName != "tshirt                                            ")
             {
                 OK = false;
             }
@@ -179,7 +179,7 @@ namespace Testing3
             clsStock aStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemID = 21;
+            Int32 ItemID = 4;
             Found = aStock.Find(ItemID);
 
 
@@ -195,14 +195,15 @@ namespace Testing3
             clsStock aStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemID = 21;
+            Int32 ItemID = 4;
             Found = aStock.Find(ItemID);
 
 
-            if (aStock.Description != "this is a tshirt")
+            if (aStock.Description != "this is a tshirt                                  ")
             {
                 OK = false;
             }
+            
             Assert.IsTrue(OK);
         }
         [TestMethod]
@@ -211,7 +212,7 @@ namespace Testing3
             clsStock aStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemID = 21;
+            Int32 ItemID = 4;
             Found = aStock.Find(ItemID);
 
             if (aStock.DateAdded != Convert.ToDateTime("23/12/2022"))
@@ -229,7 +230,7 @@ namespace Testing3
             clsStock aStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemID = 21;
+            Int32 ItemID = 4;
             Found = aStock.Find(ItemID);
 
 
