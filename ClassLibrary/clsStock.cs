@@ -136,9 +136,25 @@ namespace ClassLibrary
             }
             
         }
-        
-        
 
+        public string Valid(string itemID, string supplierID, string itemName, string itemPrice, object itemDescription, string dateAdded)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //if itemName is blank 
+            if (itemName.Length == 0)
+            {
+                //record error
+                Error = Error + "Item name may not be blank: ";
+            }
+            //iuf the itenname is more than 50 char
+            if (itemName.Length > 50)
+            {
+                //record the error
+                Error = Error + "the item name must be no more than 50 char: ";
+            }
 
+            return Error;
+        }
     }
 }

@@ -7,6 +7,19 @@ namespace Testing3
     [TestClass]
     public class tstStock
     {
+        
+            //good test daTA
+            //create some test data to pass the method
+            string ItemID = "4";
+            string SupplierID = "123";
+            string ItemName = "tshirt";
+            string ItemPrice = "10";
+            string Description = "this is a shirt";
+            string DateAdded = DateTime.Now.ToShortDateString();
+        
+            
+        
+
         [TestMethod]
         public void TestMethod1()
         {
@@ -14,26 +27,6 @@ namespace Testing3
             Assert.IsNotNull(aStock);        
         } 
         
-        //itemid int,
-        //
-        //
-        //supplierid int,
-        //
-        //
-        //itemname char,
-          //
-          //
-          //
-          //itemprice int,
-          //
-          //
-          //
-          //itemdescription string,
-          //
-          //
-          //
-          //
-          //dateofdelivery date
 
         [TestMethod] //sees if stock is active
         public void ActiveStockOK()
@@ -242,7 +235,129 @@ namespace Testing3
         }
 
 
-        //test supplierid, itemname, itemprice, itemdescription, date of delivery, in stock
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string variable to store any error message
+            string Error = "";
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void ItemNameMinLessOne()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string ItemName = ""; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ItemNameMin()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string ItemName = "a"; 
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void ItemNameMinPlusOne()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string ItemName = "aa"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ItemNameMaxLessOne()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string ItemName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ItemNameMax()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string ItemName = "12345678912345678912345678912345678912345678912345"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ItemNameMid()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string ItemName = "aaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ItemNameMaxPlusOne()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string ItemName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
 
     }
 }
