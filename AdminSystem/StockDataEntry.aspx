@@ -16,7 +16,8 @@
         <div>
             <asp:TextBox ID="txtItemID" runat="server" style="z-index: 1; left: 124px; top: 33px; position: absolute"></asp:TextBox>
         </div>
-        <asp:Label ID="lblItemID" runat="server" style="z-index: 1; left: 10px; top: 34px; position: absolute" Text="ItemID" width="100px"></asp:Label>
+        <asp:Label ID="lblItemID" runat="server" style="z-index: 1; left: 11px; top: 33px; position: absolute" Text="ItemID" width="100px"></asp:Label>
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 289px; top: 28px; position: absolute" Text="Find" />
         <p>
             <asp:Label ID="lblSupplierID" runat="server" style="z-index: 1; left: 9px; top: 64px; position: absolute" Text="Supplier ID" width="100px"></asp:Label>
         </p>
