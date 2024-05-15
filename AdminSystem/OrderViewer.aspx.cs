@@ -11,10 +11,10 @@ public partial class _1Viewer : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
-     //*   clsOrder AnOrder = new clsOrder;
+        clsOrder AnOrder = new clsOrder();
         //get the data from the session object
-     //*   AnOrder = (clsOrder)Session["AnOrder"];
+        AnOrder = (clsOrder)Session["AnOrder"];
         //display the payment success
-     //*   Response.Write(AnOrder.PaymentSuccessful);
+        Response.Write(AnOrder.PaymentSuccessful);
     }
 }
