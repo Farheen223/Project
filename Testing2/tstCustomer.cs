@@ -33,11 +33,11 @@ namespace Testing2
             //create an instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //create some test data to assign to the property
-            String String= "";
+            String TestData= "";
             //assign the data to the property
             AnCustomer.CustomerId = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnCustomer.CustomerId, TestData);ef
+            Assert.AreEqual(AnCustomer.CustomerId, TestData);
         }
         [TestMethod]
         public void CustomerNameOK()
