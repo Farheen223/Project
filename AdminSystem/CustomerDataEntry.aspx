@@ -13,11 +13,11 @@
         </div>
         <p>
             <asp:TextBox ID="txtCustomerId" runat="server" style="z-index: 1; left: 194px; top: 137px; position: absolute; bottom: 517px; width: 126px"></asp:TextBox>
-            <asp:Label ID="LblCustomerName" runat="server" style="z-index: 1; left: 43px; top: 167px; position: absolute; width: 130px;" Text="Customer Name"></asp:Label>
-            <asp:TextBox ID="txtCustomerName" runat="server" OnTextChanged="txtAddressId_TextChanged" style="z-index: 1; left: 190px; top: 167px; position: absolute; bottom: 487px;" width="126px"></asp:TextBox>
+            <asp:Label ID="LblCustomerName" runat="server" style="z-index: 1; left: 43px; top: 167px; position: absolute; width: 109px;" Text="Customer Name"></asp:Label>
+            <asp:TextBox ID="txtCustomerName" runat="server" OnTextChanged="txtAddressId_TextChanged" style="z-index: 1; left: 194px; top: 167px; position: absolute; bottom: 487px;" width="126px"></asp:TextBox>
         </p>
         <asp:Label ID="LblDateOfBirth" runat="server" style="z-index: 1; left: 43px; top: 202px; position: absolute" Text="Date Of Birth" width="109px"></asp:Label>
-        <asp:TextBox ID="txtDateOfBirth" runat="server" OnTextChanged="txtDateOfBirth_TextChanged" style="z-index: 1; left: 192px; top: 207px; position: absolute; margin-bottom: 14px" width="126px"></asp:TextBox>
+        <asp:TextBox ID="txtDateOfBirth" runat="server" OnTextChanged="txtDateOfBirth_TextChanged" style="z-index: 1; left: 194px; top: 207px; position: absolute; margin-bottom: 14px" width="126px"></asp:TextBox>
         <p>
             &nbsp;</p>
         <asp:CheckBox ID="chkActive" runat="server" style="z-index: 1; left: 193px; top: 275px; position: absolute" Text="Active" />
@@ -27,7 +27,7 @@
         <p>
             &nbsp;</p>
         <p>
-            <asp:Label ID="lblEmail" runat="server" style="z-index: 1; left: 41px; top: 241px; position: absolute; height: 22px; width: 109px" Text="Email"></asp:Label>
+            <asp:Label ID="lblEmail" runat="server" style="z-index: 1; left: 43px; top: 241px; position: absolute; height: 22px; width: 109px" Text="Email"></asp:Label>
         </p>
         <asp:TextBox ID="txtEmail" runat="server" style="z-index: 1; left: 194px; top: 241px; position: absolute" width="126px"></asp:TextBox>
     </form>
