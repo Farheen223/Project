@@ -43,9 +43,9 @@ namespace Testing3
             //create test data to assign to property
             Boolean testStock = true;
             //assin the data to the property
-            aStock.InStock = testStock;
+            aStock.inStock = testStock;
             //test to see that the two values are the same
-            Assert.AreEqual(aStock.InSock, testStock);
+            Assert.AreEqual(aStock.inStock, testStock);
         }
 
         [TestMethod]  //date stock added
@@ -112,7 +112,7 @@ namespace Testing3
         public void FindMethodOK()
         {
             //create instance
-            clsSrock aStock = new clsStock();
+            clsStock aStock = new clsStock();
             //create bool variabkle to sotre validation results
             Boolean Found = false;
             //create test data
@@ -123,6 +123,125 @@ namespace Testing3
             Assert.IsTrue(Found);
 
         }
+
+        [TestMethod]
+        public void TestItemIDFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemID = 21;
+            Found = aStock.Find(ItemID);
+            if (aStock.ItemID != 21) 
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        
+
+        [TestMethod]
+        public void TestSupplierIDFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemID = 21;
+            Found = aStock.Find(ItemID);
+
+
+            if (aStock.SupplierID != 123)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestItemNameFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemID = 21;
+            Found = aStock.Find(ItemID);
+
+
+            if (aStock.ItemName != "tshirt")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestItemPriceFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemID = 21;
+            Found = aStock.Find(ItemID);
+
+
+            if (aStock.ItemPrice != 10)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestItemDescriptionFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemID = 21;
+            Found = aStock.Find(ItemID);
+
+
+            if (aStock.Description != "this is a tshirt")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDateOfDeliveryFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemID = 21;
+            Found = aStock.Find(ItemID);
+
+            if (aStock.DateAdded != Convert.ToDateTime("23/12/2022"))
+                {
+                OK = false;
+
+            }
+
+            Assert.IsTrue(OK);
+
+        }
+        [TestMethod]
+        public void TestInStockFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemID = 21;
+            Found = aStock.Find(ItemID);
+
+
+            if (aStock.inStock != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+
+        //test supplierid, itemname, itemprice, itemdescription, date of delivery, in stock
 
     }
 }
