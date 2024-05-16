@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Dynamic;
+using System.IO;
 
 namespace Testing1
 {
@@ -222,14 +223,248 @@ namespace Testing1
         }
 
 
-       
-
         [TestMethod]
         public void ValidMethodOK()
         {
             clsStaff Staff = new clsStaff();
             String Error = "";
-            Error = Staff.Valid(Name, Email, PhoneNumber, DateAdded, Hours);
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+        }
+
+
+        [TestMethod]
+        public void StaffNameMinLessOne()
+        {
+            clsStaff Staff = new clsStaff();
+            // String to store error message
+            String Error = "";
+            //Create test data
+            string Name = ""; //this should trigger error
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            //test to see if it is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+
+        [TestMethod]
+        public void NameMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff Staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = "a"; //this should be ok
+            //invoke the method
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+
+        [TestMethod]
+        public void NameMinplusOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff Staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = "aa"; //this should be ok
+            //invoke the method
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void NameMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff Staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = "";
+            Name = Name.PadRight(49, 'a');//this should be ok
+            //invoke the method
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+
+        [TestMethod]
+        public void NameMax()
+        {
+            //create an instance of the class we want to create
+            clsStaff Staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = "";
+            Name = Name.PadRight(50, 'a');//this should be ok
+            //invoke the method
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void NameMid()
+        {
+            //create an instance of the class we want to create
+            clsStaff Staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = ""; //this should be ok
+            Name = Name.PadRight(25, 'a');
+            //invoke the method
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void NameMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff Staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = "";
+             Name = Name.PadRight(51, 'a'); //this should be ok
+            //invoke the method
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void NameExtremeMax()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Name = "";
+            Name = Name.PadRight(500, 'a');
+            Error = Staff.Valid(Name, Email, PhoneNumber, Hours, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMin()
+        {
+            //create new instance of class staff
+            clsStaff Staff = new clsStaff();
+            //variable to store the error
+            String Error = "";
+            //create test data
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //Change the data to 100 years prior
+            TestDate = TestDate.AddYears(-100);
+            //invoke the method
+            string DateAdded = TestDate.ToString();
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateAddedMinlessOne()
+        {
+            //create new instance of class staff
+            clsStaff Staff = new clsStaff();
+            //variable to store the error
+            String Error = "";
+            //create test data
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //Change the data to 100 years prior
+            TestDate = TestDate.AddDays(-1);
+            //invoke the method
+            string DateAdded = TestDate.ToString();
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateAddedMin()
+        {
+            //create new instance of class staff
+            clsStaff Staff = new clsStaff();
+            //variable to store the error
+            String Error = "";
+            //create test data
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //invoke the method
+            string DateAdded = TestDate.ToString();
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateAddedMinPlusOne()
+        {
+            //create new instance of class staff
+            clsStaff Staff = new clsStaff();
+            //variable to store the error
+            String Error = "";
+            //create test data
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //Change the data to 100 years prior
+            TestDate = TestDate.AddDays(1);
+            //invoke the method
+            string DateAdded = TestDate.ToString();
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMax()
+        {
+            //create new instance of class staff
+            clsStaff Staff = new clsStaff();
+            //variable to store the error
+            String Error = "";
+            //create test data
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            //Change the data to 100 years prior
+            TestDate = TestDate.AddYears(100);
+            //invoke the method
+            string DateAdded = TestDate.ToString();
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateAddedInvalidData()
+        {
+            clsStaff Staff = new clsStaff();
+            //String variable stores error message
+            String Error = "";
+            //Set the date added to a non date value
+            string DateAdded = "this is not a date";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
         }
 
 

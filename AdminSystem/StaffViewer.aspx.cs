@@ -16,6 +16,11 @@ public partial class _1Viewer : System.Web.UI.Page
         Staff = (clsStaff)Session["Staff"];
         //Display the Name from the entry
         Response.Write(Staff.Name);
+        Response.Write(Staff.PhoneNumber);
+        Response.Write(Staff.Email);
+        Response.Write(Staff.Hours);
+        Response.Write(Staff.StaffId);
+        Response.Write(Staff.FullTime);
 
     }
 }
