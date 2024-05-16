@@ -9,9 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-    public object txtDateOfBirth { get; private set; }
-    public object txtEmail { get; private set; }
-    public object chkActive { get; private set; }
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,10 +26,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
-    protected void txtHouseNo_TextChanged(object sender, EventArgs e)
-    {
-
-    }
+ 
 
     protected void txtAddressId_TextChanged(object sender, EventArgs e)
     {
@@ -61,7 +56,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
-    protected void TextBox1_TextChanged1(object sender, EventArgs e)
+
+
+    protected void txtDateOfBirth_TextChanged(object sender, EventArgs e)
+
     {
 
     }
