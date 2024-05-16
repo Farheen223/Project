@@ -483,5 +483,152 @@ namespace Testing3
             Assert.AreNotEqual(Error, "");
         }
 
+        //description
+
+
+
+
+
+
+
+
+
+
+
+
+        [TestMethod]
+        public void DescriptionMinLessOne()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string Description = ""; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DescriptionMin()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string Description = "a";
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void DescriptionMinPlusOne()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string Description = "aa"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DescriptionMaxLessOne()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string Description = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DescriptionMax()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string Description = "12345678912345678912345678912345678912345678912345"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DescriptionMid()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string Description = "aaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DescriptionMaxPlusOne()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string c variable to store any error message
+            String Error = "";
+            //create test data
+            string Description = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
+            //invoke method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        //item name extreme max
+        [TestMethod]
+        public void DescriptionExtremeMax()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string variable to store error message
+            string Error = "";
+            //create some data to pass the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(500, 'a'); //this should fail
+            //invokethe method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see thatthe result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
+
     }
+
+    
 }

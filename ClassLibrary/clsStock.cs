@@ -137,7 +137,7 @@ namespace ClassLibrary
             
         }
 
-        public string Valid(string itemID, string supplierID, string itemName, string itemPrice, object itemDescription, string dateAdded)
+        public string Valid(string itemID, string supplierID, string itemName, string itemPrice, string itemDescription, string dateAdded)
         {
             //create a string variable to store the error
             String Error = "";
@@ -156,7 +156,20 @@ namespace ClassLibrary
                 Error = Error + "the item name must be no more than 50 char: ";
             }
 
-            
+
+            if (itemDescription.Length == 0)
+            {
+                //record error
+                Error = Error + "Item description may not be blank: ";
+            }
+            //iuf the itenname is more than 50 char
+            if (itemDescription.Length > 50)
+            {
+                //record the error
+                Error = Error + "the item name must be no more than 50 char: ";
+            }
+
+
 
             //create an instance of datetime to compare with datetemp
             //in the if statements
