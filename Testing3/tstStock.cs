@@ -302,7 +302,7 @@ namespace Testing3
             //string c variable to store any error message
             String Error = "";
             //create test data
-            string ItemName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
+            string ItemName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
             //invoke method
             Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
@@ -358,6 +358,130 @@ namespace Testing3
 
         }
 
+        //item name extreme max
+        [TestMethod]
+        public void ItemNameExtremeMax()
+        {
+            //create instance
+            clsStock aStock = new clsStock();
+            //string variable to store error message
+            string Error = "";
+            //create some data to pass the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(500, 'a'); //this should fail
+            //invokethe method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see thatthe result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMin()
+        {
+            clsStock aStock = new clsStock();
+            string Error = "";
+            //create a variable to store test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less than 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see that the result is correcy
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DateAddedMinLessOne()
+        {
+            clsStock aStock = new clsStock();
+            string Error = "";
+            //create a variable to store test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less than 100 years
+            TestDate = TestDate.AddDays(-1);
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see that the result is correcy
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMin()
+        {
+            clsStock aStock = new clsStock();
+            string Error = "";
+            //create a variable to store test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see that the result is correcy
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMinPlusOne()
+        {
+            clsStock aStock = new clsStock();
+            string Error = "";
+            //create a variable to store test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less than 100 years
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see that the result is correcy
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMax()
+        {
+            clsStock aStock = new clsStock();
+            string Error = "";
+            //create a variable to store test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less than 100 years
+            TestDate = TestDate.AddYears(100);
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see that the result is correcy
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedInvalidData()
+        {
+            clsStock aStock = new clsStock();
+            String Error = "";
+           
+            //set the date to a non date value
+            string DateAdded = "this is not a date";
+            //invoke the method
+            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            //test to see that the result is correcy
+            Assert.AreNotEqual(Error, "");
+        }
 
     }
 }
