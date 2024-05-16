@@ -141,6 +141,8 @@ namespace ClassLibrary
         {
             //create a string variable to store the error
             String Error = "";
+            //create a temporary variable to store the data values
+            DateTime DateTemp;
             //if itemName is blank 
             if (itemName.Length == 0)
             {
@@ -154,7 +156,52 @@ namespace ClassLibrary
                 Error = Error + "the item name must be no more than 50 char: ";
             }
 
+            
+
+            //create an instance of datetime to compare with datetemp
+            //in the if statements
+            DateTime DateComp = DateTime.Now.Date;
+
+
+            try
+            {
+
+
+                //copy the dateadded value to datetemp variable
+                DateTemp = Convert.ToDateTime(dateAdded);
+                
+                
+                if (DateTemp < DateComp)
+                {
+                    Error = Error + "The date cannot be in the past: ";
+
+                }
+
+                //check to see the date is greater than todays date
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future: ";
+
+                }
+
+
+
+            }
+
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date: ";
+            }
+            
             return Error;
+
+
+
+
+
+            
         }
     }
 }
