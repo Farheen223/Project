@@ -28,25 +28,49 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //crete a nrew instance of clsStock
         clsStock aStock = new clsStock();
         //capture item name ?
-        aStock.ItemName = txtItemName.Text;
+        string ItemName = txtItemName.Text;
         //capture item id
-        aStock.ItemID = Convert.ToInt32(txtItemID.Text);
+        string ItemID = txtItemID.Text;
         //capture supplierid
-        aStock.SupplierID = Convert.ToInt32(txtSupplierID.Text);
+        string SupplierID = txtSupplierID.Text;
         //capture item price
-        aStock.ItemPrice = Convert.ToInt32(txtItemPrice.Text);
+        string ItemPrice = txtItemPrice.Text;
         //capture item description
-        aStock.Description = txtItemDescription.Text;
+        string Description = txtItemDescription.Text;
         //date of delivery
-        aStock.DateAdded = Convert.ToDateTime(DateTime.Now);
+        string DateAdded = txtDateAdded.Text;
         //instock
-        aStock.inStock = chkInStock.Checked;
+        string inStock = chkInStock.Text;
+        //variable to store error messages
+        string Error = "";
+        //validate the data
+        Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+        if (Error == "")
+        {
+            //capture itemname
+            aStock.ItemName = ItemName;
+            //capture itemID
 
+            //ASK WTF IS GOING ON WITH THESE NEXT LAB, dont think i need these
+            ///aStock.ItemID = ItemID;
+            ///aStock.SupplierID = SupplierID;
+            //aStock.ItemPrice = ItemPrice;
+            aStock.Description = Description;
+            aStock.DateAdded = Convert.ToDateTime(DateAdded);
 
-        //store in session object
-        Session["aStock"] = aStock;
-        //navigate to the view page
-        Response.Redirect("StockViewer.aspx");
+            //store in session object
+            Session["aStock"] = aStock;
+            //navigate to the view page
+            Response.Redirect("StockViewer.aspx");
+
+        }
+
+        else
+        {
+            //display error message
+            lblError.Text = Error;
+        }
+
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -80,7 +104,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtItemName.Text = aStock.ItemName;
             txtItemPrice.Text = aStock.ItemPrice.ToString();
             txtSupplierID.Text = aStock.SupplierID.ToString();
-            txtSupplyDate.Text = aStock.DateAdded.ToString();
+            txtDateAdded.Text = aStock.DateAdded.ToString();
             chkInStock.Checked = aStock.inStock;
 
         

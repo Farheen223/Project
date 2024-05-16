@@ -28,8 +28,8 @@
         <p>
             <asp:Label ID="lblItemDescription" runat="server" style="z-index: 1; left: 10px; top: 129px; position: absolute" Text="Item Description"></asp:Label>
         </p>
-        <asp:Label ID="lblSupplyDate" runat="server" style="z-index: 1; left: 11px; top: 167px; position: absolute; height: 1px" Text="Supply Date" width="100px"></asp:Label>
-        <asp:TextBox ID="txtSupplyDate" runat="server" OnTextChanged="txtSupplyDate_TextChanged" style="z-index: 1; left: 124px; top: 165px; position: absolute; width: 119px"></asp:TextBox>
+        <asp:Label ID="lblDateAdded" runat="server" style="z-index: 1; left: 11px; top: 167px; position: absolute; height: 1px" Text="Supply Date" width="100px"></asp:Label>
+        <asp:TextBox ID="txtDateAdded" runat="server" OnTextChanged="txtSupplyDate_TextChanged" style="z-index: 1; left: 124px; top: 165px; position: absolute; width: 119px"></asp:TextBox>
         <p>
             &nbsp;</p>
         <p>
