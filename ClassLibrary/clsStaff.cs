@@ -134,9 +134,48 @@ namespace ClassLibrary
         }
 
 
-        public string Valid(string name, string email, string phoneNumber, string dateAdded, string hours)
+        public string Valid(string name, string hours, string phoneNumber, string email, string dateAdded)
         {
-            return "";
+            //create variable to store error
+            String Error = "";
+            //create temporary variable to store date 
+            DateTime DateTemp;
+            //if name is blank
+            if (name.Length == 0)
+            {
+                Error = Error + "The name may not be blank : ";
+
+            }
+
+            if (name.Length > 50)
+            {
+                Error = Error + "The Name must be less than 50 characters: ";
+            }
+
+            DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+
+                //copy date added value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(dateAdded);
+                if (DateTemp < DateComp)
+                {
+                    Error = Error + "The date cannot be in the past : ";
+                }
+
+                if (DateTemp > DateComp)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            return Error;
         }
     }
 }
