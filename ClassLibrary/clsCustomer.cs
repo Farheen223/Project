@@ -9,6 +9,11 @@ namespace ClassLibrary
         public Int32 CustomerId { get; set; }
         public string CustomerName { get; set; }
         public string Email { get; set; }
-        
+
+        public bool Find(int customerId)
+        {
+            //always return true
+            return true;
+        }
     }
 }
