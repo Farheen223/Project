@@ -77,6 +77,7 @@ namespace Testing2
             //test to see that the two values are the same
             Assert.AreEqual(AnCustomer.Email, TestData);
         }
+        /**************** FIND METHOD TEST************************/
 
         [TestMethod]
         public void FindMethodOK ()
@@ -113,6 +114,49 @@ namespace Testing2
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestCustomerNameFound ()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean found = false;
+            Boolean OK = true;
+            Int32 CustomerId = 1;
+            found = AnCustomer.Find(CustomerId);
+            if (AnCustomer.CustomerName != "Timmy")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDateOfBirthFound() {
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean found = false;
+            Boolean OK = true;
+            Int32 CustomerId = 1;
+            found= AnCustomer.Find(CustomerId);
+            if (AnCustomer.DateOfBirth != Convert.ToDateTime ("03/05/2002"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void TestEmailFound() { 
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean found = false;
+            Boolean OK = true;
+            int CustomerId = 1;
+           found = AnCustomer.Find(CustomerId);
+          if (AnCustomer.Email != "Timmy23@outlook.com")
+            {
+                OK = false;
+            }
+          Assert.IsTrue(OK);
         }
     }
 }
