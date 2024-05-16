@@ -1,18 +1,160 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Threading;
 
 namespace ClassLibrary
 {
     public class clsStock
     {
-        public bool inStock { get; set; }
-        public DateTime DateAdded { get; set; }
-        public string Description { get; set; }
-        public int ItemPrice { get; set; }
-        public string ItemName { get; set; }
-        public int SupplierID { get; set; }
-        public int ItemID { get; set; }
+        private Int32 mItemID;
+        private String mDescription;
+        private DateTime mDateAdded;
+        private Boolean minStock;
+        private int mItemPrice;
+        private string mItemName;
+        private int mSupplierID;
 
-       
+        public Int32 ItemID
+        {
+            get
+            {
+                return mItemID;
+            }
 
+            set
+            {
+                mItemID = value;
+            }
+        }
+        public String Description
+        {
+            get
+            {
+                return mDescription;
+            }
+
+            set
+            {
+                mDescription = value;
+            }
+        }
+        public DateTime DateAdded
+        {
+            get
+            {
+                return mDateAdded;
+            }
+
+            set
+            {
+                mDateAdded = value;
+            }
+        }
+        public int ItemPrice
+        {
+            get
+            {
+                return mItemPrice;
+            }
+
+            set
+            {
+                mItemPrice = value;
+            }
+        }
+        public Boolean inStock
+        {
+            get
+            {
+                return minStock;
+            }
+
+            set
+            {
+                minStock = value;
+            }
+        }
+        public String ItemName
+        {
+            get
+            {
+                return mItemName;
+            }
+
+            set
+            {
+                mItemName = value;
+            }
+        }
+        public int SupplierID
+        {
+            get
+            {
+                return mSupplierID;
+            }
+
+            set
+            {
+                mSupplierID = value;
+            }
+        }
+
+
+
+        public bool Find(int ItemID)
+        {
+
+            //create instance of data  connection
+            clsDataConnection DB = new clsDataConnection();
+            //add parameter for the item id to search for
+            DB.AddParameter("@ItemID", ItemID);
+            //execute stored procedure
+            DB.Execute("sproc_tblStock_FilterByItemID");
+            //iuf one record is found 
+            if (DB.Count == 1)
+            {
+                
+                //set the private data members to the test data value
+                mItemID = Convert.ToInt32(DB.DataTable.Rows[0]["ItemID"]);
+                mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
+                minStock = Convert.ToBoolean(DB.DataTable.Rows[0]["inStock"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                mItemName = Convert.ToString(DB.DataTable.Rows[0]["ItemName"]);
+                mItemPrice = Convert.ToInt32(DB.DataTable.Rows[0]["ItemPrice"]);
+                mSupplierID = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
+                return true;
+
+
+
+
+            }
+
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        public string Valid(string itemID, string supplierID, string itemName, string itemPrice, object itemDescription, string dateAdded)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //if itemName is blank 
+            if (itemName.Length == 0)
+            {
+                //record error
+                Error = Error + "Item name may not be blank: ";
+            }
+            //iuf the itenname is more than 50 char
+            if (itemName.Length > 50)
+            {
+                //record the error
+                Error = Error + "the item name must be no more than 50 char: ";
+            }
+
+            return Error;
+        }
     }
 }

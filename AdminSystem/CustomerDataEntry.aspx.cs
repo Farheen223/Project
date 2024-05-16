@@ -42,9 +42,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //caputure the Date of Birth
         AnCustomer.DateOfBirth = Convert.ToDateTime(DateTime.Now);
         //capture the email
-        AnCustomer.Email = txtEmail.Text;
+        AnCustomer.Email = Convert.ToString( TxtEmail.Text);
         //capture the Is Active
-        AnCustomer.Active = chkActive.Checked;
+        AnCustomer.Active = ChkActive.Checked;
         //store the address in the section object
         Session["AnCustomer"] = AnCustomer;
         //navigate to the view page
@@ -57,7 +57,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
 
+
     protected void txtDateOfBirth_TextChanged(object sender, EventArgs e)
+
     {
 
     }
