@@ -118,7 +118,7 @@ namespace ClassLibrary
             if (DB.Count == 1)
             {
                 mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
-                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["AccountCreated"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
                 mName = Convert.ToString(DB.DataTable.Rows[0]["StaffName"]);
                 mHours = Convert.ToString(DB.DataTable.Rows[0]["HoursWorked"]);
                 mPhoneNumber = Convert.ToString(DB.DataTable.Rows[0]["PhoneNumber"]);
@@ -177,20 +177,28 @@ namespace ClassLibrary
                 Error = Error + "The date was not a valid date : ";
             }
 
-            if (phoneNumber.Length == 0)
+            try
             {
-                Error = Error + "The phone number cannot be blank : ";
 
+                if (phoneNumber.Length == 0)
+                {
+                    Error = Error + "The phone number cannot be blank : ";
+
+                }
+
+                if (phoneNumber.Length != 11)
+                {
+                    Error = Error + "The phone number must be 11 digits : ";
+                }
             }
-
-            if (phoneNumber.Length != 11)
+            catch
             {
-                Error = Error + "The phone number must be 11 digits : ";
+                Error = Error + "That is not a phone number : ";
             }
 
             if (email.Length == 0)
             {
-                Error = Error + "The error cannot be blank : ";
+                Error = Error + "The email cannot be blank : ";
 
             }
 

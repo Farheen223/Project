@@ -20,20 +20,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Creating new instance of the class staff
         clsStaff Staff = new clsStaff();
         //Capture the name 
-        Staff.Name = txtName.Text;
+        string Name = txtName.Text;
         //Capture Hours worked
-        Staff.Hours = txtHoursWorked.Text;
+        string Hours = txtHoursWorked.Text;
         //Capture Email
-        Staff.Email = txtEmail.Text;
+        string Email = txtEmail.Text;
         //Capture Phone number
-        Staff.PhoneNumber = txtPhoneNumber.Text;
+        string PhoneNumber = txtPhoneNumber.Text;
         //Capture Date
-        Staff.DateAdded = Convert.ToDateTime(DateTime.Now);
+        string DateAdded = txtDateAdded.Text;
         //Capture checkbox
-        Staff.FullTime = chkFulltime.Checked;
-        Session["Staff"] = Staff;
-        //Takes the user to the view page
-        Response.Redirect("StaffViewer.aspx");
+        string FullTime = chkFulltime.Text;
+        string Error = "";
+        //validate data
+        Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+        if (Error == "")
+        {
+            Staff.Name = Name;
+            Staff.Hours = Hours;
+            Staff.PhoneNumber = PhoneNumber;
+            Staff.Email = Email;
+            Staff.DateAdded = Convert.ToDateTime(DateAdded);
+
+            Session["Staff"] = Staff;
+            //Takes the user to the view page
+            Response.Redirect("StaffViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
 
     }
 
@@ -61,7 +77,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtPhoneNumber.Text = Staff.PhoneNumber;
             txtHoursWorked.Text = Staff.Hours;
             txtEmail.Text = Staff.Email;
-            txtDateCreated.Text = Staff.DateAdded.ToString();
+            txtDateAdded.Text = Staff.DateAdded.ToString();
             chkFulltime.Checked = Staff.FullTime;
         }
     }
