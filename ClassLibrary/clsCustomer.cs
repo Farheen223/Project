@@ -12,14 +12,34 @@ namespace ClassLibrary
 
         public bool Find(int customerId)
         {
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the Customer id to search for
+            DB.AddParameter("@CustomerId", CustomerId);
+            //if one record is found (there should be either 1 or zero)
+            if(DB.Count ==1)
+            {
+                //copy the data from the database to the private data members
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+
+                return true;
+
+            }
             //set the private data members to the test data value
-            mCustomerId = 1;
-            mDateOfBirth = Convert.ToDateTime("03/05/2002");
-            mCustomerName = "Timmy";
-            mEmail = "Timmy23@outlook.com";
-            mActive = true;
+            //mCustomerId = 1;
+            //mDateOfBirth = Convert.ToDateTime("03/05/2002");
+            //mCustomerName = "Timmy";
+            //mEmail = "Timmy23@outlook.com";
+            //mActive = true;
             //always return true
-            return true;
+            else
+            {
+                return false;
+            }
         }
 
         //private data member for the address id property
