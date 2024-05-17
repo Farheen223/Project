@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ClassLibrary
 {
@@ -140,6 +141,7 @@ namespace ClassLibrary
             String Error = "";
             //create temporary variable to store date 
             DateTime DateTemp;
+         
             //if name is blank
             if (name.Length == 0)
             {
@@ -173,6 +175,38 @@ namespace ClassLibrary
             catch
             {
                 Error = Error + "The date was not a valid date : ";
+            }
+
+            if (phoneNumber.Length == 0)
+            {
+                Error = Error + "The phone number cannot be blank : ";
+
+            }
+
+            if (phoneNumber.Length != 11)
+            {
+                Error = Error + "The phone number must be 11 digits : ";
+            }
+
+            if (email.Length == 0)
+            {
+                Error = Error + "The error cannot be blank : ";
+
+            }
+
+            if (email.Length > 50)
+            {
+                Error = Error + "The email cannot be longer than 50 characters : ";
+            }
+
+            if (hours.Length == 0)
+            {
+                Error = Error + "Hours cannot be blank : ";
+            }
+
+            if (hours.Length > 2)
+            {
+                Error = Error + "Hours can only be two integers : ";
             }
 
             return Error;

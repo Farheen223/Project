@@ -467,6 +467,231 @@ namespace Testing1
 
         }
 
+        [TestMethod]
+        public void PhoneNumberMinLessOne()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string PhoneNumber = "1023452718";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberMin()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string PhoneNumber = "10234527184";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberMinPlusOne()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string PhoneNumber = "102345271853";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void PhoneNumberMid()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string PhoneNumber = "12345";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberExtremeMax()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string PhoneNumber = "";
+            PhoneNumber = PhoneNumber.PadRight(30, '1');
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberInvalidData()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string PhoneNumber = "This is not a number";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailMinLessOne()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Email = "";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+
+        }
+
+
+        [TestMethod]
+        public void EmailMin()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Email = "a";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+
+        [TestMethod]
+        public void EmailMinPlusOne()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Email = "aa";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+
+        [TestMethod]
+        public void EmailMaxLessOne()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Email = "";
+            Email = Email.PadRight(49, 'a');
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+
+        [TestMethod]
+        public void EmailMax()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Email = "";
+            Email = Email.PadRight(50, 'a');
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+
+        [TestMethod]
+        public void EmailMaxPlusOne()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Email = "";
+            Email = Email.PadRight(51, 'a');
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+
+        }
+
+
+        [TestMethod]
+        public void EmailMid()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Email = "";
+            Email = Email.PadRight(25, 'a');
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+
+        [TestMethod]
+        public void EmailExtremeMax()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Email = "";
+            Email = Email.PadRight(500, 'a');
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+
+
+        }
+
+        [TestMethod]
+        public void HoursMinLessOne()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Hours = "";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void HoursMin()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Hours = "1";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void HoursMinPlusOne()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Hours = "11";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void HoursMaxPlusOne()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Hours = "111";
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void HoursExtremeMax()
+        {
+            clsStaff Staff = new clsStaff();
+            String Error = "";
+            string Hours = "";
+            Hours = Hours.PadRight(30, '1');
+            Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
 
     }
 }
