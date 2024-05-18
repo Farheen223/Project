@@ -26,7 +26,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
- 
+
 
     protected void txtAddressId_TextChanged(object sender, EventArgs e)
     {
@@ -42,7 +42,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //caputure the Date of Birth
         AnCustomer.DateOfBirth = Convert.ToDateTime(DateTime.Now);
         //capture the email
-        AnCustomer.Email = Convert.ToString( txtEmail.Text);
+        AnCustomer.Email = Convert.ToString(txtEmail.Text);
         //capture the Is Active
         AnCustomer.Active = chkActive.Checked;
         //store the address in the section object
@@ -68,4 +68,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
-}
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the customer class
+        clsCustomer AnCustomer = new clsCustomer();
+        //create a vaiable to store the primary key
+        Int32 CustomerId;
+        //create a variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        CustomerId = Convert.ToInt32(txtCustomerId.Text);
+        //find the record
+        Found = AnCustomer.Find(CustomerId);
+        //if found
+        if (Found == true)
+        {
+            //displau the value of the properties in the form
+            txtCustomerName.Text = AnCustomer.CustomerName;
+            txtDateOfBirth.Text = AnCustomer.DateOfBirth.ToString();
+            txtEmail.Text = AnCustomer.Email;
+            chkActive.Checked = AnCustomer.Active;
+
+        }
+       }
+    }
