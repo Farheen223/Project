@@ -21,7 +21,10 @@
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 124px; top: 319px; position: absolute" Text="Cancel" width="59px" height="26px" />
             <asp:Label ID="lblEmail" runat="server" style="z-index: 1; left: 43px; top: 203px; position: absolute; height: 22px; width: 109px" Text="Email"></asp:Label>
         <asp:TextBox ID="txtEmail" runat="server" style="z-index: 1; left: 188px; top: 211px; position: absolute" width="126px"></asp:TextBox>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
  </div>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>
