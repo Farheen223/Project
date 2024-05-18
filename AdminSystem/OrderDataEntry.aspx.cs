@@ -21,12 +21,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
-     //*   clsOrder AnOrder = new clsOrder;
+       clsOrder AnOrder = new clsOrder();
         //capture the total amount
-     //*   AnOrder.TotalAmount = txtTotalAmount.Text;
+       AnOrder.OrderId = txtOrderId.Text;
         //store the total amount in the session object
-    //*    Session["AnOrder"] = AnOrder;
+       Session["AnOrder"] = AnOrder;
         //navigate to the view page
         Response.Redirect("OrderViewer.aspx");
     }
 }
+
