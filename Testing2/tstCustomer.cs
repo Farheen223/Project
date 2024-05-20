@@ -87,15 +87,11 @@ namespace Testing2
         [TestMethod]
         public void FindMethodOK ()
         {
-            //create an instance of the class we want to create
+            
             clsCustomer AnCustomer = new clsCustomer();
-            //create Boolean variable to store the results of the validation
             Boolean Found = false;
-            //Create some test data to use with the method
             Int32 CustomerId = 1;
-            //invoke the method
             Found = AnCustomer.Find(CustomerId);
-            //test to see if the result is true
             Assert.IsTrue(Found);
         }
 
@@ -178,10 +174,100 @@ namespace Testing2
         {
             clsCustomer AnCustomer = new clsCustomer();
             String Error = "";
-            String CustomerName = "";
+            string CustomerName = "";
+            Error = AnCustomer.Valid (CustomerName, Email, DateOfBirth);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void CustomerNameMin()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            string CustomerName = "aaa";
+            Error = AnCustomer.Valid(CustomerName, Email, DateOfBirth);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void CustomerNameMinPlusOne()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            string CustomerName = "aaaa";
+            Error = AnCustomer.Valid(CustomerName, Email, DateOfBirth);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMaxLessOne()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            string CustomerName = "";
+            CustomerName = CustomerName.PadRight(49, 'a');
+            Error = AnCustomer.Valid(CustomerName, Email, DateOfBirth);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMax()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            string CustomerName = "";
+            CustomerName = CustomerName.PadRight(50, 'a');
+            Error = AnCustomer.Valid(CustomerName, Email, DateOfBirth);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMid()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            string CustomerName = "";
+            CustomerName = CustomerName.PadRight(25, 'a');
+            Error = AnCustomer.Valid(CustomerName, Email, DateOfBirth);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void CustomerNameMaxPlusOne()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            string CustomerName = "";
+            CustomerName = CustomerName.PadRight(51, 'a');
             Error = AnCustomer.Valid(CustomerName, Email, DateOfBirth);
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void CustomerNameExtremeMax()
+        { clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            string CustomerName = "";
+            CustomerName = CustomerName.PadRight(300, 'a');
+            Error = AnCustomer.Valid(CustomerName, Email, DateOfBirth);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void DateOfBirthExtremeMin()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-10);
+            string DateOfBirth = TestDate.ToString();
+            Error = AnCustomer.Valid(CustomerName,Email, DateOfBirth);
+            Assert.AreNotEqual(Error, "");
+        }
     }
 }

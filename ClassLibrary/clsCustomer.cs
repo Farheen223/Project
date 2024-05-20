@@ -85,7 +85,7 @@ namespace ClassLibrary
             DB.AddParameter("@CustomerId", CustomerId);
             DB.Execute("sproc_tblCustomer_FilterByCustomerId");
             //if one record is found (there should be either 1 or zero)
-            if(DB.Count ==1)
+            if(DB.Count == 1)
             {
                 //copy the data from the database to the private data members
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
@@ -110,9 +110,26 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string customerName, string email, string dateOfBirth)
+        public string Valid(string CustomerName, string Email, string DateOfBirth)
         {
-            return"";
+            String Error = "";
+            DateTime DateTemp;
+            if (CustomerName.Length == 0)
+            {
+                Error = Error + "The name may not be blank :";
+            }
+            if (CustomerName.Length>50)
+            {
+                Error = Error + "The CustomerName must be less then 50 :";
+            }
+            DateTemp = Convert.ToDateTime(DateOfBirth);
+            if (DateTemp < DateTime.Now.Date) 
+            {
+                Error = Error + "The date cannot be in the past";
+            }
+
+            return Error;
         }
+
     }
 }
