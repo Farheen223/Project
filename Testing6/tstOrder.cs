@@ -8,6 +8,45 @@ namespace Testing6
     public class tstOrder
     {
         [TestMethod]
+        public void TestOrderIdFound()
+    {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create an Boolean variable to store the results of the search
+            Boolean Found = false;
+            //create a boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 OrderId = 1;
+            //invoke the method
+            Found = AnOrder.Find(OrderId);
+            //check the order id
+            if (AnOrder.OrderId != 1)
+            {
+                OK = false;
+            }
+
+            //test to see that the results is correct
+            Assert.IsTrue(OK);
+
+    }
+        /******************FIND METHOD TEST******************/
+
+        [TestMethod]
+        public void FindMethodOK()
+        {     
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create a Boolean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 OrderId = 1;
+            //invoke the method
+            Found = AnOrder.Find(OrderId);
+            //test to see if the results is true
+            Assert.IsTrue(Found);
+    }
+        [TestMethod]
         public void InstanceOK()
         {
             //create an instance of the class we want to create
@@ -118,7 +157,7 @@ namespace Testing6
         Assert.AreEqual(AnOrder.StockId, TestData);
     }
     [TestMethod]
-    public void PaymentSuccessfulOK()
+    public void PaymentSuccesfulOK()
     {
         //create an instance of the class we want to create
         clsOrder AnOrder = new clsOrder();
