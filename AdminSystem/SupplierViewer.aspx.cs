@@ -15,6 +15,12 @@ public partial class _1Viewer : System.Web.UI.Page
         // get the data from the session object
         supplier = (clsSupplier)Session["supplier"];
         // display the supplier data
-        Response.Write(supplier.TelephoneNumber);
+        Response.Write(supplier.SupplierID + "\n"
+                      +supplier.Name + "\n"
+                      +supplier.City + "\n"
+                      +supplier.Email + "\n"
+                      +supplier.TelephoneNumber + "\n"
+                      +supplier.AddDate + "\n"
+                      +supplier.Availability + "\n");
     }
 }
