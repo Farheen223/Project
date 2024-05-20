@@ -18,21 +18,41 @@ public partial class _1_DataEntry : System.Web.UI.Page
         // create a new instance of clsSupplier
         clsSupplier supplier = new clsSupplier();
         // capture the name
-        supplier.Name = txtSupplierName.Text;
+        string Name = txtSupplierName.Text;
         // capture the city
-        supplier.City = txtSupplierCity.Text;
+        string City = txtSupplierCity.Text;
         // capture the email
-        supplier.Email = txtSupplierEmail.Text;
+        string Email = txtSupplierEmail.Text;
         // capture the telephone number
-        supplier.TelephoneNumber = txtSupplierTelephoneNumber.Text;
-        // capture availability check box
-        supplier.Availability = chkSupplierAvailability.Checked;
-        // capture add date
-        supplier.AddDate = Convert.ToDateTime(DateTime.Now);
-        // store the supplier info in the session object
-        Session["supplier"] = supplier;
-        // navigate to the supplier view page
-        Response.Redirect("SupplierViewer.aspx");
+        string TelephoneNumber = txtSupplierTelephoneNumber.Text;
+        // Variable to store any error messages
+        string Error = "";
+        // Validate the data
+        Error = supplier.Valid(Name, City, Email, TelephoneNumber);
+        if (Error == "")
+        {
+            // capture the name
+            supplier.Name = Name;
+            // capture the city
+            supplier.City = City;
+            // capture the email
+            supplier.Email = Email;
+            // capture the telephone number
+            supplier.TelephoneNumber = TelephoneNumber;
+            // capture availability check box
+            supplier.Availability = chkSupplierAvailability.Checked;
+            // capture add date
+            supplier.AddDate = Convert.ToDateTime(DateTime.Now);
+            // store the supplier info in the session object
+            Session["supplier"] = supplier;
+            // navigate to the supplier view page
+            Response.Redirect("SupplierViewer.aspx");
+        }
+        else
+        {
+            // Display error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

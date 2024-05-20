@@ -115,21 +115,6 @@ namespace ClassLibrary
             }
         }
 
-        //public bool Find(int supplierId)
-        //{
-        //    // Set the private data members to the test data value
-        //    mSupplierID = 4;
-        //    mName = "ClothesSupplier";
-        //    mCity = "Liverpool";
-        //    mEmail = "supplier@gmail.com";
-        //    mTelephoneNumber = "079252358158";
-        //    mAddDate = Convert.ToDateTime("01/01/2024");
-        //    mAvailability = true;
-
-
-        //    return true;
-        //}
-
         public bool Find(int supplierId)
         {
             // Create an instance of the data connection
@@ -160,6 +145,105 @@ namespace ClassLibrary
                 // Return false indicating there is a problem
                 return false;
             }
+        }
+
+        public string Valid(string name, string city, string email, string telephoneNumber)
+        {
+            // Create a string variable to store the error
+            String Error = "";
+
+            //====================== Name ========================================
+            // If the Name is blank or less than 3 characters
+            if (name.Length == 0)
+            {
+                // Record the error
+                Error = Error + "The supplier name may not be blank : ";
+            }
+            else if (name.Length < 3)
+            {
+                // Record the error
+                Error = Error + "The supplier name may not be less than 3 characters : ";
+            }
+
+            // If the Name is greater than 50 characters
+            if (name.Length > 50)
+            {
+                // Record the error
+                Error = Error + "The supplier name must be less than 50 characters : ";
+            }
+            //=====================================================================
+
+            //================== City =============================================
+            // If City is blank or less than 3 characters
+            if (city.Length == 0)
+            {
+                // Record the error
+                Error = Error + "The city name may not be blank : ";
+            }
+            else if (city.Length < 3)
+            {
+                // Record the error
+                Error = Error + "The city name may not be less than 3 characters : ";
+            }
+
+            // If the City is greater than 50 characters
+            if (city.Length > 50)
+            {
+                // Record the error
+                Error = Error + "The city name may not be greater than 50 characters : ";
+            }
+            //======================================================================
+
+            //================ Email ===============================================
+            // If Email is blank or less than 15 characters
+            if (email.Length == 0)
+            {
+                // Record the error
+                Error = Error + "The email may not be left blank : ";
+            }
+            else if (email.Length < 15)
+            {
+                // Record the error
+                Error = Error + "The email may not be less than 15 characters : ";
+            }
+
+            // If the email is greater than 50 characters
+            if (email.Length > 50)
+            {
+                // Record the error
+                Error = Error + "The email must be less than 50 characters : ";
+            }
+
+            // If email is invalid
+            //if (new EmailAddressAttribute().IsValid(email))
+            //{
+
+            //}
+            //=====================================================================
+
+            //=============== Telephone number ====================================
+            // If telephone number is blank or less than 8 characters
+            if (telephoneNumber.Length == 0)
+            {
+                // Record the error
+                Error = Error + "The telephone number may not be left blank : ";
+            }
+            else if (telephoneNumber.Length < 8)
+            {
+                // Record the error
+                Error = Error + "The telephone number may not be less than 8 characters : ";
+            }
+
+            // If the telephone number is greater than 15 characters
+            if (telephoneNumber.Length > 15)
+            {
+                // Record the error
+                Error = Error + "The telephone number must be less than 15 characters : ";
+            }
+
+
+            // Return any error messages
+            return Error;
         }
     }
 }
