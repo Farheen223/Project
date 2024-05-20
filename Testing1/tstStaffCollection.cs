@@ -88,6 +88,35 @@ namespace Testing1
         }
 
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 Primarykey = 0;
+            //set properties
+            TestItem.FullTime = true;
+            TestItem.StaffId = 2;
+            TestItem.Name = "JohnHayes";
+            TestItem.Hours = "21";
+            TestItem.PhoneNumber = "07894447379";
+            TestItem.DateAdded = DateTime.Now;
+            TestItem.Email = "p2774538@my365.dmu.ac.uk";
+            //set this staff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record
+            Primarykey = AllStaff.Add();
+            //Set the primary key
+            TestItem.StaffId = Primarykey;
+            //find the record
+            AllStaff.ThisStaff.Find(Primarykey);
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+
+
+        }
+
+       
+
 
     }
 }

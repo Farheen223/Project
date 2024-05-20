@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/*using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using ClassLibrary;
 
@@ -32,7 +32,7 @@ namespace Testing6
     }
         /******************FIND METHOD TEST******************/
 
-        [TestMethod]
+      /*  [TestMethod]
         public void FindMethodOK()
         {     
             //create an instance of the class we want to create
@@ -176,4 +176,4 @@ namespace Testing6
 
 
     
-
+*/

@@ -41,10 +41,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             Staff.PhoneNumber = PhoneNumber;
             Staff.Email = Email;
             Staff.DateAdded = Convert.ToDateTime(DateAdded);
-
-            Session["Staff"] = Staff;
-            //Takes the user to the view page
-            Response.Redirect("StaffViewer.aspx");
+            Staff.FullTime = chkFulltime.Checked;
+            clsStaffCollection StaffList = new clsStaffCollection();
+            //set ThisStaff property
+            StaffList.ThisStaff = Staff;
+            //add the new record
+            StaffList.Add();
+            //redirect to the list page
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
