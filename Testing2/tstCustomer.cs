@@ -7,6 +7,11 @@ namespace Testing2
     [TestClass]
     public class tstCustomer
     {
+        string CustomerName = "Timmy";
+        string Email = "Timmy23@outlook.com";
+        string DateOfBirth = DateTime.Now.ToShortDateString();
+
+
         [TestMethod]
         public void TestMethod1()
         {
@@ -158,5 +163,25 @@ namespace Testing2
             }
           Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+         clsCustomer AnCustomer = new clsCustomer();
+            String Error = "";
+            Error = AnCustomer.Valid(CustomerName, Email, DateOfBirth);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMinLessOne()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            String Error = "";
+            String CustomerName = "";
+            Error = AnCustomer.Valid(CustomerName, Email, DateOfBirth);
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }
