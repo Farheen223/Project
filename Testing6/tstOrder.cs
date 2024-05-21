@@ -1,15 +1,17 @@
-﻿/*using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using ClassLibrary;
 
 namespace Testing6
 {
+    /******************PROPERTY DATA TESTS******************/
+
     [TestClass]
     public class tstOrder
     {
         [TestMethod]
         public void TestOrderIdFound()
-    {
+        {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create an Boolean variable to store the results of the search
@@ -29,10 +31,128 @@ namespace Testing6
             //test to see that the results is correct
             Assert.IsTrue(OK);
 
+        }
+
+        [TestMethod]
+        public void TestCustomerIdNoFound()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create a boolean variable to store the result of the search
+            bool found = false;
+            //create some test data to use with the method
+            Int32 OrderId = 1;
+            //invoke the method
+            Found = AnOrder.Find(OrderId);
+            //check the house no property
+            if (AnOrder.CustomerId != "12")
+            {
+                ActiveOK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void TestDateFound()
+        {
+            clsOrder AnOrder = newclsOrder();
+            bool found = false;
+            Int32 OrderId = 1;
+            found = AnOrder.Find(OrderId);
+            if (AnOrder.Date != Convert.ToDateTime ("16/03/2024"))
+            {
+                DateOK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStaffIdFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            bool found = false;           
+            Int32 OrderId = 1;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.StaffId != ("Ok"))
+            {
+                StaffIdOK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPaymentSuccessfulFound()
+        { 
+            clsOrder AnOrder = new clsOrder();
+            bool found = false;
+            Int32 OrderId = 1;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.TestPaymentSuccessfulFound != ("True")) 
+            {
+                TestPaymentSuccessfulFoundOK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        public void TestTotalAmountFound() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            bool found = false;
+            Int32 OrderId = 1;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.TestTotalAmountFound != ("100"))
+            {
+                TestTotalAmountOK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestQuantityFound() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            bool found = false;
+            Int32 OrderId = 1;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.TestQuantityFound != ("10")) 
+            {
+                TestQuantityFoundOK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestQuantityFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            bool found = false;
+            Int32 OrderId = 1;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.TestQuantityFound != ("10")) 
+            {
+                TestQuantityFoundOK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStockIdFound() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            bool found = false;
+            Int32 OrderId = 1;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.TestStockIdFound != ("1"))
+            {
+                TestStockIdFoundOK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
         /******************FIND METHOD TEST******************/
-
-      /*  [TestMethod]
+        
         public void FindMethodOK()
         {     
             //create an instance of the class we want to create
@@ -45,7 +165,10 @@ namespace Testing6
             Found = AnOrder.Find(OrderId);
             //test to see if the results is true
             Assert.IsTrue(Found);
-    }
+        }
+
+        /******************INSTANCE OF THE CLASS TEST******************/
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -54,6 +177,9 @@ namespace Testing6
             //test to see that it exists
             Assert.IsNotNull(AnOrder);
         }
+
+        /******************PROPERTY OK TESTS******************/
+
         [TestMethod]
 
         public void ActiveOK()
@@ -70,7 +196,7 @@ namespace Testing6
         }
     }
 
-    public void DateOK()
+  public void DateOK()
     {
         //create an instance of the class we want to create
         clsOrder AnOrder = new clsOrder();
@@ -83,13 +209,14 @@ namespace Testing6
         
 
     }
+
     [TestMethod]
     public void OrderIdOK()
     {
         //create an instance of the class we want to create
         clsOrder AnOrder = new clsOrder();
         //create some test data to assign to the property
-        string TestData = "";
+        string TestData = "1";
         //assign the data to the property
         AnOrder.OrderId = TestData;
         //test to see that the two values are the same
@@ -157,7 +284,7 @@ namespace Testing6
         Assert.AreEqual(AnOrder.StockId, TestData);
     }
     [TestMethod]
-    public void PaymentSuccesfulOK()
+public void PaymentSuccesfulOK()
     {
         //create an instance of the class we want to create
         clsOrder AnOrder = new clsOrder();
@@ -170,10 +297,10 @@ namespace Testing6
     }
 
 
-}
+    }
         
-    
+}
 
 
     
-*/
+

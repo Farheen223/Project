@@ -23,7 +23,7 @@ namespace ClassLibrary
         // **public could be string or (pref) Int **
         public int OrderId
         {
-            get 
+            get
             {
                 //this line of code sends data out of the property
                 return mOrderId;
@@ -39,7 +39,7 @@ namespace ClassLibrary
         private bool mActive;
 
         //Active public property
-        
+
         public bool Active
         {
             get
@@ -60,7 +60,7 @@ namespace ClassLibrary
         private DateTime mDate;
 
         //Date public property
-        
+
         public DateTime Date
         {
             get
@@ -78,7 +78,7 @@ namespace ClassLibrary
         private Int32 mTotalAmount;
 
         //total amount public property
-        
+
         public Int32 TotalAmount
         {
             get
@@ -98,7 +98,7 @@ namespace ClassLibrary
         private string mStaffId;
 
         //staffId public property
-        
+
         public string StaffId
         {
             get
@@ -116,7 +116,7 @@ namespace ClassLibrary
         private Int32 mCustomerId;
 
         //customerId public property
-        
+
         public Int32 CustomerId
         {
             get
@@ -134,7 +134,7 @@ namespace ClassLibrary
         private Int32 mQuantity;
 
         //quantity public property
-        
+
         public Int32 Quantity
         {
             get
@@ -152,7 +152,7 @@ namespace ClassLibrary
         private Int32 mStockId;
 
         //stockId public property
-        
+
         public Int32 StockId
         {
             get
@@ -170,7 +170,7 @@ namespace ClassLibrary
         private bool mPaymentSuccessful;
 
         //Payment Sucessful public property
-        
+
         public bool PaymentSuccesful
         {
             get
@@ -192,3 +192,22 @@ namespace ClassLibrary
         }
     }
 }
+    /****** FIND METHOD ******/
+ /*public bool Find(int OrderId)
+    {
+        //set the private data members to the test data value
+        mOrderId = 1;
+        mActive = true;
+        mDate = Convert.ToDateTime("16/03/2024");
+        mTotalAmount = 100;
+        mStaffId = "Ok";
+        mCustomerId = "1";
+        mQuantity = "1";
+        mStockId = "1";
+        mPaymentSuccessful = true;
+        return true;
+    }
+}
+}*/
+
+   
