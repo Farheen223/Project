@@ -23,16 +23,16 @@ namespace ClassLibrary
         }
 
 
-        private DateTime mDateOfBirth;
-        public DateTime DateOfBirth
+        private DateTime mDateAdded;
+        public DateTime DateAdded
         {
             get
             {
-                return mDateOfBirth;
+                return mDateAdded;
             }
             set
             {
-                mDateOfBirth = value;
+                mDateAdded = value;
             }
         }
         private string mCustomerName;
@@ -60,6 +60,36 @@ namespace ClassLibrary
                 mEmail = value;
             }
         }
+
+        private string mCustomerSurname;
+        public string CustomerSurname
+        {
+            get
+            {
+                return mCustomerSurname;
+            }
+            set
+            {
+                mCustomerSurname = value;
+            }
+        }
+
+
+        private string mContactNumber;
+        public string ContactNumber
+        {
+            get
+            {
+                return mContactNumber;
+            }
+            set
+            {
+                mContactNumber = value;
+            }
+        }
+
+
+
         private Boolean mActive;
         public bool Active
         {
@@ -89,7 +119,9 @@ namespace ClassLibrary
             {
                 //copy the data from the database to the private data members
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
-                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                mCustomerSurname = Convert.ToString(DB.DataTable.Rows[0]["CustomerSurname"]);
+                mContactNumber = Convert.ToString(DB.DataTable.Rows[0]["ContactNumber"]);
                 mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
                 mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
                 mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["IsActive"]);
@@ -110,7 +142,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string CustomerName, string Email, string DateOfBirth)
+        public string Valid(string CustomerName, string Email, string DateAdded)
         {
             String Error = "";
             DateTime DateTemp;
@@ -122,7 +154,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The CustomerName must be less then 50 :";
             }
-            DateTemp = Convert.ToDateTime(DateOfBirth);
+            DateTemp = Convert.ToDateTime(DateAdded);
             if (DateTemp < DateTime.Now.Date) 
             {
                 Error = Error + "The date cannot be in the past";

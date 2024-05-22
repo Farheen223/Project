@@ -39,10 +39,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsCustomer AnCustomer = new clsCustomer();
         //capture the CustomerName
         AnCustomer.CustomerName = txtCustomerName.Text;
+        AnCustomer.CustomerSurname = TxtCustomerSurname.Text;
         //caputure the Date of Birth
-        AnCustomer.DateOfBirth = Convert.ToDateTime(DateTime.Now);
+        AnCustomer.DateAdded = Convert.ToDateTime(DateTime.Now);
         //capture the email
         AnCustomer.Email = Convert.ToString(txtEmail.Text);
+        AnCustomer.ContactNumber = Convert.ToString(TxtContactNumber.Text);
         //capture the Is Active
         AnCustomer.Active = chkActive.Checked;
         //store the address in the section object
@@ -86,10 +88,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             //displau the value of the properties in the form
             txtCustomerName.Text = AnCustomer.CustomerName;
-            txtDateOfBirth.Text = AnCustomer.DateOfBirth.ToString();
+            TxtCustomerSurname.Text = AnCustomer.CustomerSurname;
+            txtDateAdded.Text = AnCustomer.DateAdded.ToString();
             txtEmail.Text = AnCustomer.Email;
+            TxtContactNumber.Text = AnCustomer.ContactNumber;
             chkActive.Checked = AnCustomer.Active;
-
         }
        }
     }
