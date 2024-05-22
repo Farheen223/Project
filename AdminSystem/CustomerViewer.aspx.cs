@@ -17,5 +17,10 @@ public partial class _1Viewer : System.Web.UI.Page
         //display the house number for this entry
 
         Response.Write(AnCustomer.CustomerName);
+        Response.Write(AnCustomer.CustomerSurname);
+        Response.Write(AnCustomer.Email);
+        Response.Write(AnCustomer.DateAdded);
+        Response.Write(AnCustomer.ContactNumber);
+        Response.Write(AnCustomer.Active);
     }
 }
