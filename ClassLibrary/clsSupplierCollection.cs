@@ -7,31 +7,6 @@ namespace ClassLibrary
     {
         public clsSupplierCollection()
         {
-            //// Create the items of the test data
-            //clsSupplier TestItem = new clsSupplier();
-            //// Set it properties
-            //TestItem.SupplierID = 1;
-            //TestItem.Name = "TestSupplier";
-            //TestItem.City = "Manchester";
-            //TestItem.Email = "supplier@gmail.com";
-            //TestItem.TelephoneNumber = "075495837291";
-            //TestItem.AddDate = DateTime.Now;
-            //TestItem.Availability = true;
-            //// Add the test item to the test list
-            //mSupplierList.Add(TestItem);
-            //// Reinitialise the object for some new data
-            //TestItem = new clsSupplier();
-            //// Set its properties
-            //TestItem.SupplierID = 2;
-            //TestItem.Name = "TestSupplier2";
-            //TestItem.City = "Nottingham";
-            //TestItem.Email = "supplier2@gmail.com";
-            //TestItem.TelephoneNumber = "079385271492";
-            //TestItem.AddDate = DateTime.Now;
-            //TestItem.Availability = false;
-            //// Add the item to the test list
-            //mSupplierList.Add(TestItem);
-
             // Variable for the index
             Int32 Index = 0;
             // Variable to store the record count
@@ -61,12 +36,7 @@ namespace ClassLibrary
                 // Point at the next index
                 Index++;
             }
-
-
         }
-
-
-
 
         // Private data member for supplier list
         List<clsSupplier> mSupplierList = new List<clsSupplier>();
@@ -98,6 +68,40 @@ namespace ClassLibrary
                 // To be completed...
             }
         }
-        public clsSupplier ThisSupplier { get; set; }
+
+        // Private data member for ThisSupplier
+        clsSupplier mThisSupplier = new clsSupplier();
+        // Public property for ThisSupplier
+        public clsSupplier ThisSupplier
+        { 
+            get
+            {
+                // Return the private data
+                return mThisSupplier;
+            }
+            set
+            {
+                // Set the private data
+                mThisSupplier = value;
+            }
+
+        }
+
+        public int Add()
+        {
+            // Adds a record to the database based on the values of mThisAddress
+            // Connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            // Set the parameters for the stored procedure
+            DB.AddParameter("@supplierName", mThisSupplier.Name);
+            DB.AddParameter("@supplierCity", mThisSupplier.City);
+            DB.AddParameter("@supplierEmail", mThisSupplier.Email);
+            DB.AddParameter("@supplierTelephoneNumber", mThisSupplier.TelephoneNumber);
+            DB.AddParameter("@supplierAddDate", mThisSupplier.AddDate);
+            DB.AddParameter("@supplierAvailability", mThisSupplier.Availability);
+
+            // Execute the query returning the primary key value
+            return DB.Execute("sproc_tblSupplier_Insert");
+        }
     }
 }
