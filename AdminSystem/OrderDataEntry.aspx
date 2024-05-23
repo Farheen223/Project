@@ -11,6 +11,7 @@
         <div>
         </div>
         <asp:TextBox ID="txtOrderId" runat="server" style="z-index: 1; left: 135px; top: 33px; position: absolute"></asp:TextBox>
+            <asp:Button ID="btnFind" runat="server" Text="Find" Height="26px" style="margin-left: 373px" Width="71px" />
         <p>
             &nbsp;</p>
         <p>
@@ -38,6 +39,8 @@
             <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 120px; top: 319px; position: absolute" Text="Cancel" />
         </p>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 14px; top: 302px; position: absolute"></asp:Label>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>
