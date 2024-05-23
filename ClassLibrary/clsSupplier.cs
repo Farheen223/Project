@@ -139,7 +139,7 @@ namespace ClassLibrary
                 // Return that everything worked OK
                 return true;
             }
-            // If no record found
+            // If not record found
             else
             {
                 // Return false indicating there is a problem
@@ -201,11 +201,11 @@ namespace ClassLibrary
                 // Record the error
                 Error = Error + "The email may not be left blank : ";
             }
-            //else if (email.Length < 15)
-            //{
-            //    // Record the error
-            //    Error = Error + "The email may not be less than 15 characters : ";
-            //}
+            else if (email.Length < 15)
+            {
+                // Record the error
+                Error = Error + "The email may not be less than 15 characters : ";
+            }
 
             // If the email is greater than 50 characters
             if (email.Length > 50)
@@ -213,6 +213,10 @@ namespace ClassLibrary
                 // Record the error
                 Error = Error + "The email must be less than 50 characters : ";
             }
+
+            // If email is invalid
+            //if (new EmailAddressAttribute().IsValid(email))
+            //{
 
             //}
             //=====================================================================
