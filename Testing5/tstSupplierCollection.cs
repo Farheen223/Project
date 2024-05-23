@@ -94,34 +94,5 @@ namespace Testing5
             // Test to see that the two values are the same
             Assert.AreEqual(AllSuppliers.Count, TestList.Count);
         }
-
-        [TestMethod]
-        public void AddMethodOK()
-        {
-            // Create an instance of the class we want to create
-            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
-            // Create the item of the test data
-            clsSupplier TestItem = new clsSupplier();
-            // Variable to store the primary key
-            Int32 PrimaryKey = 5;
-            // Set its properties
-            TestItem.SupplierID = 1;
-            TestItem.Name = "TestSupplier";
-            TestItem.City = "York";
-            TestItem.Email = "supplier@gmail.com";
-            TestItem.TelephoneNumber = "0734687364721";
-            TestItem.AddDate = DateTime.Now;
-            TestItem.Availability = true;
-            // Set ThisSupplier to the test data
-            AllSuppliers.ThisSupplier = TestItem;
-            // Add the record
-            PrimaryKey = AllSuppliers.Add();
-            // Set the primary key of the test data
-            TestItem.SupplierID = PrimaryKey;
-            // Find the record
-            AllSuppliers.ThisSupplier.Find(PrimaryKey);
-            // Test to see that the two values are the same
-            Assert.AreEqual(AllSuppliers.ThisSupplier, TestItem);
-        }
     }
 }

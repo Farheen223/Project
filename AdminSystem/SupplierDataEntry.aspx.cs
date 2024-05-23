@@ -39,18 +39,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             supplier.Email = Email;
             // capture the telephone number
             supplier.TelephoneNumber = TelephoneNumber;
-            // capture add date
-            supplier.AddDate = Convert.ToDateTime(DateTime.Now);
             // capture availability check box
             supplier.Availability = chkSupplierAvailability.Checked;
-            // Create a new instance of the supplier collection
-            clsSupplierCollection SupplierList = new clsSupplierCollection();
-            // Set the ThisSupplier property
-            SupplierList.ThisSupplier = supplier;
-            // Add the new record
-            SupplierList.Add();
-            // Redirect back to the list page
-            Response.Redirect("SupplierList.aspx");
+            // capture add date
+            supplier.AddDate = Convert.ToDateTime(DateTime.Now);
+            // store the supplier info in the session object
+            Session["supplier"] = supplier;
+            // navigate to the supplier view page
+            Response.Redirect("SupplierViewer.aspx");
         }
         else
         {
