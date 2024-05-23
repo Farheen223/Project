@@ -196,19 +196,19 @@ namespace Testing6
         }
     }
 
-    public void DateOK()
-{
-    //create an instance of the class we want to create
-    clsOrder AnOrder = new clsOrder();
-    //create some test data to assign to the property
-    DateTime TestData = DateTime.Now.Date;
-    //assign the data to the property
-    AnOrder.Date = TestData;
-    //test to see that the two values are the same
-    Assert.AreEqual(AnOrder.Date, TestData);
+  public void DateOK()
+    {
+        //create an instance of the class we want to create
+        clsOrder AnOrder = new clsOrder();
+        //create some test data to assign to the property
+        DateTime TestData = DateTime.Now.Date;
+        //assign the data to the property
+        AnOrder.Date = TestData;
+        //test to see that the two values are the same
+        Assert.AreEqual(AnOrder.Date, TestData);
+        
 
-
-    } 
+    }
 
     [TestMethod]
     public void OrderIdOK()

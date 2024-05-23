@@ -191,50 +191,23 @@ namespace ClassLibrary
             return true;
         }
     }
-
+}
     /****** FIND METHOD ******/
-    /*public bool Find(int OrderId)
-       {
-           //set the private data members to the test data value
-           mOrderId = 1;
-           mActive = true;
-           mDate = Convert.ToDateTime("16/03/2024");
-           mTotalAmount = 100;
-           mStaffId = "Ok";
-           mCustomerId = "1";
-           mQuantity = "1";
-           mStockId = "1";
-           mPaymentSuccessful = true;
-           return true;
-       }
-    }
-    }*/
-
-    /****** FIND METHOD ******/
-
-    public bool Find(int OrderId)
+ /*public bool Find(int OrderId)
     {
-        clsDataConnection DB = new clsDataConnection();
-        DB.AddParameter("OrderId", OrderId);
-        DB.Execute("sproc_tblOrder_FilterByOrderId");
-        if (DB.Count == 1)
-        {
-            mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
-            mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
-            mDate = Convert.ToDateTime(DB.DataTable.Rows[0]["Date"]);
-            mTotalAmount = Convert.ToInt32(DB.DataTable.Rows[0]["TotalAmount"]);
-            mStaffId = Convert.ToString(DB.DataTable.Rows[0]["StaffId"]);
-            mCustomerId = Convert.ToString(DB.DataTable.Rows[0]["CustomerId"]);
-            mQuantity = Convert.ToString(DB.DataTable.Rows[0]["Quantity"]);
-            mStockId = Convert.ToString(DB.DataTable.Rows[0]["StockId"]);
-            mPaymentSuccessful = Convert.ToBoolean(DB.DataTable.Rows[0]["PaymentSuccessful"]);
-
-            return true;
-        }
-        else
-        { 
-            return false; 
-        }
-
+        //set the private data members to the test data value
+        mOrderId = 1;
+        mActive = true;
+        mDate = Convert.ToDateTime("16/03/2024");
+        mTotalAmount = 100;
+        mStaffId = "Ok";
+        mCustomerId = "1";
+        mQuantity = "1";
+        mStockId = "1";
+        mPaymentSuccessful = true;
+        return true;
     }
 }
+}*/
+
+   
