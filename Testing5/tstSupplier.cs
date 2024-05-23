@@ -559,7 +559,7 @@ namespace Testing5
             // String variable to store any error messages
             String Error = "";
             // Create some test data to pass to the method
-            string Email = "abcd" + domain; // This should fail
+            string Email = ""; // This should fail
             // Invoke the method
             Error = supplier.Valid(Name, City, Email, TelephoneNumber);
             // Test to see that the result is correct
@@ -574,7 +574,7 @@ namespace Testing5
             // String variable to store any error messages
             String Error = "";
             // Create some test data to pass to the method
-            string Email = "abcde" + domain; // This should be OK
+            string Email = "a"; // This should be OK
             // Invoke the method
             Error = supplier.Valid(Name, City, Email, TelephoneNumber);
             // Test to see that the result is correct
@@ -589,7 +589,7 @@ namespace Testing5
             // String variable to store any error messages
             String Error = "";
             // Create some test data to pass to the method
-            string Email = "abcdef" + domain; // This should be OK
+            string Email = "ab"; // This should be OK
             // Invoke the method
             Error = supplier.Valid(Name, City, Email, TelephoneNumber);
             // Test to see that the result is correct
