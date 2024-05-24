@@ -6,6 +6,7 @@ namespace ClassLibrary
     public class clsCustomerCollection
     {
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        clsCustomer mThisCustomer = new clsCustomer();
 
         public List<clsCustomer> CustomerList 
         { 
@@ -15,7 +16,13 @@ namespace ClassLibrary
             {  mCustomerList = value; }
         
         }
-        public clsCustomer ThisCustomer { get; set; }
+        public clsCustomer ThisCustomer 
+        { get
+            {  return mThisCustomer; }
+          set 
+            { mThisCustomer = value; }
+
+        }
 
 
         public int Count 
@@ -55,6 +62,12 @@ namespace ClassLibrary
             }
 
 
+        }
+
+        public int Add()
+        {
+            mThisCustomer.CustomerId = 123;
+            return mThisCustomer.CustomerId;
         }
     }
    
