@@ -5,6 +5,7 @@ namespace ClassLibrary
 {
     public class clsCustomer
     {
+
         //private data member for the address id property
         private Int32 mCustomerId;
         //customer id public property
@@ -142,26 +143,69 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string CustomerName, string Email, string DateAdded)
+        public string Valid(string customerName, string customerSurname,string email, string dateAdded, string contactNumber)
         {
             String Error = "";
             DateTime DateTemp;
-            if (CustomerName.Length == 0)
+
+
+            if (customerName.Length == 0)
             {
                 Error = Error + "The name may not be blank :";
             }
-            if (CustomerName.Length>50)
+            if (customerName.Length>50)
             {
                 Error = Error + "The CustomerName must be less then 50 :";
             }
-            DateTemp = Convert.ToDateTime(DateAdded);
-            if (DateTemp < DateTime.Now.Date) 
+
+            if (contactNumber.Length == 0)
             {
-                Error = Error + "The date cannot be in the past";
+                Error = Error + "The name may not be blank :";
             }
-            if (DateTemp > DateTime.Now.Date)
+            if (contactNumber.Length > 50)
             {
-                Error = Error + "The date cannot be in the future : ";
+                Error = Error + "The CustomerName must be less then 50 :";
+            }
+
+            if (customerSurname.Length == 0)
+            {
+                Error = Error + "The name may not be blank :";
+            }
+            if (customerSurname.Length > 50)
+            {
+                Error = Error + "The CustomerName must be less then 50 :";
+            }
+
+            if (email.Length == 0)
+            {
+                Error = Error + "The name may not be blank :";
+            }
+            if (email.Length > 50)
+            {
+                Error = Error + "The CustomerName must be less then 50 :";
+            }
+
+
+            DateTime DateComp = DateTime.Now.Date;
+            try
+            {
+                DateTemp = Convert.ToDateTime(dateAdded);
+
+
+                if (DateTemp < DateComp)
+                {
+                    Error = Error + "The date cannot be in the past :";
+                }
+                if (DateTemp > DateComp)
+                {
+
+                    Error = Error + "The date cannot be in the future : ";
+                }
+
+            }
+            catch
+            {
+                Error = Error + "The date was not valid date :";
             }
             return Error;
         }

@@ -38,19 +38,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
         //capture the CustomerName
-        AnCustomer.CustomerName = txtCustomerName.Text;
-        AnCustomer.CustomerSurname = TxtCustomerSurname.Text;
+        string CustomerName = txtCustomerName.Text;
+        string CustomerSurname = TxtCustomerSurname.Text;
         //caputure the Date of Birth
-        AnCustomer.DateAdded = Convert.ToDateTime(DateTime.Now);
+        string DateAdded = txtDateAdded.Text;
         //capture the email
-        AnCustomer.Email = Convert.ToString(txtEmail.Text);
-        AnCustomer.ContactNumber = Convert.ToString(TxtContactNumber.Text);
+        string Email = txtEmail.Text;
+        string ContactNumber = TxtContactNumber.Text;
         //capture the Is Active
-        AnCustomer.Active = chkActive.Checked;
-        //store the address in the section object
-        Session["AnCustomer"] = AnCustomer;
-        //navigate to the view page
-        Response.Redirect("CustomerViewer.aspx");
+        string Active = chkActive.Text;
+        string Error = "";
+        Error = AnCustomer.Valid(CustomerName, CustomerSurname, Email, DateAdded, ContactNumber);
+        if (Error == "")
+        {
+            AnCustomer.CustomerName = CustomerName;
+            AnCustomer.CustomerSurname = CustomerSurname;
+            AnCustomer.Email = Email;
+            AnCustomer.DateAdded = Convert.ToDateTime(DateAdded);
+            AnCustomer.ContactNumber = ContactNumber;
+
+
+            //store the address in the section object
+            Session["AnCustomer"] = AnCustomer;
+            //navigate to the view page
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
