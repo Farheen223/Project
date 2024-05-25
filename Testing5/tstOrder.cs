@@ -1,6 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using ClassLibrary;
+using System.IO;
 
 namespace Testing6
 {
@@ -61,8 +62,8 @@ namespace Testing6
             clsOrder AnOrder = new clsOrder();
             bool found = false;
             Int32 OrderId = 1;
-            Boolean OK = true;
             found = AnOrder.Find(OrderId);
+            Boolean OK = true;
             if (AnOrder.Date != Convert.ToDateTime("16/03/2024"))
             {
                 OK = false;
@@ -76,8 +77,8 @@ namespace Testing6
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
             Int32 OrderId = 1;
-            Boolean OK = true;
             Found = AnOrder.Find(OrderId);
+            Boolean OK = true;
             if (AnOrder.StaffId != ("Ok"))
             {
                 OK = false;
@@ -152,7 +153,6 @@ namespace Testing6
             clsOrder AnOrder = new clsOrder();
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
-            Boolean OK = true;
             //create some test data to use with the method
             Int32 OrderId = 1;
             //invoke the method
@@ -188,7 +188,7 @@ namespace Testing6
             //test to see that the two values are the same
             Assert.AreEqual(AnOrder.Active, TestData);
         }
-
+        [TestMethod]
 
         public void DateOK()
         {
@@ -235,7 +235,7 @@ namespace Testing6
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            string TestData = "1";
+            String TestData = "1";
             //assign the data to the property
             AnOrder.StaffId = TestData;
             //test to see that the two values are the same
@@ -290,9 +290,8 @@ namespace Testing6
             Assert.AreEqual(AnOrder.PaymentSuccessful, TestData);
         }
 
-
     }
-}
+}    
         
 
 

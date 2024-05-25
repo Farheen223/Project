@@ -23,7 +23,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //capture the total amount
-        AnOrder.OrderId = txtOrderId.Text;
+        AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
         //store the total amount in the session object
         Session["AnOrder"] = AnOrder;
         //navigate to the view page
