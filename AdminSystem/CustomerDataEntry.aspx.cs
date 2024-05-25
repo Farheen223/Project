@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-
+    Int32 CustomerId;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -51,17 +51,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnCustomer.Valid(CustomerName, CustomerSurname, Email, DateAdded, ContactNumber);
         if (Error == "")
         {
+            AnCustomer.CustomerId = CustomerId;
             AnCustomer.CustomerName = CustomerName;
             AnCustomer.CustomerSurname = CustomerSurname;
             AnCustomer.Email = Email;
             AnCustomer.DateAdded = Convert.ToDateTime(DateAdded);
             AnCustomer.ContactNumber = ContactNumber;
+            AnCustomer.Active= chkActive.Checked;
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+           
+            if (CustomerId == -1)
+            {
+                CustomerList.ThisCustomer = AnCustomer;
+                CustomerList.Add();
 
-
-            //store the address in the section object
-            Session["AnCustomer"] = AnCustomer;
+            }
+            else
+            {
+                CustomerList.ThisCustomer.Find(CustomerId);
+                CustomerList.ThisCustomer = AnCustomer;
+                CustomerList.Update();
+            }
             //navigate to the view page
-            Response.Redirect("CustomerViewer.aspx");
+            Response.Redirect("CustomerBookList.aspx");
         }
         else
         {
@@ -111,4 +123,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             chkActive.Checked = AnCustomer.Active;
         }
        }
+
+     void DisplayAddress()
+    {
+        clsCustomerCollection AddressBook = new clsCustomerCollection();
+        AddressBook.ThisCustomer.Find(CustomerId);
+        txtCustomerId.Text = AddressBook.ThisCustomer.CustomerId.ToString();
+        txtCustomerName.Text = AddressBook.ThisCustomer.CustomerName.ToString();
+        TxtCustomerSurname.Text = AddressBook.ThisCustomer.CustomerSurname.ToString();
+        txtEmail.Text = AddressBook.ThisCustomer.Email.ToString();
+        txtDateAdded.Text = AddressBook.ThisCustomer.DateAdded.ToString();
+        TxtContactNumber.Text = AddressBook.ThisCustomer.ContactNumber.ToString();
+        chkActive.Checked ^= AddressBook.ThisCustomer.Active;
     }
+}

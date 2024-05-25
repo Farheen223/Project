@@ -66,8 +66,30 @@ namespace ClassLibrary
 
         public int Add()
         {
-            mThisCustomer.CustomerId = 123;
-            return mThisCustomer.CustomerId;
+         clsDataConnection DB = new clsDataConnection ();
+            DB.AddParameter("CustomerName",mThisCustomer.CustomerName);
+            DB.AddParameter("CustomerSurname", mThisCustomer.CustomerSurname);
+            DB.AddParameter("ContactNumber", mThisCustomer.ContactNumber);
+            DB.AddParameter("Email", mThisCustomer.Email);
+            DB.AddParameter("DateAdded", mThisCustomer.DateAdded);
+            DB.AddParameter("IsActive", mThisCustomer.Active);
+
+            return DB.Execute("sproc_tblCustomer_Insert");
+           
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection ();
+            DB.AddParameter ("@CustomerId", mThisCustomer.CustomerId);
+            DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
+            DB.AddParameter("@CustomerSurname", mThisCustomer.CustomerSurname);
+            DB.AddParameter("@ContactNumber", mThisCustomer.ContactNumber);
+            DB.AddParameter("@Email", mThisCustomer.Email);
+            DB.AddParameter("@DateAdded", mThisCustomer.DateAdded);
+            DB.AddParameter("@IsActive", mThisCustomer.Active);
+
+            DB.Execute("sproc_tblCustomer_Update");
         }
     }
    
