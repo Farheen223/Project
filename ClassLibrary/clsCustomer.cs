@@ -103,10 +103,7 @@ namespace ClassLibrary
                 mActive = value;
             }
         }
-        //public bool Active { get; set; }
-        //public DateTime DateOfBirth { get; set; }
-        // public string CustomerName { get; set; }
-        //public string Email { get; set; }
+       
 
         public bool Find(int CustomerId)
         {
@@ -130,13 +127,7 @@ namespace ClassLibrary
                 return true;
 
             }
-            //set the private data members to the test data value
-            //mCustomerId = 1;
-            //mDateOfBirth = Convert.ToDateTime("03/05/2002");
-            //mCustomerName = "Timmy";
-            //mEmail = "Timmy23@outlook.com";
-            //mActive = true;
-            //always return true
+           
             else
             {
                 return false;
