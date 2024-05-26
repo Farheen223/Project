@@ -23,14 +23,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //capture the total amount
-        AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
+        AnOrder.OrderId = Convert.ToInt32(txtTotalAmount.Text);
         //store the total amount in the session object
         Session["AnOrder"] = AnOrder;
         //navigate to the view page
         Response.Redirect("OrderViewer.aspx");
     }
-}
- /*   protected void btnFind_Click(object sender, EventArgs e)
+
+
+    protected void btnFind_Click(object sender, EventArgs e)
     {
 
         clsOrder AnOrder = new clsOrder();
@@ -41,21 +42,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         if (Found == true)
         {
-            txtCustomerId.Text = AnOrder.CustomerId;
-            txtTotalAmount.Text = AnOrder.TotalAmount;
-            txtPaymentSuccessful.Text = AnOrder.PaymentSuccesful.ToString;
-            txtStaffId.Text = AnOrder.StaffId;
-            txtCustomerId.Text = AnOrder.CustomerId.ToString;
-            txtDate.Text = AnOrder.Date.ToString;
-            txtQuantity.Text = AnOrder.Quantity;
-            txtStockId.Text = AnOrder.StockId.ToString;
+            txtCustomerId.Text = AnOrder.CustomerId.ToString();
+            txtTotalAmount.Text = AnOrder.TotalAmount.ToString();
+            txtPaymentSuccessful.Text = AnOrder.PaymentSuccessful.ToString();
+            txtStaffId.Text = AnOrder.StaffId.ToString();
+            txtCustomerId.Text = AnOrder.CustomerId.ToString();
+            txtDate.Text = AnOrder.Date.ToString();
+            txtQuantity.Text = AnOrder.Quantity.ToString();
+            txtStockId.Text = AnOrder.StockId.ToString();
             chkActive.Checked = AnOrder.Active;
         }
 
     }
-}  */
+}  
 
 
-    
 
 
