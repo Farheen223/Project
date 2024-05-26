@@ -1,14 +1,23 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using ClassLibrary;
+using System.IO;
 
 namespace Testing6
 {
-    /******************PROPERTY DATA TESTS******************/
 
     [TestClass]
     public class tstOrder
     {
+        string OrderId = "1";
+        string CustomerId = "1";
+        string Date = DateTime.Now.ToShortDateString();
+        string Quantity = "10";
+        string TotalAmount = "100";
+        string StaffId = "";
+        string PaymentSuccessful = "True";
+        string StockId = "1";
+
         [TestMethod]
         public void TestOrderIdFound()
         {
@@ -36,20 +45,16 @@ namespace Testing6
         [TestMethod]
         public void TestCustomerIdNoFound()
         {
-            //create an instance of the class we want to create
+           
             clsOrder AnOrder = new clsOrder();
-            //create a boolean variable to store the result of the search
-            bool found = false;
-            //create some test data to use with the method
+            bool Found = false;
             Int32 OrderId = 1;
-            //invoke the method
+            Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            //check the house no property
-            if (AnOrder.CustomerId != "12")
+            if (AnOrder.CustomerId != 1)
             {
-                ActiveOK = false;
+                OK = false;
             }
-            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
@@ -57,13 +62,14 @@ namespace Testing6
 
         public void TestDateFound()
         {
-            clsOrder AnOrder = newclsOrder();
-            bool found = false;
+            clsOrder AnOrder = new clsOrder();
+            bool Found = false;
             Int32 OrderId = 1;
-            found = AnOrder.Find(OrderId);
-            if (AnOrder.Date != Convert.ToDateTime ("16/03/2024"))
+            Boolean OK = true;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.Date != Convert.ToDateTime("16/03/2024"))
             {
-                DateOK = false;
+                OK = false;
             }
             Assert.IsTrue(OK);
         }
@@ -72,53 +78,42 @@ namespace Testing6
         public void TestStaffIdFound()
         {
             clsOrder AnOrder = new clsOrder();
-            bool found = false;           
+            bool Found = false;
             Int32 OrderId = 1;
+            Boolean OK = true;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.StaffId != ("Ok"))
             {
-                StaffIdOK = false;
+                OK = false;
             }
             Assert.IsTrue(OK);
         }
 
         [TestMethod]
         public void TestPaymentSuccessfulFound()
-        { 
+        {
             clsOrder AnOrder = new clsOrder();
-            bool found = false;
+            bool Found = false;
             Int32 OrderId = 1;
+            Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.TestPaymentSuccessfulFound != ("True")) 
+            if (AnOrder.PaymentSuccessful != (true))
             {
-                TestPaymentSuccessfulFoundOK = false;
+                OK = false;
             }
             Assert.IsTrue(OK);
         }
 
-        public void TestTotalAmountFound() 
+        public void TestTotalAmountFound()
         {
             clsOrder AnOrder = new clsOrder();
-            bool found = false;
+            bool Found = false;
             Int32 OrderId = 1;
+            Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.TestTotalAmountFound != ("100"))
+            if (AnOrder.TotalAmount != (100))
             {
-                TestTotalAmountOK = false;
-            }
-            Assert.IsTrue(OK);
-        }
-
-        [TestMethod]
-        public void TestQuantityFound() 
-        {
-            clsOrder AnOrder = new clsOrder();
-            bool found = false;
-            Int32 OrderId = 1;
-            Found = AnOrder.Find(OrderId);
-            if (AnOrder.TestQuantityFound != ("10")) 
-            {
-                TestQuantityFoundOK = false;
+                OK = false;
             }
             Assert.IsTrue(OK);
         }
@@ -127,34 +122,44 @@ namespace Testing6
         public void TestQuantityFound()
         {
             clsOrder AnOrder = new clsOrder();
-            bool found = false;
+            bool Found = false;
             Int32 OrderId = 1;
+            Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.TestQuantityFound != ("10")) 
+            if (AnOrder.Quantity != 10)
             {
-                TestQuantityFoundOK = false;
+                OK = false;
             }
             Assert.IsTrue(OK);
         }
 
         [TestMethod]
-        public void TestStockIdFound() 
+        public void TestStockIdFound()
         {
             clsOrder AnOrder = new clsOrder();
-            bool found = false;
+            bool Found = false;
             Int32 OrderId = 1;
+            Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.TestStockIdFound != ("1"))
+            if (AnOrder.StockId != (1))
             {
-                TestStockIdFoundOK = false;
+                OK = false;
             }
             Assert.IsTrue(OK);
         }
-    }
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Error = AnOrder.Valid(OrderId, Quantity, TotalAmount, Date, StockId, PaymentSuccessful, CustomerId);
+            Assert.AreEqual(Error, "");
+        }
+
         /******************FIND METHOD TEST******************/
-        
+
         public void FindMethodOK()
-        {     
+        {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create a Boolean variable to store the results of the validation
@@ -194,112 +199,114 @@ namespace Testing6
             //test to see that the two values are the same
             Assert.AreEqual(AnOrder.Active, TestData);
         }
-    }
-
-  public void DateOK()
-    {
-        //create an instance of the class we want to create
-        clsOrder AnOrder = new clsOrder();
-        //create some test data to assign to the property
-        DateTime TestData = DateTime.Now.Date;
-        //assign the data to the property
-        AnOrder.Date = TestData;
-        //test to see that the two values are the same
-        Assert.AreEqual(AnOrder.Date, TestData);
-        
-
-    }
-
-    [TestMethod]
-    public void OrderIdOK()
-    {
-        //create an instance of the class we want to create
-        clsOrder AnOrder = new clsOrder();
-        //create some test data to assign to the property
-        string TestData = "1";
-        //assign the data to the property
-        AnOrder.OrderId = TestData;
-        //test to see that the two values are the same
-        Assert.AreEqual(AnOrder.OrderId, TestData);
-    }
-
-    [TestMethod]
-    public void TotalAmountOK()
-    {
-        //create an instance of the class we want to create
-        clsOrder AnOrder = new clsOrder();
-        //create some test data to assign to the property
-        Int32 TestData = 1;
-        //assign the data to the property
-        AnOrder.TotalAmount = TestData;
-        //test to see that the two values are the same
-        Assert.AreEqual(AnOrder.TotalAmount, TestData);
-    }
-    [TestMethod]
-    public void StaffIdOK()
-    {
-        //create an instance of the class we want to create
-        clsOrder AnOrder = new clsOrder();
-        //create some test data to assign to the property
-        string TestData = "1";
-        //assign the data to the property
-        AnOrder.StaffId = TestData;
-        //test to see that the two values are the same
-        Assert.AreEqual(AnOrder.StaffId, TestData);
-    }
-    [TestMethod]
-    public void CustomerIdOK()
-    {
-        //create an instance of the class we want to create
-        clsOrder AnOrder = new clsOrder();
-        //create some test data to assign to the property
-        Int32 TestData = 1;
-        //assign the data to the property
-        AnOrder.CustomerId = TestData;
-        //test to see that the two values are the same
-        Assert.AreEqual(AnOrder.CustomerId, TestData);
-    }
-    [TestMethod]
-    public void QuantityOK()
-    {
-        //create an instance of the class we want to create
-        clsOrder AnOrder = new clsOrder();
-        //create some test data to assign to the property
-        Int32 TestData = 10;
-        //assign the data to the property
-        AnOrder.Quantity = TestData;
-        //test to see that the two values are the same
-        Assert.AreEqual(AnOrder.Quantity, TestData);
-    }
-    [TestMethod]
-    public void StockIdOK()
-    {
-        //create an instance of the class we want to create
-        clsOrder AnOrder = new clsOrder();
-        //create some test data to assign to the property
-        Int32 TestData = 1;
-        //assign the data to the property
-        AnOrder.StockId = TestData;
-        //test to see that the two values are the same
-        Assert.AreEqual(AnOrder.StockId, TestData);
-    }
-    [TestMethod]
-public void PaymentSuccesfulOK()
-    {
-        //create an instance of the class we want to create
-        clsOrder AnOrder = new clsOrder();
-        //create some test data to assign to the property
-        bool TestData = true;
-        //assign the data to the property
-        AnOrder.PaymentSuccessful = TestData;
-        //test to see that the two values are the same
-        Assert.AreEqual(AnOrder.PaymentSuccessful, TestData);
-    }
 
 
+        public void DateOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            DateTime TestData = DateTime.Now.Date;
+            //assign the data to the property
+            AnOrder.Date = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.Date, TestData);
+
+
+        }
+
+        [TestMethod]
+        public void OrderIdOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            Int32 TestData = 1;
+            //assign the data to the property
+            AnOrder.OrderId = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.OrderId, TestData);
+        }
+
+        [TestMethod]
+        public void TotalAmountOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            Int32 TestData = 1;
+            //assign the data to the property
+            AnOrder.TotalAmount = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.TotalAmount, TestData);
+        }
+        [TestMethod]
+        public void StaffIdOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            string TestData = "1";
+            //assign the data to the property
+            AnOrder.StaffId = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.StaffId, TestData);
+        }
+        [TestMethod]
+        public void CustomerIdOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            Int32 TestData = 1;
+            //assign the data to the property
+            AnOrder.CustomerId = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.CustomerId, TestData);
+        }
+        [TestMethod]
+        public void QuantityOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            Int32 TestData = 10;
+            //assign the data to the property
+            AnOrder.Quantity = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.Quantity, TestData);
+        }
+        [TestMethod]
+        public void StockIdOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            Int32 TestData = 1;
+            //assign the data to the property
+            AnOrder.StockId = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.StockId, TestData);
+        }
+        [TestMethod]
+        public void PaymentSuccesfulOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            bool TestData = true;
+            //assign the data to the property
+            AnOrder.PaymentSuccessful = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.PaymentSuccessful, TestData);
+        }
+
+
     }
-        
 }
+
+        
+
 
 
     

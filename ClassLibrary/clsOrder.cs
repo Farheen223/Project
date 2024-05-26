@@ -5,32 +5,16 @@ namespace ClassLibrary
 {
     public class clsOrder
     {
-        //public int OrderId { get; set; }
-        //public bool Active  { get; set; }
-        //public DateTime Date    { get; set; }
-        //public int TotalAmouunt   { get; set; }
-        //public string StaffId { get; set; }
-        //public int CustomerId { get; set; }
-        //public int StockId { get; set; }
-        //public bool PaymentSucessful { get; set; }
-
-
-        //private data member for the order id property
         private int mOrderId;
 
-        //orderId public property
-        //public int OrderId { get; set; }
-        // **public could be string or (pref) Int **
         public int OrderId
         {
             get
             {
-                //this line of code sends data out of the property
                 return mOrderId;
             }
             set
             {
-                //this line of code allows data into the property
                 mOrderId = value;
             }
         }
@@ -44,12 +28,10 @@ namespace ClassLibrary
         {
             get
             {
-                //this line of code sends data out of the property
                 return mActive;
             }
             set
             {
-                //this line of code allows data into the property
                 mActive = value;
             }
         }
@@ -65,12 +47,10 @@ namespace ClassLibrary
         {
             get
             {
-                //this line of code sends data out of the property
                 return mDate;
             }
             set
             {
-                //this line of code allows data into the property
                 mDate = value;
             }
         }
@@ -83,12 +63,10 @@ namespace ClassLibrary
         {
             get
             {
-                //this line of code sends data out of the property
                 return mTotalAmount;
             }
             set
             {
-                //this line of code allows data into the property
                 mTotalAmount = value;
             }
         }
@@ -103,12 +81,10 @@ namespace ClassLibrary
         {
             get
             {
-                //this line of code sends data out of the property
                 return mStaffId;
             }
             set
             {
-                //this line of code allows data into the property
                 mStaffId = value;
             }
         }
@@ -121,12 +97,10 @@ namespace ClassLibrary
         {
             get
             {
-                //this line of code sends data out of the property
                 return mCustomerId;
             }
             set
             {
-                //this line of code allows data into the property
                 mCustomerId = value;
             }
         }
@@ -139,12 +113,10 @@ namespace ClassLibrary
         {
             get
             {
-                //this line of code sends data out of the property
                 return mQuantity;
             }
             set
             {
-                //this line of code allows data into the property
                 mQuantity = value;
             }
         }
@@ -157,12 +129,10 @@ namespace ClassLibrary
         {
             get
             {
-                //this line of code sends data out of the property
                 return mStockId;
             }
             set
             {
-                //this line of code allows data into the property
                 mStockId = value;
             }
         }
@@ -171,43 +141,36 @@ namespace ClassLibrary
 
         //Payment Sucessful public property
 
-        public bool PaymentSuccesful
+        public bool PaymentSuccessful
         {
             get
             {
-                //this line of code sends data out of the property
                 return mPaymentSuccessful;
             }
             set
             {
-                //this line of code allows data into the property
                 mPaymentSuccessful = value;
             }
         }
-
-        public bool Find(int orderId)
-        {
-            //always return true
-            return true;
-        }
-    }
-}
-    /****** FIND METHOD ******/
- /*public bool Find(int OrderId)
+                /****** FIND METHOD ******/
+        public bool Find(int OrderId)
     {
-        //set the private data members to the test data value
         mOrderId = 1;
         mActive = true;
         mDate = Convert.ToDateTime("16/03/2024");
         mTotalAmount = 100;
         mStaffId = "Ok";
-        mCustomerId = "1";
-        mQuantity = "1";
-        mStockId = "1";
+        mCustomerId = 1;
+        mQuantity = 10;
+        mStockId = 1;
         mPaymentSuccessful = true;
         return true;
     }
+        public string Valid(string orderId, string quantity, string totalAmount, string date, string stockId, object paymentSuccussful, string customerId)
+        {
+            return "";
+        }
+    }
 }
-}*/
 
    
