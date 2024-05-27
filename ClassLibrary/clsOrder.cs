@@ -152,24 +152,7 @@ namespace ClassLibrary
                 mPaymentSuccessful = value;
             }
         }
-        /****** FIND METHOD ******/
-        /*  public bool Find(int OrderId)
-      {
-          mOrderId = 1;
-          mActive = true;
-          mDate = Convert.ToDateTime("16/03/2024");
-          mTotalAmount = 100;
-          mStaffId = "Ok";
-          mCustomerId = 1;
-          mQuantity = 10;
-          mStockId = 1;
-          mPaymentSuccessful = true;
-          return true;
-      }
-          public string Valid(string orderId, string quantity, string totalAmount, string date, string stockId, object paymentSuccussful, string customerId)
-          {
-              return "";
-          }*/
+
         public bool Find(int OrderId)
         {
 
@@ -179,7 +162,7 @@ namespace ClassLibrary
             if (DB.Count == 1)
             {
                 mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
-            //    mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                //    mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
                 mDate = Convert.ToDateTime(DB.DataTable.Rows[0]["Date"]);
                 mTotalAmount = Convert.ToInt32(DB.DataTable.Rows[0]["TotalAmount"]);
                 mStaffId = Convert.ToString(DB.DataTable.Rows[0]["StaffId"]);
@@ -196,13 +179,31 @@ namespace ClassLibrary
 
             }
         }
-        public string Valid(string orderId, string quantity, string totalAmount, string date, string stockId, object paymentSuccussful, string customerId)
+        public string Valid(string totalAmount, string staffId, string customerId, string date, string quantity, string stockId)
         {
-            return "";
-
-
-
+            String Error = "";
+            DateTime DateTemp;
+            if (totalAmount.Length == 0)
+            {
+                Error = Error + " The Total Amount may not be blank: ";
+            }
+            if (totalAmount.Length > 6)
+            {
+                Error = Error + "The Total Amount must be less than 6 Characters: ";
+            }
+            DateTemp = Convert.ToDateTime(date);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past : ";
+            }
+            return Error;
 
         }
+
+        public string Valid(string orderId, string quantity, string totalAmount, string date, string stockId, string paymentSuccessful, string customerId)
+        {
+            return "";
+        }
+    
     }
 }
