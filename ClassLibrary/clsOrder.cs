@@ -162,7 +162,7 @@ namespace ClassLibrary
             if (DB.Count == 1)
             {
                 mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
-                //    mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                //mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
                 mDate = Convert.ToDateTime(DB.DataTable.Rows[0]["Date"]);
                 mTotalAmount = Convert.ToInt32(DB.DataTable.Rows[0]["TotalAmount"]);
                 mStaffId = Convert.ToString(DB.DataTable.Rows[0]["StaffId"]);
@@ -179,7 +179,7 @@ namespace ClassLibrary
 
             }
         }
-        public string Valid(string totalAmount, string staffId, string customerId, string date, string quantity, string stockId)
+        public string Valid(string totalAmount, string staffId, string customerId, string date, string quantity, string stockId, string customerId1)
         {
             String Error = "";
             DateTime DateTemp;
@@ -196,14 +196,16 @@ namespace ClassLibrary
             {
                 Error = Error + "The date cannot be in the past : ";
             }
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the future : ";
+            }
             return Error;
-
         }
 
-        public string Valid(string orderId, string quantity, string totalAmount, string date, string stockId, string paymentSuccessful, string customerId)
+        public string Valid(string totalAmount, string staffId, string customerId, string date, string quantity, string stockId)
         {
             return "";
         }
-    
     }
 }

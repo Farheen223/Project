@@ -234,8 +234,6 @@ namespace Testing6
             AnOrder.PaymentSuccessful = TestData;
             Assert.AreEqual(AnOrder.PaymentSuccessful, TestData);
         }
-
-
         public void FindMethodOK()
         {
             clsOrder AnOrder = new clsOrder();
@@ -245,6 +243,7 @@ namespace Testing6
             Assert.IsTrue(Found);
         }
 
+
         // ***VALIDATION***//
         [TestMethod]
         public void TotalAmountMinLessOne()
@@ -253,8 +252,7 @@ namespace Testing6
             String Error = "";
             string TotalAmount = "";
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreEqual(Error, "");
-        
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void TotalAmountMin()
@@ -285,19 +283,19 @@ namespace Testing6
         }
         public void TotalAmountMax()
         {
-            clsOrder AnAddress = new clsOrder();
+            clsOrder AnOrder = new clsOrder();
             String Error = "";
             string TotalAmount = "aaaaaa";
-            Error = AnAddress.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void TotalAmountMid()
         {
-            clsOrder AnAddress = new clsOrder();
+            clsOrder AnOrder = new clsOrder();
             String Error = "";
             string TotalAmount = "aaa";
-            Error = AnAddress.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -315,23 +313,79 @@ namespace Testing6
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             string TotalAmount = "";
-            TotalAmount = TotalAmount.PadRight(500, 'a'); // this should fail
+            TotalAmount = TotalAmount.PadRight(500, 'a');
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreNotEqual(Error, "");
         }
-    
         [TestMethod]
-        public void DateExtremeMin()
+        public void DateAddedExtremeMin()
         {
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
+            string DateAdded = TestDate.ToString();
+            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
             string Date = TestDate.ToString();
             Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
+        public void DateAddedMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string Date = TestDate.ToString();
+            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string Date = TestDate.ToString();
+            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string Date = TestDate.ToString();
+            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateInvalidData()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Date = "this is not a date!";
+            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }
 
