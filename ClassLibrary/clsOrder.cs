@@ -71,13 +71,11 @@ namespace ClassLibrary
             }
         }
 
-
-
-        private string mStaffId;
+        private Int32 mStaffId;
 
         //staffId public property
 
-        public string StaffId
+        public Int32 StaffId
         {
             get
             {
@@ -152,25 +150,37 @@ namespace ClassLibrary
                 mPaymentSuccessful = value;
             }
         }
-                /****** FIND METHOD ******/
         public bool Find(int OrderId)
-    {
-        mOrderId = 1;
-        mActive = true;
-        mDate = Convert.ToDateTime("16/03/2024");
-        mTotalAmount = 100;
-        mStaffId = "Ok";
-        mCustomerId = 1;
-        mQuantity = 10;
-        mStockId = 1;
-        mPaymentSuccessful = true;
-        return true;
-    }
-        public string Valid(string orderId, string quantity, string totalAmount, string date, string stockId, object paymentSuccussful, string customerId)
         {
-            return "";
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrderId", OrderId);
+            DB.Execute("sproc_tblOrder_FilterByOrderId");
+            if (DB.Count == 1)
+            {
+                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mDate = Convert.ToDateTime(DB.DataTable.Rows[0]["Date"]);
+                mTotalAmount = Convert.ToInt32(DB.DataTable.Rows[0]["TotalAmount"]);
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
+                mStockId = Convert.ToInt32(DB.DataTable.Rows[0]["StockId"]);
+                mPaymentSuccessful = Convert.ToBoolean(DB.DataTable.Rows[0]["PaymentSuccessful"]);
+                return true;
+            }
+            else
+            {
+            return false;
+            }
         }
-    }
-}
+            public string Valid(string orderId, string quantity, string totalAmount, string date, string stockId, object paymentSuccussful, string customerId)
+            
+           {
+               return "";
+            }
+        }
+    } 
+
+    
 
    

@@ -14,7 +14,7 @@ namespace Testing6
         string Date = DateTime.Now.ToShortDateString();
         string Quantity = "10";
         string TotalAmount = "100";
-        string StaffId = "";
+        string StaffId = "Ok";
         string PaymentSuccessful = "True";
         string StockId = "1";
 
@@ -79,10 +79,10 @@ namespace Testing6
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            Int32 OrderId = 1;
+            int OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.StaffId != ("Ok"))
+            if (AnOrder.StaffId != (1))
             {
                 OK = false;
             }
@@ -97,7 +97,7 @@ namespace Testing6
             Int32 OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.PaymentSuccessful != (true))
+            if (AnOrder.PaymentSuccessful != true)
             {
                 OK = false;
             }
@@ -111,7 +111,7 @@ namespace Testing6
             Int32 OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.TotalAmount != (100))
+            if (AnOrder.TotalAmount != 100)
             {
                 OK = false;
             }
@@ -141,7 +141,7 @@ namespace Testing6
             Int32 OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.StockId != (1))
+            if (AnOrder.StockId != 1)
             {
                 OK = false;
             }
@@ -246,7 +246,7 @@ namespace Testing6
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            string TestData = "1";
+            Int32 TestData = 1;
             //assign the data to the property
             AnOrder.StaffId = TestData;
             //test to see that the two values are the same
@@ -300,6 +300,17 @@ namespace Testing6
             //test to see that the two values are the same
             Assert.AreEqual(AnOrder.PaymentSuccessful, TestData);
         }
+    /*    [TestMethod]
+        public void TotalAmountMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string TotalAmount = "";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        
+
+        }*/
 
 
     }
