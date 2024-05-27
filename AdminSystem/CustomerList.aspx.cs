@@ -57,4 +57,40 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please selct a record from the list to edit ";
         }
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 CustomerId;
+        if (lstCustomerList.SelectedIndex != -1)
+        {
+            CustomerId = Convert.ToInt32(lstCustomerList.SelectedValue);
+            Session["CustomerId"] = CustomerId;
+            Response.Redirect("CustomerConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record from the list to delete";
+        }
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsCustomerCollection AnCustomer = new clsCustomerCollection();
+        AnCustomer.ReportByEmail(txtFilter.Text);
+        lstCustomerList.DataSource = AnCustomer.CustomerList;
+        lstCustomerList.DataValueField = "CustomerId";
+        lstCustomerList.DataTextField = "Email";
+        lstCustomerList.DataBind();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        clsCustomerCollection AnCustomer = new clsCustomerCollection();
+        AnCustomer.ReportByEmail("");
+        txtFilter.Text = "";
+        lstCustomerList.DataSource = AnCustomer.CustomerList;
+        lstCustomerList.DataValueField = "CustomerId";
+        lstCustomerList.DataTextField = "Email";
+        lstCustomerList.DataBind();
+    }
 }
