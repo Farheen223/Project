@@ -103,9 +103,8 @@ namespace Testing5
             // Create the item of the test data
             clsSupplier TestItem = new clsSupplier();
             // Variable to store the primary key
-            Int32 PrimaryKey = 5;
+            Int32 PrimaryKey = 0;
             // Set its properties
-            TestItem.SupplierID = 1;
             TestItem.Name = "TestSupplier";
             TestItem.City = "York";
             TestItem.Email = "supplier@gmail.com";
@@ -121,6 +120,44 @@ namespace Testing5
             // Find the record
             AllSuppliers.ThisSupplier.Find(PrimaryKey);
             // Test to see that the two values are the same
+            Assert.AreEqual(AllSuppliers.ThisSupplier, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            // Create an instance of the class we want to create
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            // Create the item of the test data
+            clsSupplier TestItem = new clsSupplier();
+            // Variable to store the primary key
+            Int32 PrimaryKey = 0;
+            // Set its properties
+            TestItem.Name = "TestSupplier";
+            TestItem.City = "York";
+            TestItem.Email = "supplier@gmail.com";
+            TestItem.TelephoneNumber = "0734687364721";
+            TestItem.AddDate = DateTime.Now;
+            TestItem.Availability = true;
+            // Set ThisSupplier to the test data
+            AllSuppliers.ThisSupplier = TestItem;
+            // Add the record
+            PrimaryKey = AllSuppliers.Add();
+            // Set the primary key of the test data
+            TestItem.SupplierID = PrimaryKey;
+            // Modify the test record
+            TestItem.Name = "AnotherSupplier";
+            TestItem.City = "AnotherCity";
+            TestItem.Email = "anothersupplier@gmail.com";
+            TestItem.TelephoneNumber = "07634867267836";
+            TestItem.Availability = false;
+            // Set the record based on the new test data
+            AllSuppliers.ThisSupplier = TestItem;
+            // Update the record
+            AllSuppliers.Update();
+            // Find the record
+            AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            // Test to see if ThisSupplier mathces the test data
             Assert.AreEqual(AllSuppliers.ThisSupplier, TestItem);
         }
     }

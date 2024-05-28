@@ -8,9 +8,35 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    // Variable to store the primary key with page level scope
+    Int32 SupplierID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        // Get the number of the supplier to be processed
+        SupplierID = Convert.ToInt32(Session["SupplierID"]);
+        if (IsPostBack == false)
+        {
+            // If this not a new record
+            if (SupplierID != -1)
+            {
+                // Display the current data for the record
+                DisplaySupplier();
+            }
+        }
+    }
 
+    void DisplaySupplier()
+    {
+        // Create an instance of the supplier collection
+        clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+        // Find the record to update
+        AllSuppliers.ThisSupplier.Find(SupplierID);
+        // Display the data for the record
+        txtSupplierName.Text = AllSuppliers.ThisSupplier.Name.ToString();
+        txtSupplierCity.Text = AllSuppliers.ThisSupplier.City.ToString();
+        txtSupplierEmail.Text = AllSuppliers.ThisSupplier.Email.ToString();
+        txtSupplierTelephoneNumber.Text = AllSuppliers.ThisSupplier.TelephoneNumber.ToString();
+        chkSupplierAvailability.Checked = AllSuppliers.ThisSupplier.Availability;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -31,6 +57,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = supplier.Valid(Name, City, Email, TelephoneNumber);
         if (Error == "")
         {
+            // Capture the supplier id
+            supplier.SupplierID = SupplierID;
             // capture the name
             supplier.Name = Name;
             // capture the city
@@ -45,10 +73,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
             supplier.Availability = chkSupplierAvailability.Checked;
             // Create a new instance of the supplier collection
             clsSupplierCollection SupplierList = new clsSupplierCollection();
-            // Set the ThisSupplier property
-            SupplierList.ThisSupplier = supplier;
-            // Add the new record
-            SupplierList.Add();
+            
+            // If this is a new record i.e. SupplierID = -1 then add the data
+            if (SupplierID == -1)
+            {
+                // Set the ThisSupplier property
+                SupplierList.ThisSupplier = supplier;
+                // Add the new record
+                SupplierList.Add();
+            }
+            // Otherwise it must be an update
+            else
+            {
+                // Find the record to update
+                SupplierList.ThisSupplier.Find(SupplierID);
+                // Set the ThisSupplier property
+                SupplierList.ThisSupplier = supplier;
+                // Update the record
+                SupplierList.Update();
+            }
             // Redirect back to the list page
             Response.Redirect("SupplierList.aspx");
         }
