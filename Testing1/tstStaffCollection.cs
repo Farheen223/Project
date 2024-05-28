@@ -44,6 +44,35 @@ namespace Testing1
 
         }
 
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create new instance of class
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            TestItem.FullTime = true;
+            TestItem.Name = "JohnHayes";
+            TestItem.Hours = "21";
+            TestItem.PhoneNumber = "07894447379";
+            TestItem.DateAdded = DateTime.Now;
+            TestItem.Email = "p2774538@my365.dmuac.uk";
+            AllStaff.ThisStaff = TestItem;
+            PrimaryKey = AllStaff.Add();
+            TestItem.StaffId = PrimaryKey;
+            TestItem.FullTime = false;
+            TestItem.Name = "Josh";
+            TestItem.Email = "Josh@gmail.com";
+            TestItem.Hours = "12";
+            TestItem.PhoneNumber = "06543271823";
+            TestItem.DateAdded = DateTime.Now;
+            AllStaff.ThisStaff = TestItem;
+            AllStaff.Update();
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+        }
+
   
 
         [TestMethod]
@@ -115,6 +144,87 @@ namespace Testing1
 
         }
 
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+            //set the properties
+            TestItem.FullTime = true;
+            TestItem.StaffId = 2;
+            TestItem.Name = "JohnHayes";
+            TestItem.Hours = "21";
+            TestItem.PhoneNumber = "07894447379";
+            TestItem.DateAdded = DateTime.Now;
+            TestItem.Email = "p2774538@my365.dmu.ac.uk";
+            //set thisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record
+            PrimaryKey = AllStaff.Add();
+            TestItem.StaffId = PrimaryKey;
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            AllStaff.Delete();
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+
+
+
+        [TestMethod]
+        public void ReportByNameMethodOK()
+        {
+            clsStaffCollection Staff = new clsStaffCollection();
+            //create new instance of filtered data
+            clsStaffCollection FilteredName = new clsStaffCollection();
+            //apply a blank string returns all records
+            FilteredName.ReportByName("");
+            //test to see that the two values are the same
+            Assert.AreEqual(Staff.Count, FilteredName.Count);
+
+
+        }
+
+        [TestMethod]
+        public void ReportByNameNotFound()
+        {
+            clsStaffCollection FilteredName = new clsStaffCollection();
+            //apply a name that doesnt exist
+            FilteredName.ReportByName("xxx xxx");
+            //Test to see that there are no records
+            Assert.AreEqual(0, FilteredName.Count);
+
+        }
+
+        [TestMethod]
+        public void ReportByNameTestDataFound()
+        {
+            clsStaffCollection FilteredName = new clsStaffCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply a name that doesnt exist
+            FilteredName.ReportByName("bob");
+            //check that the correct number of records are found
+            if (FilteredName.Count == 2)
+            {
+                //check to see that the first record is 2
+                if (FilteredName.StaffList[0].StaffId != 66)
+                {
+                    OK = false;
+                }
+                //check to see if the first record is 13
+                if (FilteredName.StaffList[1].StaffId != 67)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
        
 
 

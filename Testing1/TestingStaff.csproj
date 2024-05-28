@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="tstStaff.cs" />
     <Compile Include="tstStaffCollection.cs" />
+    <Compile Include="tstStaffUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

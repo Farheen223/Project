@@ -12,17 +12,27 @@ namespace ClassLibrary
        
 
         public clsStaffCollection()
-        {
-            //Variable for the index
-            Int32 Index = 0;
-            //variable for record count
-            Int32 RecordCount = 0;
+        { 
             //Object for data connect
             clsDataConnection DB = new clsDataConnection();
             //execute stored procedure
             DB.Execute("sproc_tblStaff_SelectAll");
-            //Get the record count
+            //populate the array list with the data table
+            PopulateArray(DB);
+            
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //Variable for the index
+            Int32 Index = 0;
+            //variable for record count
+            Int32 RecordCount;
+            //get the count of records
             RecordCount = DB.Count;
+            //execute stored procedure
+            mStaffList = new List<clsStaff>();
+           
             //While there are records to process
             while (Index < RecordCount)
             {
@@ -98,5 +108,41 @@ namespace ClassLibrary
             return DB.Execute("sproc_tblStaff_Insert");
 
         }
+
+        public void ReportByName(string StaffName)
+        {
+            //filters the records based on a full or partial name
+            //Connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //Send the name parameter to the database
+            DB.AddParameter("@StaffName", StaffName);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByName");
+            //populate array list
+            PopulateArray(DB);
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters
+            DB.AddParameter("@StaffID", mThisStaff.StaffId);
+            DB.AddParameter("@PhoneNumber", mThisStaff.PhoneNumber);
+            DB.AddParameter("@Email", mThisStaff.Email);
+            DB.AddParameter("@HoursWorked", mThisStaff.Hours);
+            DB.AddParameter("DateAdded", ThisStaff.DateAdded);
+            DB.AddParameter("@FullTime", ThisStaff.FullTime);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_Update");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StaffId", mThisStaff.StaffId);
+            DB.Execute("sproc_tblStaff_Delete");
+        }
     }
+
+   
 }

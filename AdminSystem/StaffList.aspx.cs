@@ -10,11 +10,18 @@ public partial class _1_List : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(IsPostBack == false)
+        if (IsPostBack == false)
         {
             DisplayStaff();
         }
+
+        clsStaffUser Staff = new clsStaffUser();
+        //get the data from the session object
+        Staff = (clsStaffUser)Session["Staff"];
+        //Display the username
+        Response.Write("Logged in as: " + Staff.UserName);
     }
+
 
 
     void DisplayStaff()
@@ -37,4 +44,79 @@ public partial class _1_List : System.Web.UI.Page
         //redirect to the data entry page
         Response.Redirect("StaffDataEntry.aspx");
     }
+
+    protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 StaffId;
+        if (lstStaffList.SelectedIndex != -1)
+        {
+            StaffId = Convert.ToInt32(lstStaffList.SelectedValue);
+            Session["StaffId"] = StaffId;
+            //redirect to the delete page
+            Response.Redirect("StaffConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record from the list to delete";
+        }
+    }
+
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        clsStaffCollection Staff = new clsStaffCollection();
+        //retrieve the value of the name from the presentation layer
+        Staff.ReportByName(txtFilter.Text);
+        //set the data source to the list of addresses in the collection
+        lstStaffList.DataSource = Staff.StaffList;
+        //Set the name of the primary key
+        lstStaffList.DataValueField = "StaffId";
+        //set the name of the field to display
+        lstStaffList.DataTextField = "Name";
+        //Bind the Data to the list
+        lstStaffList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsStaffCollection Staff = new clsStaffCollection();
+        //set an empty string
+        Staff.ReportByName("");
+        //clear any existing filter to tidy up the interface
+        txtFilter.Text = "";
+        //set the data source to the list of addresses in the collection
+        lstStaffList.DataSource = Staff.StaffList;
+        //Set the name of the primary key
+        lstStaffList.DataValueField = "StaffId";
+        //set the name of the field to display
+        lstStaffList.DataTextField = "Name";
+        lstStaffList.DataBind();
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 StaffId;
+        //if a record has been selected from the list
+        if (lstStaffList.SelectedIndex != -1)
+        {
+            StaffId = Convert.ToInt32(lstStaffList.SelectedValue);
+            Session["StaffId"] = StaffId;
+            //redirect to the edit page
+            Response.Redirect("StaffDataEntry.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record from the list";
+        }
+    }
+
+    protected void BtnMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
 }
