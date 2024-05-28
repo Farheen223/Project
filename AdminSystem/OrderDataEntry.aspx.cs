@@ -20,14 +20,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of clsOrder
-       clsOrder AnOrder = new clsOrder();
-        //capture the total amount
-       AnOrder.OrderId = Convert.ToInt32(txtTotalAmount.Text);
-        //store the total amount in the session object
-       Session["AnOrder"] = AnOrder;
-        //navigate to the view page
-        Response.Redirect("OrderViewer.aspx");
+
+        clsOrder AnOrder = new clsOrder();
+        string PaymentSuccessful = chkPaymentSuccessful.Text;
+        string TotalAmount = txtTotalAmount.Text;
+        string Date = txtDate.Text;
+        string Quantity = txtQuantity.Text;
+      //string Active = chkActive.Text;
+        string Error = "";
+        Error = AnOrder.Valid(TotalAmount, Date, Quantity);
+        if (Error == "")
+        {
+            AnOrder.PaymentSuccessful = chkPaymentSuccessful.Checked;
+            AnOrder.TotalAmount = TotalAmount;
+            AnOrder.Date = Convert.ToDateTime(Date);
+            AnOrder.Quantity = Quantity;
+            Session["AnOrder"] = AnOrder;
+            Response.Redirect("OrderViewer.aspx");
+        }
     }
 }
 

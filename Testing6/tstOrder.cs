@@ -24,7 +24,7 @@ namespace Testing6
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 1;
+            int OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.OrderId != 1)
             {
@@ -40,7 +40,7 @@ namespace Testing6
 
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            Int32 OrderId = 1;
+            int OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.CustomerId != 1)
@@ -49,14 +49,12 @@ namespace Testing6
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
-
         public void TestDateFound()
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            Int32 OrderId = 1;
+            string OrderId = "1";
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.Date != Convert.ToDateTime("16/03/2024"))
@@ -65,7 +63,6 @@ namespace Testing6
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
         public void TestStaffIdFound()
         {
@@ -74,13 +71,12 @@ namespace Testing6
             Int32 OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.StaffId != ("Ok"))
+            if (AnOrder.StaffId != 1)
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
         public void TestPaymentSuccessfulFound()
         {
@@ -95,36 +91,33 @@ namespace Testing6
             }
             Assert.IsTrue(OK);
         }
-
         public void TestTotalAmountFound()
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            Int32 OrderId = 1;
+            string OrderId = "1";
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.TotalAmount != (100))
+            if (AnOrder.TotalAmount != "100")
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
         public void TestQuantityFound()
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            Int32 OrderId = 1;
+            string OrderId = "1";
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.Quantity != 10)
+            if (AnOrder.Quantity != "10")
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
         public void TestStockIdFound()
         {
@@ -137,7 +130,6 @@ namespace Testing6
             {
                 OK = false;
             }
-
             Assert.IsTrue(OK);
         }
         [TestMethod]
@@ -145,38 +137,30 @@ namespace Testing6
         {
             clsOrder AnOrder = new clsOrder();
             String Error = "";
-            Error = AnOrder.Valid(OrderId, Quantity, TotalAmount, Date, StockId, PaymentSuccessful, CustomerId);
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreEqual(Error, "");
         }
-
         [TestMethod]
         public void InstanceOK()
         {
             clsOrder AnOrder = new clsOrder();
             Assert.IsNotNull(AnOrder);
         }
-
-        [TestMethod]
-
+      /*  [TestMethod]
         public void ActiveOK()
         {
             clsOrder AnOrder = new clsOrder();
             Boolean TestData = true;
             AnOrder.Active = TestData;
             Assert.AreEqual(AnOrder.Active, TestData);
-        }
-
-
+        }*/
         public void DateOK()
         {
             clsOrder AnOrder = new clsOrder();
             DateTime TestData = DateTime.Now.Date;
             AnOrder.Date = TestData;
             Assert.AreEqual(AnOrder.Date, TestData);
-
-
         }
-
         [TestMethod]
         public void OrderIdOK()
         {
@@ -185,12 +169,11 @@ namespace Testing6
             AnOrder.OrderId = TestData;
             Assert.AreEqual(AnOrder.OrderId, TestData);
         }
-
         [TestMethod]
         public void TotalAmountOK()
         {
             clsOrder AnOrder = new clsOrder();
-            Int32 TestData = 1;
+            string TestData = "1";
             AnOrder.TotalAmount = TestData;
             Assert.AreEqual(AnOrder.TotalAmount, TestData);
         }
@@ -198,7 +181,7 @@ namespace Testing6
         public void StaffIdOK()
         {
             clsOrder AnOrder = new clsOrder();
-            string TestData = "1";
+            Int32 TestData = 1;
             AnOrder.StaffId = TestData;
             Assert.AreEqual(AnOrder.StaffId, TestData);
         }
@@ -214,7 +197,7 @@ namespace Testing6
         public void QuantityOK()
         {
             clsOrder AnOrder = new clsOrder();
-            Int32 TestData = 10;
+            string TestData = "1";
             AnOrder.Quantity = TestData;
             Assert.AreEqual(AnOrder.Quantity, TestData);
         }
@@ -238,12 +221,10 @@ namespace Testing6
         {
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
-            Int32 OrderId = 1;
+            string OrderId = "1";
             Found = AnOrder.Find(OrderId);
             Assert.IsTrue(Found);
         }
-
-
         // ***VALIDATION***//
         [TestMethod]
         public void TotalAmountMinLessOne()
@@ -325,8 +306,8 @@ namespace Testing6
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
-            string DateAdded = TestDate.ToString();
-            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            string Date = TestDate.ToString();
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -338,7 +319,7 @@ namespace Testing6
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
             string Date = TestDate.ToString();
-            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -349,7 +330,7 @@ namespace Testing6
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             string Date = TestDate.ToString();
-            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -361,7 +342,7 @@ namespace Testing6
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
             string Date = TestDate.ToString();
-            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -373,7 +354,7 @@ namespace Testing6
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
             string Date = TestDate.ToString();
-            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -382,12 +363,75 @@ namespace Testing6
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             string Date = "this is not a date!";
-            Error = AnOrder.Valid(Date, StaffId, CustomerId, Quantity, StockId, TotalAmount);
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreNotEqual(Error, "");
         }
-
-    }
-}
+        [TestMethod]
+        public void QuantityMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Quantity = "";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Quantity = "a";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            //this should pass
+            string Quantity = "aa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Quantity = "aaaaaaaa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Quantity = "aaaaaaaaa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMaxPlusOne()
+        {
+             clsOrder AnOrder = new clsOrder();
+             String Error = "";
+             string Quantity = "aaaaaaaaaa";
+             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+             Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMid()
+        {
+             clsOrder AnOrder = new clsOrder();
+             String Error = "";
+             string Quantity = "aaaa";
+             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+             Assert.AreEqual(Error, "");
+            }
+        }
+    } 
 
         
 

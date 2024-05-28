@@ -18,27 +18,6 @@ namespace ClassLibrary
                 mOrderId = value;
             }
         }
-
-
-        private bool mActive;
-
-        //Active public property
-
-        public bool Active
-        {
-            get
-            {
-                return mActive;
-            }
-            set
-            {
-                mActive = value;
-            }
-        }
-
-
-
-
         private DateTime mDate;
 
         //Date public property
@@ -55,11 +34,11 @@ namespace ClassLibrary
             }
         }
 
-        private Int32 mTotalAmount;
+        private String mTotalAmount;
 
         //total amount public property
 
-        public Int32 TotalAmount
+        public string TotalAmount
         {
             get
             {
@@ -73,11 +52,11 @@ namespace ClassLibrary
 
 
 
-        private string mStaffId;
+        private Int32 mStaffId;
 
         //staffId public property
 
-        public string StaffId
+        public Int32 StaffId
         {
             get
             {
@@ -105,11 +84,11 @@ namespace ClassLibrary
             }
         }
 
-        private Int32 mQuantity;
+        private String mQuantity;
 
         //quantity public property
 
-        public Int32 Quantity
+        public string Quantity
         {
             get
             {
@@ -164,10 +143,10 @@ namespace ClassLibrary
                 mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
                 //mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
                 mDate = Convert.ToDateTime(DB.DataTable.Rows[0]["Date"]);
-                mTotalAmount = Convert.ToInt32(DB.DataTable.Rows[0]["TotalAmount"]);
-                mStaffId = Convert.ToString(DB.DataTable.Rows[0]["StaffId"]);
+                mTotalAmount = Convert.ToString(DB.DataTable.Rows[0]["TotalAmount"]);
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
-                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
+                mQuantity = Convert.ToString(DB.DataTable.Rows[0]["Quantity"]);
                 mStockId = Convert.ToInt32(DB.DataTable.Rows[0]["StockId"]);
                 mPaymentSuccessful = Convert.ToBoolean(DB.DataTable.Rows[0]["PaymentSuccessful"]);
                 return true;
@@ -179,7 +158,7 @@ namespace ClassLibrary
 
             }
         }
-        public string Valid(string totalAmount, string staffId, string customerId, string date, string quantity, string stockId, string customerId1)
+        public string Valid(string totalAmount, string date, string quantity)
         {
             String Error = "";
             DateTime DateTemp;
@@ -191,14 +170,33 @@ namespace ClassLibrary
             {
                 Error = Error + "The Total Amount must be less than 6 Characters: ";
             }
-            DateTemp = Convert.ToDateTime(date);
-            if (DateTemp < DateTime.Now.Date)
+            if (quantity.Length == 0)
             {
-                Error = Error + "The date cannot be in the past : ";
+                Error = Error + " The Quantity may not be blank: ";
             }
-            if (DateTemp > DateTime.Now.Date)
+            if (quantity.Length > 9)
             {
-                Error = Error + "The date cannot be in the future : ";
+                Error = Error + "The Quantity must be less than 6 Characters: ";
+            }
+            DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+
+                DateTemp = Convert.ToDateTime(date);
+                if (DateTemp < DateComp)
+                {
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                if (DateTemp > DateComp)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date : ";
             }
             return Error;
         }
@@ -206,6 +204,11 @@ namespace ClassLibrary
         public string Valid(string totalAmount, string staffId, string customerId, string date, string quantity, string stockId)
         {
             return "";
+        }
+
+        public bool Find(string orderId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
