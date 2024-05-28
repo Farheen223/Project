@@ -20,13 +20,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-
         clsOrder AnOrder = new clsOrder();
         string PaymentSuccessful = chkPaymentSuccessful.Text;
         string TotalAmount = txtTotalAmount.Text;
         string Date = txtDate.Text;
         string Quantity = txtQuantity.Text;
-      //string Active = chkActive.Text;
+        //string Active = chkActive.Text;
         string Error = "";
         Error = AnOrder.Valid(TotalAmount, Date, Quantity);
         if (Error == "")
@@ -37,6 +36,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.Quantity = Quantity;
             Session["AnOrder"] = AnOrder;
             Response.Redirect("OrderViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
         }
     }
 }
