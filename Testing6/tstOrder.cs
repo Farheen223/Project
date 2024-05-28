@@ -21,23 +21,15 @@ namespace Testing6
         [TestMethod]
         public void TestOrderIdFound()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create an Boolean variable to store the results of the search
             Boolean Found = false;
-            //create a boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
-            //create some test data to use with the method
-            Int32 OrderId = 1;
-            //invoke the method
+            int OrderId = 1;
             Found = AnOrder.Find(OrderId);
-            //check the order id
             if (AnOrder.OrderId != 1)
             {
                 OK = false;
             }
-
-            //test to see that the results is correct
             Assert.IsTrue(OK);
 
         }
@@ -45,10 +37,10 @@ namespace Testing6
         [TestMethod]
         public void TestCustomerIdNoFound()
         {
-           
+
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            Int32 OrderId = 1;
+            int OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.CustomerId != 1)
@@ -57,14 +49,12 @@ namespace Testing6
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
-
         public void TestDateFound()
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            Int32 OrderId = 1;
+            string OrderId = "1";
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.Date != Convert.ToDateTime("16/03/2024"))
@@ -73,7 +63,6 @@ namespace Testing6
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
         public void TestStaffIdFound()
         {
@@ -82,13 +71,12 @@ namespace Testing6
             Int32 OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.StaffId != ("Ok"))
+            if (AnOrder.StaffId != 1)
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
         public void TestPaymentSuccessfulFound()
         {
@@ -103,36 +91,33 @@ namespace Testing6
             }
             Assert.IsTrue(OK);
         }
-
         public void TestTotalAmountFound()
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            Int32 OrderId = 1;
+            string OrderId = "1";
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.TotalAmount != (100))
+            if (AnOrder.TotalAmount != "100")
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
         public void TestQuantityFound()
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            Int32 OrderId = 1;
+            string OrderId = "1";
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.Quantity != 10)
+            if (AnOrder.Quantity != "10")
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
-
         [TestMethod]
         public void TestStockIdFound()
         {
@@ -152,158 +137,301 @@ namespace Testing6
         {
             clsOrder AnOrder = new clsOrder();
             String Error = "";
-            Error = AnOrder.Valid(OrderId, Quantity, TotalAmount, Date, StockId, PaymentSuccessful, CustomerId);
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
             Assert.AreEqual(Error, "");
         }
-
-        /******************FIND METHOD TEST******************/
-
-        public void FindMethodOK()
-        {
-            //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
-            //create a Boolean variable to store the results of the validation
-            Boolean Found = false;
-            //create some test data to use with the method
-            Int32 OrderId = 1;
-            //invoke the method
-            Found = AnOrder.Find(OrderId);
-            //test to see if the results is true
-            Assert.IsTrue(Found);
-        }
-
-        /******************INSTANCE OF THE CLASS TEST******************/
-
         [TestMethod]
         public void InstanceOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //test to see that it exists
             Assert.IsNotNull(AnOrder);
         }
-
-        /******************PROPERTY OK TESTS******************/
-
-        [TestMethod]
-
+      /*  [TestMethod]
         public void ActiveOK()
         {
-
-            //create an instance of class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
             Boolean TestData = true;
-            //assing the data to the property
             AnOrder.Active = TestData;
-            //test to see that the two values are the same
             Assert.AreEqual(AnOrder.Active, TestData);
-        }
-
-
+        }*/
         public void DateOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
-            //assign the data to the property
             AnOrder.Date = TestData;
-            //test to see that the two values are the same
             Assert.AreEqual(AnOrder.Date, TestData);
-
-
         }
-
         [TestMethod]
         public void OrderIdOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
             Int32 TestData = 1;
-            //assign the data to the property
             AnOrder.OrderId = TestData;
-            //test to see that the two values are the same
             Assert.AreEqual(AnOrder.OrderId, TestData);
         }
-
         [TestMethod]
         public void TotalAmountOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            Int32 TestData = 1;
-            //assign the data to the property
+            string TestData = "1";
             AnOrder.TotalAmount = TestData;
-            //test to see that the two values are the same
             Assert.AreEqual(AnOrder.TotalAmount, TestData);
         }
         [TestMethod]
         public void StaffIdOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            string TestData = "1";
-            //assign the data to the property
+            Int32 TestData = 1;
             AnOrder.StaffId = TestData;
-            //test to see that the two values are the same
             Assert.AreEqual(AnOrder.StaffId, TestData);
         }
         [TestMethod]
         public void CustomerIdOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
             Int32 TestData = 1;
-            //assign the data to the property
             AnOrder.CustomerId = TestData;
-            //test to see that the two values are the same
             Assert.AreEqual(AnOrder.CustomerId, TestData);
         }
         [TestMethod]
         public void QuantityOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            Int32 TestData = 10;
-            //assign the data to the property
+            string TestData = "1";
             AnOrder.Quantity = TestData;
-            //test to see that the two values are the same
             Assert.AreEqual(AnOrder.Quantity, TestData);
         }
         [TestMethod]
         public void StockIdOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
             Int32 TestData = 1;
-            //assign the data to the property
             AnOrder.StockId = TestData;
-            //test to see that the two values are the same
             Assert.AreEqual(AnOrder.StockId, TestData);
         }
         [TestMethod]
         public void PaymentSuccesfulOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
             bool TestData = true;
-            //assign the data to the property
             AnOrder.PaymentSuccessful = TestData;
-            //test to see that the two values are the same
             Assert.AreEqual(AnOrder.PaymentSuccessful, TestData);
         }
-
-
-    }
-}
+        public void FindMethodOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            string OrderId = "1";
+            Found = AnOrder.Find(OrderId);
+            Assert.IsTrue(Found);
+        }
+        // ***VALIDATION***//
+        [TestMethod]
+        public void TotalAmountMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string TotalAmount = "";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void TotalAmountMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string TotalAmount = "a";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void TotalAmountMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string TotalAmount = "aa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void TotalAmountMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string TotalAmount = "aaaaa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        public void TotalAmountMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string TotalAmount = "aaaaaa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void TotalAmountMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string TotalAmount = "aaa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void TotalAmountMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string TotalAmount = "aaaaaaa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void TotalAmountExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string TotalAmount = "";
+            TotalAmount = TotalAmount.PadRight(500, 'a');
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedExtremeMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string Date = TestDate.ToString();
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            string Date = TestDate.ToString();
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string Date = TestDate.ToString();
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string Date = TestDate.ToString();
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string Date = TestDate.ToString();
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateInvalidData()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Date = "this is not a date!";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Quantity = "";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Quantity = "a";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            //this should pass
+            string Quantity = "aa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Quantity = "aaaaaaaa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Quantity = "aaaaaaaaa";
+            Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMaxPlusOne()
+        {
+             clsOrder AnOrder = new clsOrder();
+             String Error = "";
+             string Quantity = "aaaaaaaaaa";
+             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+             Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void QuantityMid()
+        {
+             clsOrder AnOrder = new clsOrder();
+             String Error = "";
+             string Quantity = "aaaa";
+             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
+             Assert.AreEqual(Error, "");
+            }
+        }
+    } 
 
         
 
