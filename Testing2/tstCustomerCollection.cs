@@ -166,14 +166,14 @@ namespace Testing2
         {
             clsCustomerCollection FilteredCustomer = new clsCustomerCollection();
             Boolean OK = true;
-            FilteredCustomer.ReportByEmail("yyy yyy"); 
-            if (FilteredCustomer.Count ==2)
+            FilteredCustomer.ReportByEmail("Lianne22@outlook.com"); 
+            if (FilteredCustomer.Count == 2)
             {
-                if (FilteredCustomer.CustomerList[0].CustomerId != 25)
+                if (FilteredCustomer.CustomerList[0].CustomerId != 133)
                 {
                     OK = false;
                 }
-                if (FilteredCustomer.CustomerList[1].CustomerId != 26)
+                if (FilteredCustomer.CustomerList[1].CustomerId != 134)
                 {
                     OK = false;
                 }
