@@ -9,8 +9,17 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 StaffId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        StaffId = Convert.ToInt32(Session["StaffId"]);
+        if (IsPostBack == false)
+        {
+            if (StaffId != -1)
+            {
+                DisplayStaff();
+            }
+        }
 
     }
 
@@ -36,6 +45,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = Staff.Valid(Name, Hours, PhoneNumber, Email, DateAdded);
         if (Error == "")
         {
+            Staff.StaffId = StaffId;
             Staff.Name = Name;
             Staff.Hours = Hours;
             Staff.PhoneNumber = PhoneNumber;
@@ -43,11 +53,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
             Staff.DateAdded = Convert.ToDateTime(DateAdded);
             Staff.FullTime = chkFulltime.Checked;
             clsStaffCollection StaffList = new clsStaffCollection();
-            //set ThisStaff property
-            StaffList.ThisStaff = Staff;
-            //add the new record
-            StaffList.Add();
-            //redirect to the list page
+            if (StaffId == -1)
+            {
+                StaffList.ThisStaff = Staff;
+                StaffList.Add();
+            }
+            else
+            {
+                StaffList.ThisStaff.Find(StaffId);
+                StaffList.ThisStaff = Staff;
+                StaffList.Update();
+            }
+           
             Response.Redirect("StaffList.aspx");
         }
         else
@@ -84,5 +101,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtDateAdded.Text = Staff.DateAdded.ToString();
             chkFulltime.Checked = Staff.FullTime;
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("StaffList.aspx");
+    }
+
+    void DisplayStaff()
+    {
+        clsStaffCollection StaffBook = new clsStaffCollection();
+        StaffBook.ThisStaff.Find(StaffId);
+        //diplay the text
+        txtStaffId.Text = StaffBook.ThisStaff.StaffId.ToString();
+        txtPhoneNumber.Text =StaffBook.ThisStaff.PhoneNumber.ToString();
+        txtEmail.Text = StaffBook.ThisStaff.Email.ToString();
+        txtHoursWorked.Text = StaffBook.ThisStaff.Hours.ToString();
+        txtDateAdded.Text = StaffBook.ThisStaff.DateAdded.ToString();
+        chkFulltime.Checked = StaffBook.ThisStaff.FullTime;
+    }
+
+    protected void BtnMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
