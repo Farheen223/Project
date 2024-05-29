@@ -7,35 +7,12 @@ namespace ClassLibrary
     {
         public clsSupplierCollection()
         {
-            // Variable for the index
-            Int32 Index = 0;
-            // Variable to store the record count
-            Int32 RecordCount = 0;
             // Object for the data connection
             clsDataConnection DB = new clsDataConnection();
             // Execute the stored procedure
             DB.Execute("sproc_tblSupplier_SelectAll");
-            // Get the count of records
-            RecordCount = DB.Count;
-
-            // While there are records to process
-            while(Index < RecordCount)
-            {
-                // Create a blank supplier object
-                clsSupplier supplier = new clsSupplier();
-                // Read in the fields for the current record
-                supplier.SupplierID = Convert.ToInt32(DB.DataTable.Rows[Index]["supplierId"]);
-                supplier.Name = Convert.ToString(DB.DataTable.Rows[Index]["supplierName"]);
-                supplier.City = Convert.ToString(DB.DataTable.Rows[Index]["supplierCity"]);
-                supplier.Email = Convert.ToString(DB.DataTable.Rows[Index]["supplierEmail"]);
-                supplier.TelephoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["supplierTelephoneNumber"]);
-                supplier.AddDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["supplierAddDate"]);
-                supplier.Availability = Convert.ToBoolean(DB.DataTable.Rows[Index]["supplierAvailability"]);
-                // Add the record to the private data member
-                mSupplierList.Add(supplier);
-                // Point at the next index
-                Index++;
-            }
+            // Populate the array list with the data table
+            PopulateArray(DB);
         }
 
         // Private data member for supplier list
@@ -118,6 +95,52 @@ namespace ClassLibrary
             DB.AddParameter("@Availability", mThisSupplier.Availability);
             // Execute the stored procedure
             DB.Execute("sproc_tblSupplier_Update");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@SupplierID", mThisSupplier.SupplierID);
+            DB.Execute("sproc_tblSupplier_Delete");
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            // Variable for the index
+            Int32 Index = 0;
+            // Variable to store the record count
+            Int32 RecordCount = 0;
+            // Get the count of records
+            RecordCount = DB.Count;
+            // Clear the private array list
+            mSupplierList = new List<clsSupplier>();
+
+            // While there are records to process
+            while (Index < RecordCount)
+            {
+                // Create a blank supplier object
+                clsSupplier supplier = new clsSupplier();
+                // Read in the fields for the current record
+                supplier.SupplierID = Convert.ToInt32(DB.DataTable.Rows[Index]["supplierId"]);
+                supplier.Name = Convert.ToString(DB.DataTable.Rows[Index]["supplierName"]);
+                supplier.City = Convert.ToString(DB.DataTable.Rows[Index]["supplierCity"]);
+                supplier.Email = Convert.ToString(DB.DataTable.Rows[Index]["supplierEmail"]);
+                supplier.TelephoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["supplierTelephoneNumber"]);
+                supplier.AddDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["supplierAddDate"]);
+                supplier.Availability = Convert.ToBoolean(DB.DataTable.Rows[Index]["supplierAvailability"]);
+                // Add the record to the private data member
+                mSupplierList.Add(supplier);
+                // Point at the next index
+                Index++;
+            }
+        }
+
+        public void ReportByCity(string City)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@City", City);
+            DB.Execute("sproc_tblSupplier_FilterByCity");
+            PopulateArray(DB);
         }
     }
 }

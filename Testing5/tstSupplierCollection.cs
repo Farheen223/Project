@@ -160,5 +160,77 @@ namespace Testing5
             // Test to see if ThisSupplier mathces the test data
             Assert.AreEqual(AllSuppliers.ThisSupplier, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            // Create an instance of the class we want to create
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            // Create the item of the test data
+            clsSupplier TestItem = new clsSupplier();
+            // Variable to store the primary key
+            Int32 PrimaryKey = 0;
+            // Set its properties
+            TestItem.Name = "TestSupplier";
+            TestItem.City = "York";
+            TestItem.Email = "supplier@gmail.com";
+            TestItem.TelephoneNumber = "0734687364721";
+            TestItem.AddDate = DateTime.Now;
+            TestItem.Availability = true;
+            // Set ThisSupplier to the test data
+            AllSuppliers.ThisSupplier = TestItem;
+            // Add the record
+            PrimaryKey = AllSuppliers.Add();
+            // Set the primary key of the test data
+            TestItem.SupplierID = PrimaryKey;
+            // Delete the record
+            AllSuppliers.Delete();
+            // Now find the record
+            Boolean Found = AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            // Test to see that the record was not found
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByCityMethodOK()
+        {
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            FilteredSuppliers.ReportByCity("");
+            Assert.AreEqual(AllSuppliers.Count, FilteredSuppliers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByCityNoneFound()
+        {
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            FilteredSuppliers.ReportByCity("xxxxxxx");
+            Assert.AreEqual(0, FilteredSuppliers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByCityTestDataFound()
+        {
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            Boolean OK = true;
+            FilteredSuppliers.ReportByCity("FakeCity");
+            if (FilteredSuppliers.Count == 2)
+            {
+                if (FilteredSuppliers.SupplierList[0].SupplierID != 92)
+                {
+                    OK = false;
+                }
+
+                if (FilteredSuppliers.SupplierList[1].SupplierID != 93)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }
