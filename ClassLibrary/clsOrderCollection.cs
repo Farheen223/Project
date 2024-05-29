@@ -5,6 +5,9 @@ namespace ClassLibrary
 {
     public class clsOrderCollection
     {
+        List<clsOrder> mOrderlist = new List<clsOrder>();
+        clsOrder mThisOrder = new clsOrder();
+
         public clsOrderCollection()
         {
             Int32 Index = 0;
@@ -26,27 +29,27 @@ namespace ClassLibrary
                 mOrderList.Add(AnOrder);
                 Index++;
             }
-                clsOrder TestItem = new clsOrder();
-                TestItem.PaymentSuccessful = true;
-                TestItem.OrderId = 1;
-                TestItem.StaffId = 1;
-                TestItem.StockId = 1;
-                TestItem.Date = DateTime.Now;
-                TestItem.CustomerId = 1;
-                TestItem.Quantity = "10";
-                TestItem.TotalAmount = "100";
-                mOrderList.Add(TestItem);
-                TestItem = new clsOrder();
-                TestItem.PaymentSuccessful = true;
-                TestItem.OrderId = 1;
-                TestItem.StaffId = 1;
-                TestItem.StockId = 1;
-                TestItem.Date = DateTime.Now;
-                TestItem.CustomerId = 1;
-                TestItem.Quantity = "10";
-                TestItem.TotalAmount = "100";
-                mOrderList.Add(TestItem);
-            }
+            clsOrder TestItem = new clsOrder();
+            TestItem.PaymentSuccessful = true;
+            TestItem.OrderId = 1;
+            TestItem.StaffId = 1;
+            TestItem.StockId = 1;
+            TestItem.Date = DateTime.Now;
+            TestItem.CustomerId = 1;
+            TestItem.Quantity = "10";
+            TestItem.TotalAmount = "100";
+            mOrderList.Add(TestItem);
+            TestItem = new clsOrder();
+            TestItem.PaymentSuccessful = true;
+            TestItem.OrderId = 1;
+            TestItem.StaffId = 1;
+            TestItem.StockId = 1;
+            TestItem.Date = DateTime.Now;
+            TestItem.CustomerId = 1;
+            TestItem.Quantity = "10";
+            TestItem.TotalAmount = "100";
+            mOrderList.Add(TestItem);
+        }
         public List<clsOrder> OrderList
         {
             get
@@ -59,22 +62,46 @@ namespace ClassLibrary
             }
 
         }
-        public int Count 
-        { 
+        public int Count
+        {
             get
             {
                 return mOrderList.Count;
             }
-            set 
-            { 
-            // do later
-            } 
-        
-        }
-        public clsOrder ThisOrder { get; set; }
-        public int SomeCount { get; set; }
-        
+            set
+            {
+                // do later
+            }
 
-        List<clsOrder> mOrderList = new List<clsOrder>();  
+        }
+        public clsOrder ThisOrder
+        {
+            get
+            {
+                return mThisOrder;
+            }
+            set
+            {
+                mThisOrder = value;
+            }
+        }
+
+        public int SomeCount { get; set; }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@TotalAmount", mThisOrder.TotalAmount);
+            DB.AddParameter("@PaymentSuccessful", mThisOrder.PaymentSuccessful);
+            DB.AddParameter("@StaffId", mThisOrder.StaffId);
+            DB.AddParameter("@StockId", mThisOrder.StockId);
+            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
+            DB.AddParameter("@Quantity", mThisOrder.Quantity);
+            DB.AddParameter("@Date", mThisOrder.Date);
+            
+            return DB.Execute("sproc_tblOrder_Insert");
+        }
+        List<clsOrder> mOrderList = new List<clsOrder>();
     }
+
 }
