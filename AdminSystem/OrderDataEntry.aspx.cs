@@ -25,16 +25,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string TotalAmount = txtTotalAmount.Text;
         string Date = txtDate.Text;
         string Quantity = txtQuantity.Text;
-        //string Active = chkActive.Text;
+        string CustomerId = txtCustomerId.Text;
+        string StockId = txtStockId.Text;
+        string StaffId = txtStaffId.Text;
         string Error = "";
-        Error = AnOrder.Valid(TotalAmount, Date, Quantity);
+        Error = AnOrder.Valid(TotalAmount, Date, Quantity, CustomerId, StockId, StaffId);
         if (Error == "")
         {
+            AnOrder.OrderId = OrderId;
             AnOrder.PaymentSuccessful = chkPaymentSuccessful.Checked;
             AnOrder.TotalAmount = TotalAmount;
             AnOrder.Date = Convert.ToDateTime(Date);
             AnOrder.Quantity = Quantity;
-            Session["AnOrder"] = AnOrder;
+            AnOrder.CustomerId = Convert.ToInt32(CustomerId);
+            AnOrder.StockId = Convert.ToInt32(StockId);
+            AnOrder.StaffId = Convert.ToInt32(StaffId);
+            clsOrderCollection OrderList = new clsOrderCollection();
+           
+            if (OrderId == -1)
+            {
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Add();
+            }
+            else
+            {
+                OrderList.ThisOrder.Find(OrderId);
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Update();
+            }
             Response.Redirect("OrderViewer.aspx");
         }
         else

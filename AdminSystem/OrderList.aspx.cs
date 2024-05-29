@@ -10,23 +10,49 @@ public partial class _1_List : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        OrderId = Convert.ToInt32(Session["OrderId"]);
         if (IsPostBack == false)
         {
-            DisplayOrders();
+            if (OrderId != -1)
+            {
+                DisplayOrders();
+            }
+            
         }
     }
     void DisplayOrders()
     {
-        clsOrderCollection Orders = new clsOrderCollection();
-        lstOrderList.DataSource = Orders.OrderList;
-        lstOrderList.DataValueField = "OrderId";
-        lstOrderList.DataTextField = "Quantity";
-        lstOrderList.DataBind();
+
+        clsOrderCollection OrderBook = new clsOrderCollection();
+        OrderBook.ThisOrder.Find(OrderId);
+
+        txtOrderId.Text = OrderBook.ThisOrder.OrderId.ToString;
+        chkPaymentSuccessful.Checked = OrderBook.ThisOrder.PaymentSuccessful.ToString;
+        txtStaffId.Text = OrderBook.ThisOrder.StaffId.ToString;
+        txtCustomerId.Text = OrderBook.ThisOrder.CustomerId.ToString;
+        txtStockId.Text = OrderBook.ThisOrder.StockId.ToString;
+        txtQuantity.Text = OrderBook.ThisOrder.Quantity.ToString;
+        txtDate.Text = OrderBook.ThisOrder.Date.ToString;
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         Session["OrderId"] = -1;
         Response.Redirect("OrderDataEntry.aspx");
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 OrderId;
+        if (lstOrderList.SelectedIndex != -1)
+        {
+            OrderId = Convert.ToInt32(lstOrderList.SelectedValue);
+            Session["OrderId"] = OrderId;
+            Response.Redirect("OrderDataEntry.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record from the list to edit";
+        }
     }
 }

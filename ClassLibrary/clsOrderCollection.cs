@@ -101,6 +101,12 @@ namespace ClassLibrary
             
             return DB.Execute("sproc_tblOrder_Insert");
         }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
+        }
+
         List<clsOrder> mOrderList = new List<clsOrder>();
     }
 

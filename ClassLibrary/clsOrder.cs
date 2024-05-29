@@ -205,9 +205,14 @@ namespace ClassLibrary
         {
             return "";
         }
+
+        public string Valid(string totalAmount, string date, string quantity, string customerId, string stockId)
+        {
+            throw new NotImplementedException();
+        }
         /*    public bool Find(string orderId)
-            {
-                throw new NotImplementedException();
-            }*/
+   {
+       throw new NotImplementedException();
+   }*/
     }
 }

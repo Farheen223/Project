@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -88,5 +89,48 @@ namespace Testing6
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
 
         }
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestItem.PaymentSuccessful = true;
+            TestItem.OrderId = 1;
+            TestItem.StaffId = 1;
+            TestItem.StockId = 1;
+            TestItem.Date = DateTime.Now;
+            TestItem.CustomerId = 1;
+            TestItem.Quantity = "10";
+            TestItem.TotalAmount = "100";
+            AllOrders.ThisOrder = TestItem;
+            PrimaryKey = AllOrders.Add();
+            TestItem.OrderId = PrimaryKey;
+            TestItem.PaymentSuccessful = false;
+            TestItem.StaffId = 5;
+            TestItem.CustomerId = 5;
+            TestItem.Quantity = "50";
+            TestItem.TotalAmount = "500";
+            AllOrders.ThisOrder = TestItem;
+            AllOrders.Update();
+            AllOrders.ThisOrder.OrderId.Find(PrimaryKey);
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+
+        } 
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrderId", mThisOrder.OrderId);
+            DB.AddParameter("@PaymentSuccessful", mThisOrder.PaymentSuccessful);
+            DB.AddParameter("@StaffId", mThisOrder.StaffId);
+            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
+            DB.AddParameter("@Quantity", mThisOrder.Quantity);
+            DB.AddParameter("@TotalAmount", mThisOrder.TotalAmount);
+
+            DB.Execute("sproc_tblOrder_Update");
+            
+        }
+        }
+
     }
-}
+
