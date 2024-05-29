@@ -17,6 +17,10 @@ public partial class _1_List : System.Web.UI.Page
             DisplaySuppliers();
         }
 
+        clsSupplierUser User = new clsSupplierUser();
+        User = (clsSupplierUser)Session["User"];
+        Response.Write("Logged in as: " + User.UserName);
+
     }
 
     void DisplaySuppliers()
@@ -53,7 +57,7 @@ public partial class _1_List : System.Web.UI.Page
             // Store the data in the session object
             Session["SupplierID"] = SupplierID;
             // Redirect to the edit page
-            Response.Redirect("SupplierDataEntrey.aspx");
+            Response.Redirect("SupplierDataEntry.aspx");
         }
         else // If no record has been selected
         {
@@ -82,7 +86,7 @@ public partial class _1_List : System.Web.UI.Page
         AllSuppliers.ReportByCity(txtCity.Text);
         lstSupplierList.DataSource = AllSuppliers.SupplierList;
         lstSupplierList.DataValueField = "SupplierID";
-        lstSupplierList.DataTextField = "City";
+        lstSupplierList.DataTextField = "Name";
         lstSupplierList.DataBind();
     }
 
@@ -93,8 +97,13 @@ public partial class _1_List : System.Web.UI.Page
         txtCity.Text = "";
         lstSupplierList.DataSource = AllSuppliers.SupplierList;
         lstSupplierList.DataValueField = "SupplierID";
-        lstSupplierList.DataTextField = "City";
+        lstSupplierList.DataTextField = "Name";
         lstSupplierList.DataBind();
 
+    }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
