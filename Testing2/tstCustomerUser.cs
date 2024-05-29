@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Runtime.Remoting.Messaging;
 
 namespace Testing2
 {
@@ -74,6 +75,24 @@ namespace Testing2
            Found = AnUser.FindUser(UserName, Password);
            Assert.IsTrue(Found);
         }
+
+        [TestMethod]
+        public void TestUserNameP1Found()
+        {
+            clsCustomerUser AnUser = new clsCustomerUser();
+            Boolean Found = false;
+            Boolean OK = true;
+            string UserName = "Farheen";
+            string Password = "Password1";
+            Found = AnUser.FindUser(UserName, Password);
+            if (AnUser.UserName != UserName && AnUser.Password != Password)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+
 
      }
 
