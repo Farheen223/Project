@@ -60,4 +60,41 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to edit";
         }
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 SupplierID;
+        if (lstSupplierList.SelectedIndex != -1)
+        {
+            SupplierID = Convert.ToInt32(lstSupplierList.SelectedValue);
+            Session["SupplierID"] = SupplierID;
+            Response.Redirect("SupllierConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record from the list to delete";
+        }
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+        AllSuppliers.ReportByCity(txtCity.Text);
+        lstSupplierList.DataSource = AllSuppliers.SupplierList;
+        lstSupplierList.DataValueField = "SupplierID";
+        lstSupplierList.DataTextField = "City";
+        lstSupplierList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+        AllSuppliers.ReportByCity("");
+        txtCity.Text = "";
+        lstSupplierList.DataSource = AllSuppliers.SupplierList;
+        lstSupplierList.DataValueField = "SupplierID";
+        lstSupplierList.DataTextField = "City";
+        lstSupplierList.DataBind();
+
+    }
 }
