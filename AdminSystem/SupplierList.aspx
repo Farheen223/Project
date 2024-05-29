@@ -21,6 +21,7 @@
         <asp:TextBox ID="txtCity" runat="server" style="z-index: 1; left: 142px; top: 513px; position: absolute"></asp:TextBox>
         <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" style="z-index: 1; left: 35px; top: 564px; position: absolute" Text="Apply Filter" />
         <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" style="z-index: 1; left: 167px; top: 565px; position: absolute" Text="Clear Filter" />
+        <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="z-index: 1; left: 298px; top: 564px; position: absolute" Text="Return to Main Menu" />
     </form>
 </body>
 </html>

@@ -23,6 +23,7 @@ public partial class SupplierLogin : System.Web.UI.Page
         UserName = Convert.ToString(txtUserName.Text);
         Password = Convert.ToString(txtPassword.Text);
         Found = User.FindUser(UserName, Password);
+        Session["User"] = User;
         if (txtUserName.Text == "")
         {
             lblError.Text = "Enter a username ";
@@ -39,5 +40,10 @@ public partial class SupplierLogin : System.Web.UI.Page
         {
             lblError.Text = "Login details are incorrect. Please try again ";
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
