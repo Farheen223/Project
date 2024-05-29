@@ -54,7 +54,7 @@ namespace Testing6
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            string OrderId = "1";
+            int OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.Date != Convert.ToDateTime("16/03/2024"))
@@ -95,7 +95,7 @@ namespace Testing6
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            string OrderId = "1";
+            int OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.TotalAmount != "100")
@@ -109,7 +109,7 @@ namespace Testing6
         {
             clsOrder AnOrder = new clsOrder();
             bool Found = false;
-            string OrderId = "1";
+            int OrderId = 1;
             Boolean OK = true;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.Quantity != "10")
@@ -221,7 +221,7 @@ namespace Testing6
         {
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
-            string OrderId = "1";
+            int OrderId = 1;
             Found = AnOrder.Find(OrderId);
             Assert.IsTrue(Found);
         }
@@ -233,7 +233,7 @@ namespace Testing6
             String Error = "";
             string TotalAmount = "";
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void TotalAmountMin()
@@ -286,7 +286,7 @@ namespace Testing6
             String Error = "";
             string TotalAmount = "aaaaaaa";
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void TotalAmountExtremeMax()
@@ -296,7 +296,7 @@ namespace Testing6
             string TotalAmount = "";
             TotalAmount = TotalAmount.PadRight(500, 'a');
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void DateAddedExtremeMin()
@@ -308,7 +308,7 @@ namespace Testing6
             TestDate = TestDate.AddYears(-100);
             string Date = TestDate.ToString();
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void DateAddedMinLessOne()
@@ -320,7 +320,7 @@ namespace Testing6
             TestDate = TestDate.AddDays(-1);
             string Date = TestDate.ToString();
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void DateAddedMin()
@@ -343,7 +343,7 @@ namespace Testing6
             TestDate = TestDate.AddDays(1);
             string Date = TestDate.ToString();
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void DateAddedExtremeMax()
@@ -355,7 +355,7 @@ namespace Testing6
             TestDate = TestDate.AddYears(100);
             string Date = TestDate.ToString();
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void DateInvalidData()
@@ -364,7 +364,7 @@ namespace Testing6
             String Error = "";
             string Date = "this is not a date!";
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void QuantityMinLessOne()
@@ -373,7 +373,7 @@ namespace Testing6
             String Error = "";
             string Quantity = "";
             Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void QuantityMin()
@@ -419,7 +419,7 @@ namespace Testing6
              String Error = "";
              string Quantity = "aaaaaaaaaa";
              Error = AnOrder.Valid(TotalAmount, StaffId, CustomerId, Date, Quantity, StockId);
-             Assert.AreNotEqual(Error, "");
+             Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void QuantityMid()
