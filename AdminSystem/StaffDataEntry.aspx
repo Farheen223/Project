@@ -11,13 +11,14 @@
             border-width: 2px;
             padding: 1px 2px;
             height: 1px;
-            width: 75px;
+            width: 1px;
         }
         .auto-style2 {
             border-style: inset;
             padding: 1px 2px;
-            height: 10px;
-            width: 0px;
+            height: 1px;
+            width: 2px;
+            margin-top: 0px;
         }
         .auto-style4 {
             border-style: none;
@@ -26,9 +27,16 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <p class="auto-style1">
+            &nbsp;</p>
         <div>
         </div>
         <asp:Label ID="lblStaffId" runat="server" style="z-index: 1; left: 12px; top: 38px; position: absolute" Text="Staff ID" width="95px"></asp:Label>
+        <p class="auto-style2">
+            <asp:TextBox ID="txtName" runat="server" style="z-index: 1; left: 114px; top: 68px; position: absolute"></asp:TextBox>
+        <asp:Label ID="lblNumber" runat="server" style="z-index: 1; left: 8px; top: 125px; position: absolute" Text="PhoneNumber" width="95px"></asp:Label>
+        </p>
+            <asp:TextBox ID="txtStaffId" runat="server" style="z-index: 1; left: 113px; top: 36px; position: absolute"></asp:TextBox>
         <p>
             &nbsp;</p>
         <p>
@@ -40,34 +48,38 @@
         <asp:TextBox ID="txtDateAdded" runat="server" OnTextChanged="txtDateCreated_TextChanged" style="z-index: 1; left: 114px; top: 186px; position: absolute"></asp:TextBox>
         <p class="auto-style4">
             <asp:Label ID="lblAccount" runat="server" style="z-index: 1; left: 12px; top: 189px; position: absolute; width: 95px; margin-bottom: 0px" Text="Date Created"></asp:Label>
-            <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" style="z-index: 1; left: 118px; top: 313px; position: absolute" Text="Ok" />
         </p>
         <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label1" runat="server" Text="Find"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" Width="68px" />
+        </p>
+        <p style="height: 58px">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 96px; top: 315px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="BtnMainMenu" runat="server" OnClick="BtnMainMenu_Click" Text="Return to main menu" style="margin-bottom: 14px" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
         <p>
             <asp:TextBox ID="txtHoursWorked" runat="server" style="z-index: 1; left: 114px; top: 152px; position: absolute"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" style="z-index: 1; left: 40px; top: 314px; position: absolute; height: 26px;" Text="Ok" />
         </p>
         <p>
             <asp:TextBox ID="txtEmail" runat="server" style="z-index: 1; left: 114px; top: 95px; position: absolute"></asp:TextBox>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="BtnMainMenu" runat="server" OnClick="BtnMainMenu_Click" Text="Return to main menu" />
-&nbsp;&nbsp;&nbsp;&nbsp;
-        </p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <p class="auto-style1">
             <asp:TextBox ID="txtPhoneNumber" runat="server" style="z-index: 1; left: 114px; top: 121px; position: absolute"></asp:TextBox>
             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 17px; top: 268px; position: absolute; height: 7px;"></asp:Label>
         </p>
-        <p class="auto-style2">
-            <asp:TextBox ID="txtName" runat="server" style="z-index: 1; left: 114px; top: 68px; position: absolute"></asp:TextBox>
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 25px; top: 312px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
-        <p class="auto-style1">
-            <asp:TextBox ID="txtStaffId" runat="server" style="z-index: 1; left: 114px; top: 36px; position: absolute"></asp:TextBox>
-        <asp:Label ID="lblNumber" runat="server" style="z-index: 1; left: 12px; top: 125px; position: absolute" Text="PhoneNumber" width="95px"></asp:Label>
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
     </form>
 </body>

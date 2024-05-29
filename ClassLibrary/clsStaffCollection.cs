@@ -109,15 +109,15 @@ namespace ClassLibrary
 
         }
 
-        public void ReportByName(string StaffName)
+        public void ReportByID(string StaffId)
         {
             //filters the records based on a full or partial name
             //Connect to the database
             clsDataConnection DB = new clsDataConnection();
             //Send the name parameter to the database
-            DB.AddParameter("@StaffName", StaffName);
+            DB.AddParameter("@StaffID", StaffId);
             //execute the stored procedure
-            DB.Execute("sproc_tblStaff_FilterByName");
+            DB.Execute("sproc_tblStaff_FilterByStaffId");
             //populate array list
             PopulateArray(DB);
         }
@@ -127,6 +127,7 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             //set the parameters
             DB.AddParameter("@StaffID", mThisStaff.StaffId);
+            DB.AddParameter("@StaffName", mThisStaff.Name);
             DB.AddParameter("@PhoneNumber", mThisStaff.PhoneNumber);
             DB.AddParameter("@Email", mThisStaff.Email);
             DB.AddParameter("@HoursWorked", mThisStaff.Hours);

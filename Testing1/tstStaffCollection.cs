@@ -173,48 +173,48 @@ namespace Testing1
 
 
         [TestMethod]
-        public void ReportByNameMethodOK()
+        public void ReportByIDMethodOK()
         {
             clsStaffCollection Staff = new clsStaffCollection();
             //create new instance of filtered data
-            clsStaffCollection FilteredName = new clsStaffCollection();
+            clsStaffCollection FilteredID = new clsStaffCollection();
             //apply a blank string returns all records
-            FilteredName.ReportByName("");
+            FilteredID.ReportByID("");
             //test to see that the two values are the same
-            Assert.AreEqual(Staff.Count, FilteredName.Count);
+            Assert.AreEqual(Staff.Count, FilteredID.Count);
 
 
         }
 
         [TestMethod]
-        public void ReportByNameNotFound()
+        public void ReportByIDNotFound()
         {
             clsStaffCollection FilteredName = new clsStaffCollection();
             //apply a name that doesnt exist
-            FilteredName.ReportByName("xxx xxx");
+            FilteredName.ReportByID("xxx xxx");
             //Test to see that there are no records
             Assert.AreEqual(0, FilteredName.Count);
 
         }
 
         [TestMethod]
-        public void ReportByNameTestDataFound()
+        public void ReportByIDTestDataFound()
         {
-            clsStaffCollection FilteredName = new clsStaffCollection();
+            clsStaffCollection FilteredID = new clsStaffCollection();
             //variable to store the outcome
             Boolean OK = true;
             //apply a name that doesnt exist
-            FilteredName.ReportByName("bob");
+            FilteredID.ReportByID("3");
             //check that the correct number of records are found
-            if (FilteredName.Count == 2)
+            if (FilteredID.Count == 2)
             {
                 //check to see that the first record is 2
-                if (FilteredName.StaffList[0].StaffId != 66)
+                if (FilteredID.StaffList[0].StaffId != 66)
                 {
                     OK = false;
                 }
                 //check to see if the first record is 13
-                if (FilteredName.StaffList[1].StaffId != 67)
+                if (FilteredID.StaffList[1].StaffId != 67)
                 {
                     OK = false;
                 }

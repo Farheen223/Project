@@ -32,7 +32,7 @@ public partial class _1_List : System.Web.UI.Page
         //set the name of the primary key
         lstStaffList.DataValueField = "StaffId";
         //set the data field to display
-        lstStaffList.DataValueField = "Name";
+        lstStaffList.DataValueField = "StaffId";
         //bind the data to the list
         lstStaffList.DataBind();
     }
@@ -70,13 +70,13 @@ public partial class _1_List : System.Web.UI.Page
     {
         clsStaffCollection Staff = new clsStaffCollection();
         //retrieve the value of the name from the presentation layer
-        Staff.ReportByName(txtFilter.Text);
+        Staff.ReportByID(txtFilter.Text);
         //set the data source to the list of addresses in the collection
         lstStaffList.DataSource = Staff.StaffList;
         //Set the name of the primary key
         lstStaffList.DataValueField = "StaffId";
         //set the name of the field to display
-        lstStaffList.DataTextField = "Name";
+        lstStaffList.DataTextField = "StaffId";
         //Bind the Data to the list
         lstStaffList.DataBind();
     }
@@ -85,7 +85,7 @@ public partial class _1_List : System.Web.UI.Page
     {
         clsStaffCollection Staff = new clsStaffCollection();
         //set an empty string
-        Staff.ReportByName("");
+        Staff.ReportByID("");
         //clear any existing filter to tidy up the interface
         txtFilter.Text = "";
         //set the data source to the list of addresses in the collection
@@ -93,7 +93,7 @@ public partial class _1_List : System.Web.UI.Page
         //Set the name of the primary key
         lstStaffList.DataValueField = "StaffId";
         //set the name of the field to display
-        lstStaffList.DataTextField = "Name";
+        lstStaffList.DataTextField = "StaffId";
         lstStaffList.DataBind();
     }
 
