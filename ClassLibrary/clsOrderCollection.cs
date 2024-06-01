@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary
 {
@@ -10,12 +11,16 @@ namespace ClassLibrary
 
         public clsOrderCollection()
         {
-            Int32 Index = 0;
+
+            clsOrderCollection DB = new clsOrderCollection();
+            DB.Execute("sproc_tblOrder_SelectAll");
+            PopulateArray(DB);
+           /* Int32 Index = 0;
             Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblOrder_SelectAll");
             RecordCount = DB.Count;
-            while (Index < RecordCount)
+            while (Index < RecordCount)*/
             {
                 clsOrder AnOrder = new clsOrder();
                 AnOrder.OrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
@@ -104,10 +109,60 @@ namespace ClassLibrary
 
         public void Update()
         {
-            throw new NotImplementedException();
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@TotalAmount", mThisOrder.TotalAmount);
+            DB.AddParameter("@PaymentSuccessful", mThisOrder.PaymentSuccessful);
+            DB.AddParameter("@StaffId", mThisOrder.StaffId);
+            DB.AddParameter("@StockId", mThisOrder.StockId);
+            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
+            DB.AddParameter("@Quantity", mThisOrder.Quantity);
+            DB.AddParameter("@Date", mThisOrder.Date);
+            DB.Execute("sproc_tblOrder_Update");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrderId", mThisOrder.OrderId);
+            DB.Execute("sproc_tblOrder_Delete");
+        }
+
+        public void ReportByStaffId(string v)
+        {
+            //filters the records based on full or partial Staff Id
         }
 
         List<clsOrder> mOrderList = new List<clsOrder>();
+    }
+    public void ReportByStaffId(string StaffId)
+    {
+        clsDataConnection DB = new clsDataConnection();
+        DB.AddParameter("@StaffId", StaffId);
+        DB.Execute("sproc_tblOrder_FilterByStaffId");
+        PopulateArray(DB);
+    }
+
+    void PopulateArray(clsDataConnection DB)
+    {
+        Int32 Index = 0;
+        Int32 RecordCount;
+        RecordCount = DB.Count;
+        mOrderList = new List<clsOrder>();
+        while (Index < RecordCount)
+        {
+            clsOrder AnOrder = new clsOrder();
+            AnOrder.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
+            AnOrder.Date = Convert.ToDateTime(DB.DataTable.Rows[Index]["Date"]);
+            AnOrder.TotalAmount = Convert.ToString(DB.DataTable.Rows[Index]["TotalAmount"]);
+            AnOrder.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
+            AnOrder.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerId"]);
+            AnOrder.Quantity = Convert.ToString(DB.DataTable.Rows[Index]["Quantity"]);
+            AnOrder.StockId = Convert.ToInt32(DB.DataTable.Rows[Index]["StockId"]);
+            AnOrder.PaymentSuccessful = Convert.ToBoolean(DB.DataTable.Rows[Index]["PaymentSuccessful"]);
+            mOrderList.Add(AnOrder);
+            Index++;
+        }
+        
     }
 
 }

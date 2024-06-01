@@ -116,7 +116,7 @@ namespace Testing6
             AllOrders.ThisOrder.OrderId.Find(PrimaryKey);
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
 
-        } 
+        }
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
@@ -128,9 +128,45 @@ namespace Testing6
             DB.AddParameter("@TotalAmount", mThisOrder.TotalAmount);
 
             DB.Execute("sproc_tblOrder_Update");
-            
-        }
-        }
 
+        }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestItem.PaymentSuccessful = true;
+            TestItem.OrderId = 1;
+            TestItem.StaffId = 1;
+            TestItem.StockId = 1;
+            TestItem.Date = DateTime.Now;
+            TestItem.CustomerId = 1;
+            TestItem.Quantity = "10";
+            TestItem.TotalAmount = "100";
+            AllOrders.ThisOrder = TestItem;
+            PrimaryKey = AllOrders.Add();
+            TestItem.OrderId = PrimaryKey;
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            AllOrders.Delete();
+            Boolean Found = AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+        [TestMethod]
+        public void ReportByStaffIdOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilterOrders = new clsOrderCollection();
+            FilterOrders.ReportByStaffId(" ");
+            Assert.AreEqual(AllOrders.Count, FilterOrders.Count);
+        }
+        [TestMethod]
+        public void ReportByStaffIdNoneFound()
+        {
+            clsOrderCollection FilterOrders = new clsOrderCollection();
+            FilterOrders.ReportByStaffId("x");
+            Assert.AreEqual(0, FilterOrders.Count);
+        }
+    }
     }
 

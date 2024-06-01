@@ -15,12 +15,12 @@ public partial class _1_List : System.Web.UI.Page
         {
             if (OrderId != -1)
             {
-                DisplayOrders();
+                DisplayOrder();
             }
             
         }
     }
-    void DisplayOrders()
+    void DisplayOrder()
     {
 
         clsOrderCollection OrderBook = new clsOrderCollection();
@@ -53,6 +53,21 @@ public partial class _1_List : System.Web.UI.Page
         else
         {
             lblError.Text = "Please select a record from the list to edit";
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 OrderId;
+        if (lstOrderList.SelectedIndex != -1)
+        {
+            OrderId = Convert.ToInt32(lstOrderList.SelectedValue);
+            Session["OrderId"] = OrderId;
+            Response.Redirect("OrderConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record from the list to delete";
         }
     }
 }
