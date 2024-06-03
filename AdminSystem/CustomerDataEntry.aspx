@@ -41,6 +41,9 @@
         <p>
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 50px; top: 373px; position: absolute; right: 1053px;" Text="OK" width="59px" />
         </p>
+        <p>
+            <asp:Button ID="btnReturnToMainMenu" runat="server" style="margin-left: 194px" Text="Return to Main Menu" Width="128px" />
+        </p>
     </form>
 </body>
 </html>

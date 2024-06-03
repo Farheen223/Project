@@ -23,6 +23,7 @@
         <p>
             <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApply_Click" Text="Apply Filter" Width="100px" />
             <asp:Button ID="btnClearFilter" runat="server" Height="27px" OnClick="btnClearFilter_Click" style="margin-left: 60px" Text="Clear Filter" Width="101px" />
+            <asp:Button ID="btnReturnToMainMenu" runat="server" OnClick="btnReturnToMainMenu_Click" style="margin-left: 56px" Text="Return to Main Menu" />
         </p>
         <asp:Label ID="lblError" runat="server"></asp:Label>
     </form>
