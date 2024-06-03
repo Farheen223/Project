@@ -20,7 +20,7 @@
             <asp:Label ID="lblError" runat="server" ForeColor="#FF3300"></asp:Label>
         </p>
         <asp:Button ID="btnLogin" runat="server" Height="25px" OnClick="btnLogin_Click" style="margin-left: 52px" Text="Login" Width="52px" />
-        <asp:Button ID="btnCancel" runat="server" Height="25px" style="margin-left: 44px" Text="Cancel" Width="56px" />
+        <asp:Button ID="btnCancel" runat="server" Height="25px" style="margin-left: 44px" Text="Cancel" Width="56px" OnClick="btnCancel_Click" />
     </form>
     </body>
 </html>

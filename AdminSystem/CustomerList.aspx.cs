@@ -13,14 +13,18 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        CustomerId = Convert.ToInt32(Session["CustomerId"]);
+        //CustomerId = Convert.ToInt32(Session["CustomerId"]);
         if (IsPostBack == false)
         {
-            if (CustomerId != -1)
-            {
-                DisplayCustomer();
-            }
+            DisplayCustomer();
+            //if (CustomerId != -1)
+           // {
+           //     DisplayCustomer();
+           // }
         }
+        clsCustomerUser AnUser = new clsCustomerUser();
+        AnUser = (clsCustomerUser)Session["AnUser"];
+        Response.Write("Logged in as:" + AnUser.UserName);
     }
 
     void DisplayCustomer()
@@ -92,5 +96,10 @@ public partial class _1_List : System.Web.UI.Page
         lstCustomerList.DataValueField = "CustomerId";
         lstCustomerList.DataTextField = "Email";
         lstCustomerList.DataBind();
+    }
+
+    protected void btnReturnToMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

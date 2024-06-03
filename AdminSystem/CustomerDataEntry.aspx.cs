@@ -13,8 +13,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        CustomerId = Convert.ToInt32(Session["CustomerId"]);
+        if (IsPostBack == false)
+        {
+            if (CustomerId != -1)
+            {
+                DisplayCustomer();
+            }
+        }
     }
+
+   
 
     protected void txtCustomerId_TextChanged(object sender, EventArgs e)
     {
@@ -83,7 +92,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("TeamMainMenu.aspx");
     }
 
 
@@ -124,16 +133,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
        }
 
-     void DisplayAddress()
+     void DisplayCustomer()
     {
-        clsCustomerCollection AddressBook = new clsCustomerCollection();
-        AddressBook.ThisCustomer.Find(CustomerId);
-        txtCustomerId.Text = AddressBook.ThisCustomer.CustomerId.ToString();
-        txtCustomerName.Text = AddressBook.ThisCustomer.CustomerName.ToString();
-        TxtCustomerSurname.Text = AddressBook.ThisCustomer.CustomerSurname.ToString();
-        txtEmail.Text = AddressBook.ThisCustomer.Email.ToString();
-        txtDateAdded.Text = AddressBook.ThisCustomer.DateAdded.ToString();
-        TxtContactNumber.Text = AddressBook.ThisCustomer.ContactNumber.ToString();
-        chkActive.Checked ^= AddressBook.ThisCustomer.Active;
+        clsCustomerCollection AnCustomer = new clsCustomerCollection();
+        AnCustomer.ThisCustomer.Find(CustomerId);
+        txtCustomerId.Text = AnCustomer.ThisCustomer.CustomerId.ToString();
+        txtCustomerName.Text = AnCustomer.ThisCustomer.CustomerName.ToString();
+        TxtCustomerSurname.Text = AnCustomer.ThisCustomer.CustomerSurname.ToString();
+        txtEmail.Text = AnCustomer.ThisCustomer.Email.ToString();
+        txtDateAdded.Text = AnCustomer.ThisCustomer.DateAdded.ToString();
+        TxtContactNumber.Text = AnCustomer.ThisCustomer.ContactNumber.ToString();
+        chkActive.Checked = AnCustomer.ThisCustomer.Active;
     }
 }
