@@ -11,7 +11,7 @@
         <div>
             <asp:Label ID="lblCustomerId" runat="server" style="z-index: 1; left: 44px; top: 71px; position: absolute; width: 109px; height: 18px; right: 1276px; " Text="Customer Id"></asp:Label>
             <asp:TextBox ID="txtCustomerId" runat="server" style="z-index: 1; left: 194px; top: 71px; position: absolute; width: 126px" height="22"></asp:TextBox>
-            <asp:Label ID="LblCustomerName" runat="server" style="z-index: 1; left: 43px; top: 113px; position: absolute; width: 109px;" Text="Customer Name"></asp:Label>
+            <asp:Label ID="LblCustomerName" runat="server" style="z-index: 1; left: 43px; top: 113px; position: absolute; width: 109px; right: 503px;" Text="Customer Name"></asp:Label>
             <asp:TextBox ID="txtCustomerName" runat="server" OnTextChanged="txtAddressId_TextChanged" style="z-index: 1; left: 194px; top: 113px; position: absolute; height: 18px; width: 126px;"></asp:TextBox>
         <asp:Label ID="LblDateAdded" runat="server" style="z-index: 1; left: 41px; top: 160px; position: absolute" Text="DateAdded" width="109px"></asp:Label>
         <asp:TextBox ID="txtDateAdded" runat="server" OnTextChanged="txtDateOfBirth_TextChanged" style="z-index: 1; left: 188px; top: 161px; position: absolute; margin-bottom: 14px; height: 20px; width: 126px;"></asp:TextBox>
@@ -42,7 +42,7 @@
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 50px; top: 373px; position: absolute; right: 1053px;" Text="OK" width="59px" />
         </p>
         <p>
-            <asp:Button ID="btnReturnToMainMenu" runat="server" style="margin-left: 194px" Text="Return to Main Menu" Width="128px" />
+            <asp:Button ID="btnReturnToMainMenu" runat="server" style="margin-left: 194px" Text="Return to Main Menu" Width="128px" OnClick="btnReturnToMainMenu_Click" />
         </p>
     </form>
 </body>
