@@ -82,7 +82,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 CustomerList.Update();
             }
             //navigate to the view page
-            Response.Redirect("CustomerBookList.aspx");
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
@@ -144,5 +144,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtDateAdded.Text = AnCustomer.ThisCustomer.DateAdded.ToString();
         TxtContactNumber.Text = AnCustomer.ThisCustomer.ContactNumber.ToString();
         chkActive.Checked = AnCustomer.ThisCustomer.Active;
+
+
+    }
+
+    protected void btnReturnToMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
