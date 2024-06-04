@@ -17,14 +17,10 @@ public partial class _1_List : System.Web.UI.Page
         if (IsPostBack == false)
         {
             DisplayCustomer();
-            //if (CustomerId != -1)
-           // {
-           //     DisplayCustomer();
-           // }
         }
-        clsCustomerUser AnUser = new clsCustomerUser();
-        AnUser = (clsCustomerUser)Session["AnUser"];
-        Response.Write("Logged in as:" + AnUser.UserName);
+       clsCustomerUser AnUser = new clsCustomerUser();
+       AnUser = (clsCustomerUser)Session["AnUser"];
+       Response.Write("Logged in as:" + AnUser.UserName);
     }
 
     void DisplayCustomer()
@@ -32,13 +28,13 @@ public partial class _1_List : System.Web.UI.Page
         clsCustomerCollection Customer = new clsCustomerCollection();
         lstCustomerList.DataSource = Customer.CustomerList;
         lstCustomerList.DataValueField = "CustomerId";
-        lstCustomerList.DataTextField = "CustomerName";
+        lstCustomerList.DataTextField = "Email";
         lstCustomerList.DataBind();
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        Session["CustomeId"] = -1;
+        Session["CustomerId"] = -1;
         Response.Redirect("CustomerDataEntry.aspx");
     }
 
