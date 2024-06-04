@@ -22,7 +22,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
             }
         }
     }
-
    
 
     protected void txtCustomerId_TextChanged(object sender, EventArgs e)
@@ -92,7 +91,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("TeamMainMenu.aspx");
+        Response.Redirect("CustomerList.aspx");
     }
 
 
@@ -151,5 +150,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnReturnToMainMenu_Click(object sender, EventArgs e)
     {
         Response.Redirect("TeamMainMenu.aspx");
+    }
+
+    protected void btnCancel_Click1(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerList.aspx");
     }
 }
