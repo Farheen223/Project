@@ -13,14 +13,14 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        CustomerId = Convert.ToInt32(Session["CustomerId"]);
+        //CustomerId = Convert.ToInt32(Session["CustomerId"]);
         if (IsPostBack == false)
         {
-            if (CustomerId != -1)
-            {
-                DisplayCustomer();
-            }
+            DisplayCustomer();
         }
+       clsCustomerUser AnUser = new clsCustomerUser();
+       AnUser = (clsCustomerUser)Session["AnUser"];
+       Response.Write("Logged in as:" + AnUser.UserName);
     }
 
     void DisplayCustomer()
@@ -28,13 +28,13 @@ public partial class _1_List : System.Web.UI.Page
         clsCustomerCollection Customer = new clsCustomerCollection();
         lstCustomerList.DataSource = Customer.CustomerList;
         lstCustomerList.DataValueField = "CustomerId";
-        lstCustomerList.DataTextField = "CustomerName";
+        lstCustomerList.DataTextField = "Email";
         lstCustomerList.DataBind();
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        Session["CustomeId"] = -1;
+        Session["CustomerId"] = -1;
         Response.Redirect("CustomerDataEntry.aspx");
     }
 
@@ -92,5 +92,15 @@ public partial class _1_List : System.Web.UI.Page
         lstCustomerList.DataValueField = "CustomerId";
         lstCustomerList.DataTextField = "Email";
         lstCustomerList.DataBind();
+    }
+
+    protected void btnReturnToMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
+    protected void lstCustomerList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }

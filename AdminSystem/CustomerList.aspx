@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:ListBox ID="lstCustomerList" runat="server" Height="372px" Width="472px"></asp:ListBox>
+        <asp:ListBox ID="lstCustomerList" runat="server" Height="372px" Width="472px" OnSelectedIndexChanged="lstCustomerList_SelectedIndexChanged"></asp:ListBox>
         <p>
             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" Width="54px" />
             <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" style="margin-left: 38px" width="54px" />
@@ -23,6 +23,7 @@
         <p>
             <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApply_Click" Text="Apply Filter" Width="100px" />
             <asp:Button ID="btnClearFilter" runat="server" Height="27px" OnClick="btnClearFilter_Click" style="margin-left: 60px" Text="Clear Filter" Width="101px" />
+            <asp:Button ID="btnReturnToMainMenu" runat="server" OnClick="btnReturnToMainMenu_Click" style="margin-left: 56px" Text="Return to Main Menu" />
         </p>
         <asp:Label ID="lblError" runat="server"></asp:Label>
     </form>
