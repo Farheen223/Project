@@ -210,9 +210,14 @@ namespace ClassLibrary
         {
             throw new NotImplementedException();
         }
+
+        public void Find(object orderId)
+        {
+            throw new NotImplementedException();
+        }
         /*    public bool Find(string orderId)
-   {
-       throw new NotImplementedException();
-   }*/
+{
+throw new NotImplementedException();
+}*/
     }
 }

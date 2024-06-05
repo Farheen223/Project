@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -12,6 +13,9 @@ namespace Testing6
     [TestClass]
     public class tstOrderCollection
     {
+        public List<tstOrder> OrderList { get; set; }
+        public int Count { get; set; }
+        public clsOrder ThisOrder { get; set; }
         [TestMethod]
         public void TestMethod1()
         {
@@ -19,7 +23,6 @@ namespace Testing6
             Assert.IsNotNull(AllOrders);
         }
         [TestMethod]
-
         public void OrderListOK()
         {
             clsOrderCollection AllOrders = new clsOrderCollection();
@@ -86,8 +89,8 @@ namespace Testing6
             AllOrders.ThisOrder = TestItem;
             PrimaryKey = AllOrders.Add();
             TestItem.OrderId = PrimaryKey;
+            AllOrders.ThisOrder.Find(PrimaryKey);
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
-
         }
         [TestMethod]
         public void UpdateMethodOK()
@@ -111,24 +114,12 @@ namespace Testing6
             TestItem.CustomerId = 5;
             TestItem.Quantity = "50";
             TestItem.TotalAmount = "500";
+            TestItem.Date = DateTime.Now;
+            TestItem.StockId = 3;
             AllOrders.ThisOrder = TestItem;
             AllOrders.Update();
-            AllOrders.ThisOrder.OrderId.Find(PrimaryKey);
+            AllOrders.ThisOrder.Find(PrimaryKey);
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
-
-        }
-        public void Update()
-        {
-            clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@OrderId", mThisOrder.OrderId);
-            DB.AddParameter("@PaymentSuccessful", mThisOrder.PaymentSuccessful);
-            DB.AddParameter("@StaffId", mThisOrder.StaffId);
-            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
-            DB.AddParameter("@Quantity", mThisOrder.Quantity);
-            DB.AddParameter("@TotalAmount", mThisOrder.TotalAmount);
-
-            DB.Execute("sproc_tblOrder_Update");
-
         }
         [TestMethod]
         public void DeleteMethodOK()
@@ -153,20 +144,53 @@ namespace Testing6
             Assert.IsFalse(Found);
         }
         [TestMethod]
-        public void ReportByStaffIdOK()
+        public void ReportByQuantityOK()
         {
             clsOrderCollection AllOrders = new clsOrderCollection();
             clsOrderCollection FilterOrders = new clsOrderCollection();
-            FilterOrders.ReportByStaffId(" ");
-            Assert.AreEqual(AllOrders.Count, FilterOrders.Count);
+            FilterOrders.ReportByQuantity(" ");
+            Assert.AreNotEqual(AllOrders.Count, FilterOrders.Count);
         }
         [TestMethod]
-        public void ReportByStaffIdNoneFound()
+        public void ReportByQuantityNoneFound()
         {
             clsOrderCollection FilterOrders = new clsOrderCollection();
-            FilterOrders.ReportByStaffId("x");
+            FilterOrders.ReportByQuantity("x");
             Assert.AreEqual(0, FilterOrders.Count);
         }
+        [TestMethod]
+        public void ReportByQuantityTestDataFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            Boolean OK = true;
+            FilteredOrders.ReportByQuantity("87");
+            if (FilteredOrders.Count == 1)
+            {
+                if (FilteredOrders.OrderList[0].OrderId != 11)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void InstanceOK()
+        {
+            clsOrderUser AnUser = new clsOrderUser();
+            Assert.IsNotNull(AnUser);
+        }
+        [TestMethod]
+        public void TwoRecordsPresent()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            Assert.AreEqual(AllOrders.Count, 28);
+
+        }
     }
-    }
+} 
+    
 

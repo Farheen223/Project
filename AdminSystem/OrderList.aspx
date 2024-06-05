@@ -17,8 +17,24 @@
             <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="margin-left: 34px" Text="Delete" />
         </p>
         <p>
+            <asp:Label ID="lblEnterQuantity" runat="server" Text="Enter a Quantity"></asp:Label>
+            <asp:TextBox ID="txtFilter" runat="server" height="19px" style="margin-left: 23px; margin-top: 0px; margin-bottom: 0px"></asp:TextBox>
+        </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" Text="Apply Filter" />
+            <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="margin-left: 27px" Text="Clear Filter" />
+        </p>
+        <p>
+            &nbsp;</p>
+        <p>
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

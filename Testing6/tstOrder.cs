@@ -146,14 +146,7 @@ namespace Testing6
             clsOrder AnOrder = new clsOrder();
             Assert.IsNotNull(AnOrder);
         }
-      /*  [TestMethod]
-        public void ActiveOK()
-        {
-            clsOrder AnOrder = new clsOrder();
-            Boolean TestData = true;
-            AnOrder.Active = TestData;
-            Assert.AreEqual(AnOrder.Active, TestData);
-        }*/
+        [TestMethod]
         public void DateOK()
         {
             clsOrder AnOrder = new clsOrder();
