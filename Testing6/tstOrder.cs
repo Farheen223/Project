@@ -225,7 +225,6 @@ namespace Testing6
             Found = AnOrder.Find(OrderId);
             Assert.IsTrue(Found);
         }
-        // ***VALIDATION***//
         [TestMethod]
         public void TotalAmountMinLessOne()
         {
