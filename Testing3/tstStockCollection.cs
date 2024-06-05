@@ -98,5 +98,36 @@ namespace Testing3
         }
 
         
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the cl;ass
+            clsStockCollection allStock = new clsStockCollection();
+            //create test data
+            clsStock TestItem = new clsStock();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.inStock = true;
+            TestItem.ItemID = 1;
+            TestItem.ItemName= "tshirt";
+            TestItem.DateAdded = DateTime.Now;
+            TestItem.Description = "hello";
+            TestItem.ItemPrice = 1;
+            TestItem.SupplierID= 1;
+            //set thisstock to test data
+            allStock.ThisStock = TestItem;
+            //add the record
+            PrimaryKey = allStock.Add();
+            //set the primary key of the test dATA
+            TestItem.ItemID = PrimaryKey;
+            //find the record
+            allStock.ThisStock.Find(PrimaryKey);
+            //test to see the two values are the same
+            Assert.AreEqual(allStock.ThisStock, TestItem);
+
+        }
+
+        
     }
 }

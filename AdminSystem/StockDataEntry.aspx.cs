@@ -51,17 +51,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aStock.ItemName = ItemName;
             //capture itemID
 
-            //ASK WTF IS GOING ON WITH THESE NEXT LAB, dont think i need these
-            ///aStock.ItemID = ItemID;
-            ///aStock.SupplierID = SupplierID;
-            //aStock.ItemPrice = ItemPrice;
+            
+            aStock.ItemID = Convert.ToInt32(ItemID);
+            aStock.SupplierID = Convert.ToInt32(SupplierID);
+            aStock.ItemPrice = Convert.ToInt32(ItemPrice);
             aStock.Description = Description;
             aStock.DateAdded = Convert.ToDateTime(DateAdded);
 
-            //store in session object
-            Session["aStock"] = aStock;
-            //navigate to the view page
-            Response.Redirect("StockViewer.aspx");
+            //capture instock
+            aStock.inStock = chkInStock.Checked;
+
+            //creater a new instance of stockcollection
+            clsStockCollection StockList = new clsStockCollection();
+            //set the thisaddress property
+            StockList.ThisStock = aStock;
+            //add the new recrod
+            StockList.Add();
+            //redirect to the list page
+            Response.Redirect("StockList.aspx");
 
         }
 
