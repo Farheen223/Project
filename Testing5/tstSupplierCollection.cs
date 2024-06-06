@@ -216,12 +216,12 @@ namespace Testing5
             FilteredSuppliers.ReportByCity("FakeCity");
             if (FilteredSuppliers.Count == 2)
             {
-                if (FilteredSuppliers.SupplierList[0].SupplierID != 92)
+                if (FilteredSuppliers.SupplierList[0].SupplierID != 6)
                 {
                     OK = false;
                 }
 
-                if (FilteredSuppliers.SupplierList[1].SupplierID != 93)
+                if (FilteredSuppliers.SupplierList[1].SupplierID != 7)
                 {
                     OK = false;
                 }
