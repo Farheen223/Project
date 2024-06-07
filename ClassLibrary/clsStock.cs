@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Linq.Expressions;
-using System.Threading;
 
 namespace ClassLibrary
 {
@@ -124,20 +121,14 @@ namespace ClassLibrary
                 mItemPrice = Convert.ToInt32(DB.DataTable.Rows[0]["ItemPrice"]);
                 mSupplierID = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
                 return true;
-
-
-
-
             }
-
             else
             {
                 return false;
-            }
-            
+            }         
         }
 
-        public string Valid(string itemID, string supplierID, string itemName, string itemPrice, string itemDescription, string dateAdded)
+        public string Valid(int supplierID, string itemName, int itemPrice, string itemDescription, string dateAdded)
         {
             //create a string variable to store the error
             String Error = "";
@@ -147,6 +138,7 @@ namespace ClassLibrary
             if (itemName.Length == 0)
             {
                 //record error
+
                 Error = Error + "Item name may not be blank: ";
             }
             //iuf the itenname is more than 50 char
@@ -208,13 +200,7 @@ namespace ClassLibrary
                 Error = Error + "The date was not a valid date: ";
             }
             
-            return Error;
-
-
-
-
-
-            
+            return Error;            
         }
     }
 }

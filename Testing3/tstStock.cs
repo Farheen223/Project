@@ -10,11 +10,11 @@ namespace Testing3
         
             //good test daTA
             //create some test data to pass the method
-            string ItemID = "4";
-            string SupplierID = "123";
+            string ItemID = "2";
+            int SupplierID = 1;
             string ItemName = "tshirt";
-            string ItemPrice = "10";
-            string Description = "this is a shirt";
+            int ItemPrice = 1;
+            string Description = "hello";
             string DateAdded = DateTime.Now.ToShortDateString();
         
             
@@ -109,7 +109,7 @@ namespace Testing3
             //create bool variabkle to sotre validation results
             Boolean Found = false;
             //create test data
-            Int32 ItemID = 4;
+            Int32 ItemID = 2;
             //invoke method
             Found = aStock.Find(ItemID);
             //test to see if result is true
@@ -144,7 +144,7 @@ namespace Testing3
             Found = aStock.Find(ItemID);
 
 
-            if (aStock.SupplierID != 123)
+            if (aStock.SupplierID != 1)
             {
                 OK = false;
             }
@@ -160,7 +160,7 @@ namespace Testing3
             Found = aStock.Find(ItemID);
 
 
-            if (aStock.ItemName != "tshirt                                            ")
+            if (aStock.ItemName != "tshirt")
             {
                 OK = false;
             }
@@ -176,7 +176,7 @@ namespace Testing3
             Found = aStock.Find(ItemID);
 
 
-            if (aStock.ItemPrice != 10)
+            if (aStock.ItemPrice != 1)
             {
                 OK = false;
             }
@@ -192,7 +192,7 @@ namespace Testing3
             Found = aStock.Find(ItemID);
 
 
-            if (aStock.Description != "this is a tshirt                                  ")
+            if (aStock.Description != "hello")
             {
                 OK = false;
             }
@@ -205,10 +205,10 @@ namespace Testing3
             clsStock aStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemID = 4;
+            Int32 ItemID = 3;
             Found = aStock.Find(ItemID);
 
-            if (aStock.DateAdded != Convert.ToDateTime("23/12/2022"))
+            if (aStock.DateAdded != Convert.ToDateTime("06/06/2024"))
                 {
                 OK = false;
 
@@ -243,7 +243,7 @@ namespace Testing3
             //string variable to store any error message
             string Error = "";
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see if result is correct
             Assert.AreEqual(Error, "");
         }
@@ -257,7 +257,7 @@ namespace Testing3
             //create test data
             string ItemName = ""; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreNotEqual(Error, "");
 
@@ -273,7 +273,7 @@ namespace Testing3
             //create test data
             string ItemName = "a"; 
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -288,7 +288,7 @@ namespace Testing3
             //create test data
             string ItemName = "aa"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -304,7 +304,7 @@ namespace Testing3
             //create test data
             string ItemName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -320,7 +320,7 @@ namespace Testing3
             //create test data
             string ItemName = "12345678912345678912345678912345678912345678912345"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -336,7 +336,7 @@ namespace Testing3
             //create test data
             string ItemName = "aaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -352,7 +352,7 @@ namespace Testing3
             //create test data
             string ItemName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreNotEqual(Error, "");
 
@@ -370,7 +370,7 @@ namespace Testing3
             string ItemName = "";
             ItemName = ItemName.PadRight(500, 'a'); //this should fail
             //invokethe method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see thatthe result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -389,7 +389,7 @@ namespace Testing3
             //convert the date variable to a string variable
             string DateAdded = TestDate.ToString();
             //invoke the method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see that the result is correcy
             Assert.AreNotEqual(Error, "");
         }
@@ -409,7 +409,7 @@ namespace Testing3
             //convert the date variable to a string variable
             string DateAdded = TestDate.ToString();
             //invoke the method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see that the result is correcy
             Assert.AreNotEqual(Error, "");
         }
@@ -426,7 +426,7 @@ namespace Testing3
             //convert the date variable to a string variable
             string DateAdded = TestDate.ToString();
             //invoke the method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see that the result is correcy
             Assert.AreEqual(Error, "");
         }
@@ -445,7 +445,7 @@ namespace Testing3
             //convert the date variable to a string variable
             string DateAdded = TestDate.ToString();
             //invoke the method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see that the result is correcy
             Assert.AreNotEqual(Error, "");
         }
@@ -464,7 +464,7 @@ namespace Testing3
             //convert the date variable to a string variable
             string DateAdded = TestDate.ToString();
             //invoke the method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see that the result is correcy
             Assert.AreNotEqual(Error, "");
         }
@@ -478,7 +478,7 @@ namespace Testing3
             //set the date to a non date value
             string DateAdded = "this is not a date";
             //invoke the method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see that the result is correcy
             Assert.AreNotEqual(Error, "");
         }
@@ -506,7 +506,7 @@ namespace Testing3
             //create test data
             string Description = ""; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreNotEqual(Error, "");
 
@@ -522,7 +522,7 @@ namespace Testing3
             //create test data
             string Description = "a";
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -537,7 +537,7 @@ namespace Testing3
             //create test data
             string Description = "aa"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -553,7 +553,7 @@ namespace Testing3
             //create test data
             string Description = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -569,7 +569,7 @@ namespace Testing3
             //create test data
             string Description = "12345678912345678912345678912345678912345678912345"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -585,7 +585,7 @@ namespace Testing3
             //create test data
             string Description = "aaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreEqual(Error, "");
 
@@ -601,7 +601,7 @@ namespace Testing3
             //create test data
             string Description = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; // triggers error
             //invoke method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see the result is correct
             Assert.AreNotEqual(Error, "");
 
@@ -619,7 +619,7 @@ namespace Testing3
             string ItemName = "";
             ItemName = ItemName.PadRight(500, 'a'); //this should fail
             //invokethe method
-            Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+            Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
             //test to see thatthe result is correct
             Assert.AreNotEqual(Error, "");
         }
