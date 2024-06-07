@@ -1,6 +1,6 @@
-﻿
+﻿using System.Collections.Generic;
 using System;
-using System.Collections.Generic;
+
 namespace ClassLibrary
 
 {
@@ -11,8 +11,9 @@ namespace ClassLibrary
         //private data member for thisstock
         clsStock mThisStock = new clsStock();
 
-        public List<clsStock> StockList 
-        { 
+
+        public List<clsStock> StockList
+        {
             get
             {
                 return mStockList;
@@ -23,16 +24,16 @@ namespace ClassLibrary
                 mStockList = value;
             }
         }
-        public int Count 
+        public int Count
         {
             get
             {
                 return mStockList.Count;
             }
-            set 
+            set
             {
 
-                
+
             }
         }
         public clsStock ThisStock
@@ -50,37 +51,12 @@ namespace ClassLibrary
             }
         }
 
-//constructor for the class
+        //constructor for the class
         public clsStockCollection()
         {
-            //variable for the index
-            Int32 Index = 0;
-            //variable to store the record count
-            Int32 RecordCount = 0;
-            //object for the data connect
             clsDataConnection DB = new clsDataConnection();
-            //execute the stored procedure
             DB.Execute("sproc_tblStock_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount) 
-            {
-                //create a blank address
-                clsStock aStock = new clsStock();
-                //read in the fields for the current record
-                aStock.ItemID = Convert.ToInt32(DB.DataTable.Rows[0]["ItemID"]);
-                aStock.Description = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
-                aStock.inStock = Convert.ToBoolean(DB.DataTable.Rows[0]["inStock"]);
-                aStock.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
-                aStock.ItemName = Convert.ToString(DB.DataTable.Rows[0]["ItemName"]);
-                aStock.ItemPrice = Convert.ToInt32(DB.DataTable.Rows[0]["ItemPrice"]);
-                aStock.SupplierID = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
-                //add the record to the private data member
-                mStockList.Add(aStock);
-                //point at next record
-                Index++;
-            }
+            PopulateArray(DB);
         }
 
         public int Add()
@@ -99,10 +75,63 @@ namespace ClassLibrary
             //execute the query returmnimng the primary key value
             return DB.Execute("sproc_tblStock_Insert");
         }
+
+        public void Update()
+        {
+            //update existinfg record based on the values of thisaddress
+            //connect to database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the new stored procedure
+            DB.AddParameter("@ItemPrice", mThisStock.ItemPrice);
+            DB.AddParameter("@ItemName", mThisStock.ItemName);
+            DB.AddParameter("@Description", mThisStock.Description);
+            DB.AddParameter("@inStock", mThisStock.inStock);
+            DB.AddParameter("@DateAdded", mThisStock.DateAdded);
+            DB.AddParameter("@SupplierID", mThisStock.SupplierID);
+            DB.AddParameter("@ItemID", mThisStock.ItemID);
+
+            //execute stored procedure
+            DB.Execute("sproc_tblStock_Update");
+
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemID", mThisStock.ItemID);
+            DB.Execute("sproc_tblStock_Delete");
+
+        }
+
+        public void ReportByItemName(string ItemName)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemName", ItemName);
+            DB.Execute("sproc_tblStock_FilterByItemName");
+            PopulateArray(DB);
+        }
+
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+            mStockList = new List<clsStock>();
+            while (Index < RecordCount)
+            {
+                clsStock aStock = new clsStock();
+                aStock.ItemID = Convert.ToInt32(DB.DataTable.Rows[Index]["ItemID"]);
+                aStock.Description = Convert.ToString(DB.DataTable.Rows[Index]["Description"]);
+                aStock.inStock = Convert.ToBoolean(DB.DataTable.Rows[Index]["inStock"]);
+                aStock.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateAdded"]);
+                aStock.ItemName = Convert.ToString(DB.DataTable.Rows[Index]["ItemName"]);
+                aStock.ItemPrice = Convert.ToInt32(DB.DataTable.Rows[Index]["ItemPrice"]);
+                aStock.SupplierID = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplierID"]);
+
+                mStockList.Add(aStock);
+                Index++;
+            }
+        }
     }
-
-
-  
-
-
 }

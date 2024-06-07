@@ -8,19 +8,22 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 ItemID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
-    }
-
-    protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void txtSupplyDate_TextChanged(object sender, EventArgs e)
-    {
-
+        //get the id of the item to be processed
+        ItemID = Convert.ToInt32(Session["ItemID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (ItemID != -1)
+            {
+                //display the current data for the record
+                DisplayStock();
+            }
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -30,11 +33,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture item name ?
         string ItemName = txtItemName.Text;
         //capture item id
-        string ItemID = txtItemID.Text;
+        int ItemID = Convert.ToInt32(txtItemID.Text);
         //capture supplierid
-        string SupplierID = txtSupplierID.Text;
+        int SupplierID = Convert.ToInt32(txtSupplierID.Text);
         //capture item price
-        string ItemPrice = txtItemPrice.Text;
+        int ItemPrice = Convert.ToInt32(txtItemPrice.Text);
         //capture item description
         string Description = txtItemDescription.Text;
         //date of delivery
@@ -44,7 +47,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //variable to store error messages
         string Error = "";
         //validate the data
-        Error = aStock.Valid(ItemID, SupplierID, ItemName, ItemPrice, Description, DateAdded);
+        Error = aStock.Valid(SupplierID, ItemName, ItemPrice, Description, DateAdded);
         if (Error == "")
         {
             //capture itemname
@@ -52,9 +55,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture itemID
 
             
-            aStock.ItemID = Convert.ToInt32(ItemID);
-            aStock.SupplierID = Convert.ToInt32(SupplierID);
-            aStock.ItemPrice = Convert.ToInt32(ItemPrice);
+            aStock.ItemID = ItemID;
+            aStock.SupplierID = SupplierID;
+            aStock.ItemPrice = ItemPrice;
             aStock.Description = Description;
             aStock.DateAdded = Convert.ToDateTime(DateAdded);
 
@@ -63,10 +66,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             //creater a new instance of stockcollection
             clsStockCollection StockList = new clsStockCollection();
-            //set the thisaddress property
-            StockList.ThisStock = aStock;
-            //add the new recrod
-            StockList.Add();
+
+            if (ItemID == -1)
+            {
+                StockList.ThisStock = aStock;
+
+            }
+
+            else
+            {
+                StockList.ThisStock.Find(ItemID);
+                StockList.ThisStock = aStock;
+                StockList.Update();
+            }
+
             //redirect to the list page
             Response.Redirect("StockList.aspx");
 
@@ -82,12 +95,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-
-    }
-
-    protected void txtSupplierID_TextChanged(object sender, EventArgs e)
-    {
-
+        Response.Redirect("StockList.aspx");
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
@@ -116,5 +124,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         
         }
+    }
+
+    void DisplayStock()
+    {
+        clsStockCollection StockBook = new clsStockCollection();
+        StockBook.ThisStock.Find(ItemID);
+        txtItemID.Text = StockBook.ThisStock.ItemID.ToString();
+        txtItemName.Text = StockBook.ThisStock.ItemName.ToString();
+        txtItemPrice.Text = StockBook.ThisStock.ItemPrice.ToString();
+        txtItemDescription.Text = StockBook.ThisStock.Description.ToString();
+        txtDateAdded.Text = StockBook.ThisStock.DateAdded.ToString();
+        txtSupplierID.Text = StockBook.ThisStock.SupplierID.ToString();
+        chkInStock.Checked = StockBook.ThisStock.inStock;
+    }
+
+
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
